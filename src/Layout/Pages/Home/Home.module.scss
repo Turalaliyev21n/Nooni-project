@@ -4,4 +4,231 @@
     display: flex;
     width: 100vw;
     flex-direction: column;
+    .homeSliderSection {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        .sliderCard {
+            display: flex;
+            width: 100%;
+            height: 796px;
+            align-items: center;
+            position: relative;
+            padding-left: 100px;
+            .homeSliderBackground {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                object-fit: cover;
+                object-position: center;
+
+            }
+            .cardTitle {
+                width: 50%;
+                z-index: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                transform: translate(-56px, -45px);
+                padding: 20px;
+                .arrivals{
+                 font-size: 18px;
+                 font-family: $mainFont;
+                 color:rgb(0,0,0);
+               }
+               .latest{
+                font-size: 45px;
+                font-family: $mainFont;
+                letter-spacing: 5px;
+               }
+               .shipping{
+                font-size: 14px;
+                font-weight: 900;
+                font-family: $mainFont;
+               }
+               .shop{
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 3px;
+                position: relative;
+                cursor: pointer;
+                &:hover::before{
+                    width: 100px;
+                }
+                &::before{
+                    content: '';
+                    width: 0;
+                    height: 1px;
+                    background-color: black;
+                    position: absolute;
+                    top: 20px;
+                    transition: 0.5s;
+                }
+               }
+            }
+        }
+    }
+    .productsSection{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        gap: 30px;
+        align-items: center;
+        .productsHeading{
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            .productscontent{
+                display: flex;
+                gap: 20px;
+                .productscontentsee{
+                    font-size: 18px;
+                    letter-spacing: 4px;
+                    transition: 0.5s;
+                    &:hover{
+                        color:red;
+                    }
+                }
+                .productsHeadingtop{
+                    .besTeller{
+                        font-size: 22px;
+                        font-weight: 600;
+                        font-family: $mainFont;
+                        position: relative;
+                        cursor: pointer;
+                        &::before{
+                            content: '';
+                            width: 100%;
+                            height: 2px;
+                            background-color: black;
+                            position: absolute;
+                            top: 33px;
+                            transition: 0.5s;
+                           
+                        }
+                    }
+                    a{
+                        font-size: 22px;
+                        font-weight: 600;
+                        font-family: $mainFont;
+                        position: relative;
+                        cursor: pointer;
+                        &:hover::before{
+                            width: 100%;
+    
+                        }
+                        &::before{
+                            content: '';
+                            width: 0;
+                            height: 2px;
+                            background-color: black;
+                            position: absolute;
+                            top: 33px;
+                            transition: 0.5s;
+                           
+                        }
+                    }
+                }
+            }
+           
+        }
+        .productsContainer{
+            width: 100%;
+            display: flex;
+            max-width: 1440px;
+            .productWrapper {
+                display: flex;
+                max-width: 288px;
+                width: 100%;
+                padding: 0 15px;
+                .productsContainerBox{
+                    width: 100%;
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    .productImage {
+                        width: 100%;
+                        height: 328px;
+                        overflow: hidden;
+                        position: relative;
+                        .mark {
+                            position: absolute;
+                            left: 10px;
+                            top: 10px;
+                            color: white;
+                            font-size: 12px;
+                            text-transform: uppercase;
+                            z-index: 5;
+                            padding: 2px 10px;
+                            &.saleMark {
+                                background-color: black;
+                            }
+                            &.hotMark {
+                                background-color: red;
+                                left: 62px;
+                            }
+                            &.defaultMark {
+                                left: 10px;
+                            }
+                            &.outOfStock {
+                                background-color: gray;
+                            }
+                        }
+                        &:hover {
+                            .backImage {
+                                opacity: 1;
+                            }
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                        .backImage {
+                           position: absolute;
+                           left: 0;
+                           top: 0; 
+                           opacity: 0;
+                           transition: opacity $transition;
+                        }
+                    }
+                    .productText{
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 17px;
+                        padding: 0 0 25px 10px;
+                        p {
+                            font-size: 15px;
+                            font-weight: 400;
+                            color: black;
+                        }
+                        span {
+                            font-size: 15px;
+                            font-weight: 600;
+                            display: inline-flex;
+                            align-items: center;
+                            margin-top: 15px;
+                            gap: 10px;
+                            p {
+                                color: gray;
+                                text-decoration: line-through;
+                            }
+                        }
+                    }
+                    img{
+                        width: 100%;
+                        
+                    }
+                }
+            }
+
+        }
+    }
 }

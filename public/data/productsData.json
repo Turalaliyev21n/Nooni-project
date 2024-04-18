@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "title" : "Crop Top & Jackets Set In White",
+        "frontImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/06/38-450x572.jpg",
+        "backImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/06/38_7-450x572.jpg",
+        "regularPrice": null,
+        "salePrice": 1349,
+        "hot": true,
+        "quantity": 0
+    },
+    {
+        "id": 2,
+        "title" : "Crop Top & Jackets Set In White",
+        "frontImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/06-450x572.jpg",
+        "backImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg",
+        "regularPrice": 800,
+        "salePrice": 699,
+        "hot": true,
+        "quantity": 23
+    },
+    {
+        "id": 3,
+        "title" : "Crop Top & Jackets Set In White",
+        "frontImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/03-450x572.jpg",
+        "backImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/03_3-450x572.jpg",
+        "regularPrice": null,
+        "salePrice": 299,
+        "hot": false,
+        "quantity": 11
+    },
+    {
+        "id": 4,
+        "title" : "Crop Top & Jackets Set In White",
+        "frontImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/11-450x572.jpg",
+        "backImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/30-450x572.jpg",
+        "regularPrice": 500,
+        "salePrice": 399,
+        "hot": false,
+        "quantity": 0
+    },
+    {
+        "id": 5,
+        "title" : "Crop Top & Jackets Set In White",
+        "frontImage": "https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/24-450x572.jpg",
+        "backImage": null,
+        "regularPrice": 500,
+        "salePrice": 399,
+        "hot": true,
+        "quantity": 32
+    }
+]
