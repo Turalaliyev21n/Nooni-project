@@ -8,10 +8,38 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import homeSliderData from "/public/data/homeSliderData.json";
 import { CaretDoubleRight } from "@phosphor-icons/react";
 import productsData from "/public/data/productsData.json";
+import { useState,useCallback,useEffect } from "react";
 
 
 const Home = () => {
-  
+  const [slidesPerView, setSlidesPerView] = useState(5);
+
+
+  const handleResize = useCallback(() => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= 1200 && windowWidth > 800) {
+        setSlidesPerView(4);
+    } else if (windowWidth <= 800 && windowWidth > 600) {
+        setSlidesPerView(3);
+    } else if (windowWidth <= 600 && windowWidth > 400) {
+        setSlidesPerView(2);
+
+    } else if (windowWidth <= 450 && windowWidth > 100) {
+        setSlidesPerView(1);
+    }
+    else {
+        setSlidesPerView(5);
+    }
+}, []);
+
+useEffect(() => {
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => {
+      window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
   return (
     <>
       <Header />
@@ -67,34 +95,42 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.productsContainer}>
-            {productsData.map((product) => {
+           
+          <Swiper
+              slidesPerView={slidesPerView}
+              spaceBetween={0}
+              freeMode={true}
+              loop={true}
+            >
+            {productsData.slice(0,6).map((product) => {
               return (
-                <div className={styles.productWrapper} key={product.id}>
+                <SwiperSlide key={product.id}>
+                <div className={styles.productWrapper}>
                   <div className={styles.productsContainerBox}>
                     <div className={styles.productImage}>
-                      {product.regularPrice && product.quantity > 0?
+                      {product.regularPrice && product.quantity > 0 ?
                         <div className={`${styles.mark} ${styles.saleMark}`}>
                           sale
                         </div>
                         :
                         null
-                  }
-                  {
-                    product.hot && product.quantity > 0? 
-                    <div className={`${styles.mark} ${styles.hotMark} ${!product.regularPrice? styles.defaultMark : null}`}>
-                    hot
-                  </div>
-                  :
-                  null
-                  }
-                  {
-                    product.quantity < 1?
-                    <div className={`${styles.mark} ${styles.outOfStock}`}>
-                    sold out
-                  </div>
-                  :
-                  null
-                  }
+                      }
+                      {
+                        product.hot && product.quantity > 0 ?
+                          <div className={`${styles.mark} ${styles.hotMark} ${!product.regularPrice ? styles.defaultMark : null}`}>
+                            hot
+                          </div>
+                          :
+                          null
+                      }
+                      {
+                        product.quantity < 1 ?
+                          <div className={`${styles.mark} ${styles.outOfStock}`}>
+                            sold out
+                          </div>
+                          :
+                          null
+                      }
                       <img src={product.frontImage} alt="Product Image" />
                       {
                         product.backImage ?
@@ -117,8 +153,11 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                </SwiperSlide>
               )
             })}
+            </Swiper>
+
           </div>
 
         </section>
