@@ -143,7 +143,7 @@
             max-width: 1440px;
             .productWrapper {
                 display: flex;
-                max-width: 288px;
+                max-width: unset;
                 width: 100%;
                 padding: 0 15px;
                 .productsContainerBox{
@@ -184,12 +184,22 @@
                             .backImage {
                                 opacity: 1;
                             }
+                            .add {
+                                bottom: 0;
+                            }
+                            .heart {
+                                opacity: 0;
+                            }
+                            .menu{ 
+                                opacity: 1;
+                                bottom: 65px;
+                            }
                         }
                         img {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
-                            object-position: center;
+                            object-position: top;
                         }
                         .backImage {
                            position: absolute;
@@ -198,6 +208,104 @@
                            opacity: 0;
                            transition: opacity $transition;
                         }
+                        .add {
+                            width: 100%;
+                            padding: 15px 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: white;
+                            position: absolute;
+                            left: 0;
+                            bottom: -46px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            font-size: 13px;
+                            transition: bottom $transition,background $transition,color $transition;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: red;
+                                color: white;
+                            }
+                        }
+                        .heart {
+                         position: absolute;
+                         right: 15px;
+                         bottom: 15px;   
+                         transition: opacity 0.1s ease;
+                         svg {
+                            font-size: 22px;
+                         }
+                        }
+                        .menu {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            position: absolute;
+                            bottom: 15px;
+                            right: 10px;
+                            opacity: 0;
+                            transition: bottom $transition ,opacity $transition;
+                            .menuEntity {
+                                display: flex;
+                                position: relative;
+                                align-items: center;
+                                justify-content: center;
+                                height: 40px;
+                                width: 40px;
+                                border-radius: 50%;
+                                background-color: white;
+                                cursor: pointer;
+                                transition: background $transition , color $transition;
+                                &::after {
+                                    content: "";
+                                    position: absolute;
+                                    left: -105px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background-color: red;
+                                    color: white;
+                                    font-size: 13px; 
+                                    white-space: nowrap;  
+                                    width: 95px;
+                                    padding: 4px 0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;    
+                                    border-radius: 5px;  
+                                    opacity: 0;
+                                    transition: opacity $transition;                   
+                                }
+                                &.search {
+                                    &::after {
+                                        content: "Quick view";
+                                    }
+                                }
+                                &.compare {
+                                    &::after {
+                                        content: "Compare"
+                                    }
+                                }
+                                &.wishList {
+                                    &::after {
+                                        content: "Wishlist";
+                                    }
+                                }
+        
+                        
+                                &:hover {
+                                    background-color: red;
+                                    color: white;
+                                    &::after {
+                                        opacity: 1;
+                                    }
+                                }
+                                svg {
+                                    font-size: 21px;
+                                }
+                            }
+                        }
+                        
                     }
                     .productText{
                         display: flex;
@@ -228,7 +336,8 @@
                     }
                 }
             }
-
+        
         }
     }
+    
 }

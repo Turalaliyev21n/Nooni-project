@@ -7,38 +7,42 @@ import 'swiper/css/pagination';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import homeSliderData from "/public/data/homeSliderData.json";
 import { CaretDoubleRight } from "@phosphor-icons/react";
+import { useState, useCallback, useEffect } from "react";
 import productsData from "/public/data/productsData.json";
-import { useState,useCallback,useEffect } from "react";
+import ProductCard from "../../Common/ProductCard/ProductCard";
+
+
+
 
 
 const Home = () => {
   const [slidesPerView, setSlidesPerView] = useState(5);
 
-
   const handleResize = useCallback(() => {
     const windowWidth = window.innerWidth;
-    if (windowWidth <= 1200 && windowWidth > 800) {
-        setSlidesPerView(4);
+    if (windowWidth <= 1300 && windowWidth > 1000) {
+      setSlidesPerView(4);
+    } else if (windowWidth <= 1000 && windowWidth > 800) {
+      setSlidesPerView(3);
     } else if (windowWidth <= 800 && windowWidth > 600) {
-        setSlidesPerView(3);
-    } else if (windowWidth <= 600 && windowWidth > 400) {
-        setSlidesPerView(2);
+      setSlidesPerView(2);
 
-    } else if (windowWidth <= 450 && windowWidth > 100) {
-        setSlidesPerView(1);
+    } else if (windowWidth <= 600 && windowWidth > 300) {
+      setSlidesPerView(1);
     }
     else {
-        setSlidesPerView(5);
+      setSlidesPerView(5);
     }
-}, []);
+  }, []);
 
-useEffect(() => {
-  handleResize();
-  window.addEventListener("resize", handleResize);
-  return () => {
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
       window.removeEventListener("resize", handleResize);
-  };
-}, []);
+    };
+  }, []);
+
 
   return (
     <>
@@ -95,72 +99,23 @@ useEffect(() => {
             </div>
           </div>
           <div className={styles.productsContainer}>
-           
-          <Swiper
+            <Swiper
               slidesPerView={slidesPerView}
               spaceBetween={0}
               freeMode={true}
               loop={true}
             >
-            {productsData.slice(0,6).map((product) => {
-              return (
-                <SwiperSlide key={product.id}>
-                <div className={styles.productWrapper}>
-                  <div className={styles.productsContainerBox}>
-                    <div className={styles.productImage}>
-                      {product.regularPrice && product.quantity > 0 ?
-                        <div className={`${styles.mark} ${styles.saleMark}`}>
-                          sale
-                        </div>
-                        :
-                        null
-                      }
-                      {
-                        product.hot && product.quantity > 0 ?
-                          <div className={`${styles.mark} ${styles.hotMark} ${!product.regularPrice ? styles.defaultMark : null}`}>
-                            hot
-                          </div>
-                          :
-                          null
-                      }
-                      {
-                        product.quantity < 1 ?
-                          <div className={`${styles.mark} ${styles.outOfStock}`}>
-                            sold out
-                          </div>
-                          :
-                          null
-                      }
-                      <img src={product.frontImage} alt="Product Image" />
-                      {
-                        product.backImage ?
-                          <img src={product.backImage} className={styles.backImage} alt="Product Image" />
-                          :
-                          null
-                      }
-                    </div>
-                    <div className={styles.productText}>
-                      <p>{product.title}</p>
-                      <span>${product.salePrice?.toFixed(2)}
-                        {product.regularPrice ?
-                          <p>${product.regularPrice?.toFixed(2)}</p>
-                          :
-                          null
-                        }
-
-
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                </SwiperSlide>
-              )
-            })}
+              {productsData.slice(0, 6).map((product) => {
+                return (
+                  <SwiperSlide key={product.id}>
+                    <ProductCard product={product} />
+                  </SwiperSlide>
+                )
+              })}
             </Swiper>
-
           </div>
-
         </section>
+
       </main>
       <Footer />
     </>
