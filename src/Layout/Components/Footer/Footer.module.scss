@@ -1,9 +1,90 @@
 @import '../../../Variables/Variables.module.scss';
 
-// .footerWrapper{
-//     display: flex;
-//     width: 100vw;
-//     background-color: black;
-//     height: 300px;
+.footerWrapper{
+    width: 100%;
+    display: flex;
+    gap: 80px;
+    padding: 80px;
+    .footerLeft{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        .footerLogo{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            line-height: 30px;
+          img{
+            width: 200px;
+            height: 50px;
+          }
+        }
+        .footerTime{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+        }
+    }
+    .footerRight{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        .footerEmail{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            h1{
+                font-size: 20px;
+                letter-spacing: 0.1em;
+            }
+            form{
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                input{
+                    width: 700px;
+                    height: 40px;
+                    outline: none;
+                    background-color: rgb(237,237,237);
+                    border: none;
+                    font-size: 16px;
+                    padding: 10px;
+                }
+                button{
+                    height: 40px;
+                    background-color: black;
+                    color: white;
+                    transition: 0.5s;
+                    border: none;
+                    padding: 5px;
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: red;
+                        cursor: pointer;
 
-// }
+                    }
+                }
+            }
+        }
+        .footerList{
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            ul{
+                width: 100%;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                li{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

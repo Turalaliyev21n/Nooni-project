@@ -3,11 +3,11 @@ import styles from "./ProductCard.module.scss";
 import { Heart,MagnifyingGlass,GitDiff } from '@phosphor-icons/react/dist/ssr';
 
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product,tallSlide}) => {
   return (
     <div className={styles.productWrapper}>
     <div className={styles.productsContainerBox}>
-      <div className={styles.productImage}>
+      <div className= {`${styles.productImage} ${tallSlide ? styles.tallSlide : ""}`}>
         {product.regularPrice && product.quantity > 0 ?
           <div className={`${styles.mark} ${styles.saleMark}`}>
             sale

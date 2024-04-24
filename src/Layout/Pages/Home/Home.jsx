@@ -8,8 +8,11 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import homeSliderData from "/public/data/homeSliderData.json";
 import { CaretDoubleRight } from "@phosphor-icons/react";
 import { useState, useCallback, useEffect } from "react";
-import productsData from "/public/data/productsData.json";
 import ProductCard from "../../Common/ProductCard/ProductCard";
+import axios from 'axios';
+import Review from "../../Common/Review/Review";
+
+
 
 
 
@@ -17,6 +20,20 @@ import ProductCard from "../../Common/ProductCard/ProductCard";
 
 const Home = () => {
   const [slidesPerView, setSlidesPerView] = useState(5);
+  const [slidesJsc, setSlides] = useState(3);
+  const [productsData, setProductsData] = useState(null);
+
+
+
+  useEffect(() => {
+    axios.get("https://jumpy-lovely-block.glitch.me/products")
+      .then(response => {
+        setProductsData(response.data);
+      })
+      .catch(error => {
+        console.error('Axios error:', error);
+      });
+  }, []);
 
   const handleResize = useCallback(() => {
     const windowWidth = window.innerWidth;
@@ -44,6 +61,7 @@ const Home = () => {
   }, []);
 
 
+
   return (
     <>
       <Header />
@@ -69,7 +87,7 @@ const Home = () => {
             {homeSliderData.map((data) => {
               return (
                 <SwiperSlide key={data.id}>
-                  <div className={styles.sliderCard}>
+                  <div className={`${styles.sliderCard} ${data.id === 2? styles.titleBottom : ""}`}>
                     <img className={styles.homeSliderBackground} src={data.imageUrl} alt="Background" />
                     <div className={styles.cardTitle}>
                       <div className={styles.arrivals}>{data.arrivals}</div>
@@ -105,10 +123,10 @@ const Home = () => {
               freeMode={true}
               loop={true}
             >
-              {productsData.slice(0, 6).map((product) => {
+              {productsData?.slice(0, 6).map((product) => {
                 return (
                   <SwiperSlide key={product.id}>
-                    <ProductCard product={product} />
+                    <ProductCard product={product} tallSlide={false} />
                   </SwiperSlide>
                 )
               })}
@@ -116,6 +134,68 @@ const Home = () => {
           </div>
         </section>
 
+        {/* COAT SECTION */}
+        <section>
+          <div className={styles.coat}>
+            <div className={styles.coatContent}>
+              <p>COAT & JACKETS</p>
+              <h2>The New Fashion <br></br> Collection</h2>
+              <a href="">SHOP NOW</a>
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUCTS SECTION */}
+        <section className={styles.productsSection}>
+          <div className={styles.productsHeading}>
+            <div className={styles.productscontent}>
+              <div className={styles.productsHeadingtop}>
+                <a href="" className={styles.besTeller}>DEAL OF THE WEEK</a>
+                <div className={styles.timeContent}>
+                  <span>01</span>
+                  <span>18</span>
+                  <span>15</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.productscontent}>
+              <a className={styles.productscontentsee} href="">See All <CaretDoubleRight fontSize={"15px"} /></a>
+            </div>
+          </div>
+          <div className={styles.productsContainer}>
+            <Swiper
+              slidesPerView={slidesJsc}
+              spaceBetween={0}
+              freeMode={true}
+              loop={true}
+            >
+              {productsData?.slice(4, 10).map((product) => {
+                return (
+                  <SwiperSlide key={product.id}>
+                    <ProductCard product={product} tallSlide={true} />
+                  </SwiperSlide>
+                )
+              })}
+            </Swiper>
+          </div>
+        </section>
+
+        {/* PRODUCTS Review */}
+        <section>
+         <Review/>
+        </section>
+     
+     <section className={styles.saleShop}>
+      <div className={styles.saleShopbox}>
+        <div className={styles.saleText}>
+        <p>FLASH SALE</p>
+        <span> - 80 % </span>
+        <h3>When You Buy $100 E-Gift Cards <br></br>
+          ENDS 22-1-2023</h3>
+          <a href="">SHOP NOW</a>
+        </div>
+      </div>
+     </section>
       </main>
       <Footer />
     </>

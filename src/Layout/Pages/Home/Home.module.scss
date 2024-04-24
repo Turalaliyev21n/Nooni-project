@@ -74,12 +74,14 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         padding: 30px;
         gap: 30px;
-        align-items: center;
+       
         .productsHeading{
+            max-width: 1400px;
             width: 100%;
-            padding: 40px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             gap: 20px;
@@ -87,7 +89,7 @@
                 display: flex;
                 gap: 20px;
                 .productscontentsee{
-                    font-size: 18px;
+                    font-size: 17px;
                     letter-spacing: 4px;
                     transition: 0.5s;
                     &:hover{
@@ -95,6 +97,20 @@
                     }
                 }
                 .productsHeadingtop{
+                    display: flex;
+                    gap: 20px;
+                    .timeContent{
+                        width: 200px;
+                        height: 35px;
+                        color: white;
+                        background-color: black;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 45px;
+                        font-size: 18px;
+                        font-weight: 800;
+                    }
                     .besTeller{
                         font-size: 22px;
                         font-weight: 600;
@@ -141,6 +157,7 @@
             width: 100%;
             display: flex;
             max-width: 1440px;
+            margin: 0 auto;
             .productWrapper {
                 display: flex;
                 max-width: unset;
@@ -339,5 +356,315 @@
         
         }
     }
+    .coat{
+        width: 100%;
+        height: 80vh;
+        background-image: url('https://demothemesky-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/background-section-2-1.jpg');
+        background-size: 100%100%;
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .coatContent{
+            padding: 100px;
+            p{
+                font-size: 18px;
+                line-height: 1.2em;
+                letter-spacing: 0.075em;
+                text-align: center;
+               
+            }
+            h2{
+                font-size: 60px;
+                font-weight: 400;
+                line-height: 1.2em;
+                text-align: center;
+            }
+                a{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    position: relative;
+                    &:hover::before{
+                        transform: scale(1);
+                         width: 100px;
+                    }
+                    &::before{
+                        content: "";
+                        width: 0;
+                        height: 2px;
+                        background-color: black;
+                        position: absolute;
+                        top: 25px;
+                        transform: scale(0);
+                        transition: 0.5s;
+                    }
+                }
+          
+        }
+      
+    }
+    .saleShop{
+        background-image: url("https://demothemesky-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/background-section-3.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 450px;
+        
+        .saleShopbox{
+            width: 50%;
+            height: 450px;
+            position: absolute;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.689);
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+            .saleText{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                margin-top: 40px;
+                p{
+                    font-size: 24px;
+                    line-height: 1.2em;
+                    letter-spacing: 0.5em;
+                    font-weight: 700;
+                }
+                span{
+                    font-size: 100px;
+                    font-weight: 500;
+                    line-height: 1em;
+                }
+                h3{
+                    line-height:30px;
+                }
+                a{
+                    color: white;
+                    font-weight: 500;
+                }
+            }
+
+        }
+    }
+  
+}
+@media screen and (max-width: 1300px) {
+    .homeWrapper {
+        .homeSliderSection {
+            .sliderCard {
+                height: 600px;
+            }
+        }
+    }
     
+}
+@media screen and (max-width:1200px) {
+    .homeWrapper{
+        .homeSliderSection{
+            .sliderCard{
+                height: 550px;
+            }
+        }
+        .coat{
+            .coatContent{
+                p{
+                    font-size: 15px;
+                }
+                h2{
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:1008px) {
+    .homeWrapper{
+        .homeSliderSection{
+            .sliderCard{
+                .cardTitle{
+                    .arrivals{
+                        font-size: 16px;
+                    }
+                    .latest{
+                        font-size: 35px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:978px) {
+    .homeWrapper{
+        .homeSliderSection{
+            
+            .sliderCard{
+                height: 450px;
+                .cardTitle{
+                    .arrivals{
+                        font-size: 14px;
+                    }
+                    .latest{
+                        font-size: 25px;
+                    }
+
+                }
+            }
+        }
+        .coat{
+            .coatContent{
+                p{
+                    font-size: 15px;
+                }
+                h2{
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:800px) {
+    .homeWrapper{
+        .homeSliderSection{
+            .sliderCard{
+                height: 425px;
+            }
+        }
+        .coat{
+            .coatContent{
+                p{
+                    font-size: 15px;
+                }
+                h2{
+                    font-size: 45px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:726px) {
+    .homeWrapper{
+        .homeSliderSection{
+            .sliderCard{
+                height: 450px;
+                .sliderCard{
+                    height: 450px;
+                    .cardTitle{
+                        .arrivals{
+                            font-size: 14px;
+                        }
+                        .latest{
+                            font-size: 20px;
+                        }
+    
+                    }
+                }
+            }
+        }
+        .productsSection{
+            .productsHeading{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .productscontent{
+                    .productsHeadingtop{
+                        a{
+                            font-size: 18px;
+                        }
+                        .besTeller{
+                            font-size: 18px;
+                            
+                          
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .homeWrapper {
+        .homeSliderSection {
+            .sliderCard {
+                height: 700px;
+                align-items: start;
+                .homeSliderBackground {
+                    object-position: 100% 100%;
+                }
+                .cardTitle {
+                    margin-top: 75px;
+                    width: 100%;
+                    align-items: center;
+                    .latest {
+                        text-align: center;
+                    }
+                    .shipping {
+                        text-align: center;
+                    }
+                }
+                &.titleBottom {
+                    align-items: end;
+                    .cardTitle {
+                        margin-top: 100px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width:508px) {
+    .homeWrapper{
+        .homeSliderSection{
+            .sliderCard {
+                .homeSliderBackground {
+                    object-position: 85% 100%;
+
+                }
+                .cardTitle {
+                    margin-top: 50px;
+                }
+                &.titleBottom {
+                    .cardTitle {
+                        margin-top: 150px;
+                    }
+                }
+            }
+        }
+        .productsSection{
+            .productsHeading{
+                .productscontent{
+                    .productsHeadingtop{
+                        a{
+                            font-size: 18px;
+                        }
+                        .besTeller{
+                            font-size: 18px;
+                          
+                        }
+                    }
+                }
+            }
+        }
+        .coat{
+            .coatContent{
+                p{
+                    font-size: 15px;
+                }
+                h2{
+                    font-size: 25px;
+                }
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X } from "@phosphor-icons/react";
+import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X,CaretRight} from "@phosphor-icons/react";
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -8,15 +8,43 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [basketOpen,setBasketOpen] = useState(false);
+   
 
     const handleMenuToggle = useCallback(() => {
         setMenuOpen(prevState => !prevState);
     }, [setMenuOpen]);
 
+    const handleBasketToggle = useCallback(()=>{ 
+        setBasketOpen(prevState => !prevState);
+    },[setBasketOpen])
+
     return (
         <header className={styles.headerWrapper}>
             <div className={styles.headerContent}>
                 <div className={styles.headerTop}>
+                    <div className={styles.headerText}>
+                        <p>UP TO 40% OFF BEST-SELLING FURNITURE.</p>
+                        <a href="">SHOP NOW</a>
+                    </div>
+                    <div className={styles.headerLanguage}>
+                        <div className={styles.headerLanguagefrom}>ENGLISH <i class="fa-solid fa-chevron-down"></i>
+                      <div className={styles.dropdownLanguage}>
+                        <div className={styles.dropdownBox}>
+                            <p>FRANCAIS</p>
+                            <p>DEAUTCH</p>
+                        </div>
+                      </div>
+                        </div>
+                        <div className={styles.headerLanguagefrom}>USD <i class="fa-solid fa-chevron-down"></i>
+                        <div className={styles.dropdownLanguage}>
+                        <div className={styles.dropdownBox}>
+                            <p>USD</p>
+                            <p>EUR</p>
+                        </div>
+                      </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.headerBottom}>
                     <div className={styles.headerNavigation}>
@@ -249,7 +277,7 @@ const Header = () => {
                             </div>
                             <Heart />
                         </div>
-                        <div className={`${styles.buttonEntity}`}>
+                        <div className={`${styles.buttonEntity}`} onClick={handleBasketToggle}>
                             <ShoppingCart />
                             <div className={styles.count}>
                                 0
@@ -261,10 +289,93 @@ const Header = () => {
 
                 </div>
             </div>
-            <div className={`${styles.sideMenuWrapper} ${menuOpen ? styles.menuVisible : ""}`}>
+            <div className={`${styles.basketOverlay} ${basketOpen ? styles.basketVisible : ""}`}>
+            <div className={styles.basketWrapper}>
+                <div className={styles.closeBasket} onClick={handleBasketToggle}>
+                    <X />
+                </div>
+                
+                <div className={styles.basketEmpty}>
+                    <img src="/images/cart.png" alt="Cart" />
+                    <p>Your cart is curently empty</p>
+                </div>
+
+            </div>
+            </div>
+            <div className={`${styles.sideMenuOverlay} ${menuOpen? styles.overlayVisible: ""}`}>
+            <div className={`${styles.sideMenuWrapper}`}>
+                <div className={styles.navEntity}>
+                    <a href="">Home</a>
+                    <CaretRight fontSize={"20px"} />
+                    <div className={styles.elementDropdown}>
+                        <div className={styles.dropDownTitle}>
+                        <a href="">Furniture 1</a>
+                        <a href="">Furniture 2</a>
+                        <a href="">Furniture 3</a>
+                        <a href="">Fashion 1</a>
+                        <a href="">Furniture </a>
+                        <a href="">Fashion 2</a>
+                        <a href="">Fashion 3</a>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.navEntity}>
+                    <a href="">Shop</a>
+                    <CaretRight fontSize={"20px"}/>
+                    <div className={styles.elementDropdown}>
+                        <div className={styles.dropDownTitle}>
+                        <a href="">Furniture 1</a>
+                        <a href="">Furniture 2</a>
+                        <a href="">Furniture 3</a>
+                        <a href="">Fashion 1</a>
+                        <a href="">Furniture </a>
+                        <a href="">Fashion 2</a>
+                        <a href="">Fashion 3</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div className={styles.navEntity}>
+                    <a href="">Product</a>
+                    <CaretRight fontSize={"20px"}/>
+                    <div className={styles.elementDropdown}>
+                        <div className={styles.dropDownTitle}>
+                        <a href="">Furniture 1</a>
+                        <a href="">Furniture 2</a>
+                        <a href="">Furniture 3</a>
+                        <a href="">Fashion 1</a>
+                        <a href="">Furniture </a>
+                        <a href="">Fashion 2</a>
+                        <a href="">Fashion 3</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div className={styles.navEntity}>
+                    <a href="">Blog</a>
+                    <CaretRight fontSize={"20px"} />
+                    <div className={styles.elementDropdown}>
+                        <div className={styles.dropDownTitle}>
+                        <a href="">Furniture 1</a>
+                        <a href="">Furniture 2</a>
+                        <a href="">Furniture 3</a>
+                        <a href="">Fashion 1</a>
+                        <a href="">Furniture </a>
+                        <a href="">Fashion 2</a>
+                        <a href="">Fashion 3</a>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.navEntity}>
+                    <a href="">About</a>
+                </div>
+                <div className={styles.navEntity}>
+                    <a href="">Contact Us</a>
+                </div>
                 <div className={styles.closeBtn} onClick={handleMenuToggle}>
                     <X />
                 </div>
+            </div>
             </div>
 
 
