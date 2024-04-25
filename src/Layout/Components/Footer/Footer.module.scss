@@ -88,3 +88,48 @@
         }
     }
 }
+
+@media screen and (max-width:1095px) {
+    .footerWrapper{
+        display: flex;
+        flex-direction: column;
+        .footerLeft{
+            width: 100%;
+        }
+        .footerRight{
+            width: 100%;
+        }
+    }
+}
+@media screen and (max-width:900px) {
+    .footerWrapper{
+        display: flex;
+        flex-direction: column;
+        .footerLeft{
+            width: 100%;
+            .footerLogo{
+                img{
+                    width: 150px;
+                    height: auto;
+                }
+            }
+        }
+        .footerRight{
+            width: 100%;
+            padding: 0;
+            .footerEmail{
+                form{
+                 display: flex;
+                 flex-direction: column;
+                 input{
+                    width: 100%;
+                 }
+                }
+            }
+            .footerList{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}

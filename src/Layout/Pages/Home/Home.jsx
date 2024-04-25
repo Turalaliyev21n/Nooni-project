@@ -20,11 +20,11 @@ import Review from "../../Common/Review/Review";
 
 const Home = () => {
   const [slidesPerView, setSlidesPerView] = useState(5);
-  const [slidesJsc, setSlides] = useState(3);
+  const [dealSlidePerView, setDealSlidesPerView] = useState(3);
   const [productsData, setProductsData] = useState(null);
 
 
-
+//  GET PRODUCTS
   useEffect(() => {
     axios.get("https://jumpy-lovely-block.glitch.me/products")
       .then(response => {
@@ -37,26 +37,43 @@ const Home = () => {
 
   const handleResize = useCallback(() => {
     const windowWidth = window.innerWidth;
-    if (windowWidth <= 1300 && windowWidth > 1000) {
+    if (windowWidth <= 1368 && windowWidth > 1100) {
       setSlidesPerView(4);
-    } else if (windowWidth <= 1000 && windowWidth > 800) {
+    } else if (windowWidth <= 1100 && windowWidth > 840) {
       setSlidesPerView(3);
-    } else if (windowWidth <= 800 && windowWidth > 600) {
+
+    } else if (windowWidth <= 840 && windowWidth > 550) {
       setSlidesPerView(2);
 
-    } else if (windowWidth <= 600 && windowWidth > 300) {
+
+    } else if (windowWidth <= 550 && windowWidth > 0) {
       setSlidesPerView(1);
+
     }
     else {
       setSlidesPerView(5);
     }
   }, []);
 
+  const handleResizeDeal = useCallback(() => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= 1150 && windowWidth > 800) {
+      setDealSlidesPerView(2);
+    } else if (windowWidth <= 800 && windowWidth > 0) {
+      setDealSlidesPerView(1);
+    } 
+    else {
+      setDealSlidesPerView(3);
+    }
+  }, []);
+
   useEffect(() => {
-    handleResize();
     window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResizeDeal);
+
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResizeDeal);
     };
   }, []);
 
@@ -101,6 +118,7 @@ const Home = () => {
             })}
           </Swiper>
         </section>
+
         {/* PRODUCTS SECTION */}
         <section className={styles.productsSection}>
           <div className={styles.productsHeading}>
@@ -164,7 +182,7 @@ const Home = () => {
           </div>
           <div className={styles.productsContainer}>
             <Swiper
-              slidesPerView={slidesJsc}
+              slidesPerView={dealSlidePerView}
               spaceBetween={0}
               freeMode={true}
               loop={true}

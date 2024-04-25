@@ -53,7 +53,7 @@ const Header = () => {
                         </div>
                         <div className={styles.navigation}>
                             <div className={styles.navEntity}>
-                                <p>Shop</p>
+                                <Link to={'/product'}>Shop</Link>
                                 <CaretDown />
                                 <div className={`${styles.navDropDown} ${styles.shopDropDown}`}>
                                     <div className={`${styles.dropDownContent} ${styles.shopDropContent}`}>
@@ -302,6 +302,7 @@ const Header = () => {
 
             </div>
             </div>
+
             <div className={`${styles.sideMenuOverlay} ${menuOpen? styles.overlayVisible: ""}`}>
             <div className={`${styles.sideMenuWrapper}`}>
                 <div className={styles.navEntity}>
@@ -376,8 +377,9 @@ const Header = () => {
                     <X />
                 </div>
             </div>
-            </div>
-
+            </div> 
+            
+            
 
         </header>
     )

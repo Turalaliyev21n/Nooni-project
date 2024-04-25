@@ -131,6 +131,8 @@
                 pointer-events: all;
               }
             }
+
+            // DROPDOWN HERE
             .navDropDown {
               position: absolute;
               top: 18px;
@@ -588,6 +590,19 @@
       }
     }
   }
+  .searchWrapper{
+    width: 100%;
+    position: fixed;
+    .searchClose{
+      width: 350px;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      right:0;
+      background-color: white;
+      font-size: 20px;
+    }
+  }
 }
 
 // MEDIA STYLES
@@ -626,6 +641,55 @@
         .headerButtons {
           max-width: 300px;
         }
+        .headerNavigation {
+          .navigation {
+            .navEntity {
+              .navDropDown {
+                top: 17px;
+                &.shopDropDown {
+                  left: -75px;
+                 .dropDownContent {
+                  padding: 50px 15px;
+                  margin-top: 35px;
+                  ul {
+                    max-width: 200px;
+                  }
+                  .flex1 {
+                    gap: 15px;
+                    justify-content: space-between;
+                  }
+                 }
+                }
+                &.womenDropDown {
+                  left: -161px;
+                  .dropDownContent {
+                    margin-top: 37px;
+                    padding: 50px 15px;
+                    ul {
+                      .whomen {
+                        font-size: 16px;
+                      }
+                    }
+                    .dropDownFlex {
+                      .flex1 {
+                        gap: 15px;
+                      }
+                    }
+                  }
+                }
+                &.manDropDown {
+                  left: -266.5px;
+                  .dropDownContent {
+                    padding: 50px 25px;
+                    gap: 15px;
+                    margin-top: 37px;
+
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -642,6 +706,43 @@
         }
         .headerNavigation {
           order: 2;
+          .navigation {
+            .navEntity {
+              .navDropDown {
+                &.shopDropDown {
+                  left: -210px;
+                 .dropDownContent {
+                  .dropDownimages {
+                    display: none;
+                  }
+                  ul {
+                    gap: 10px;
+                    .whomen {
+                      font-size: 15px;
+                    }
+                    li {
+                      font-size: 14px;
+                    }
+                  }
+                 }
+                }
+                &.womenDropDown {
+                  left: -297px;
+                }
+                &.manDropDown {
+                  left: -400.5px;
+                  .dropDownContent {
+                     .navbarDropdown {
+                      .wideImage {
+                        display: none;
+                      }
+                     }
+                  }
+                }
+
+              }
+            }
+          }
         }
         .headerLogo {
           max-width: 120px;
