@@ -28,7 +28,7 @@ const Header = () => {
                         <a href="">SHOP NOW</a>
                     </div>
                     <div className={styles.headerLanguage}>
-                        <div className={styles.headerLanguagefrom}>ENGLISH <i class="fa-solid fa-chevron-down"></i>
+                        <div className={styles.headerLanguagefrom}>ENGLISH <i className="fa-solid fa-chevron-down"></i>
                       <div className={styles.dropdownLanguage}>
                         <div className={styles.dropdownBox}>
                             <p>FRANCAIS</p>
@@ -36,7 +36,7 @@ const Header = () => {
                         </div>
                       </div>
                         </div>
-                        <div className={styles.headerLanguagefrom}>USD <i class="fa-solid fa-chevron-down"></i>
+                        <div className={styles.headerLanguagefrom}>USD <i className="fa-solid fa-chevron-down"></i>
                         <div className={styles.dropdownLanguage}>
                         <div className={styles.dropdownBox}>
                             <p>USD</p>
