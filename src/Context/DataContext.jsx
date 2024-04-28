@@ -3,16 +3,12 @@ import axios from "axios";
 
 export const DataContext = React.createContext({
     productsLoading: true,
-    productsData : null,
-   
+    productsData: null,
 })
 export const DataContextProvider = ({
-                                            children,
-                                        }) => {
-
-
-    const [productsLoading,setProductsLoading] = useState(true);
-
+                                        children,
+                                    }) => {
+    const [productsLoading, setProductsLoading] = useState(true);
     const [productsData, setProductsData] = useState(null);
 
 

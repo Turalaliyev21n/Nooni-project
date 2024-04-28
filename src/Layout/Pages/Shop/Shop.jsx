@@ -1,14 +1,58 @@
-import React from 'react'
 import styles from "./Shop.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import PageHeading from '../../Common/PageHeading/PageHeading';
-import productData from "/public/data/productsData.json";
 import ProductCard from '../../Common/ProductCard/ProductCard';
-import {List} from '@phosphor-icons/react/dist/ssr';
+import {Rows, SquaresFour} from "@phosphor-icons/react";
+import {useContext, useMemo, useState,useCallback} from "react";
+import {DataContext} from "../../../Context/DataContext.jsx";
+import {Loader} from "../../Common/Loader/Loader.jsx";
+import {FilterSlider} from "../../Common/FilterSlider/FilterSlider.jsx";
 
 const Shop = () => {
+
+  const {
+    productsLoading,
+    productsData,
+  } = useContext(DataContext);
+
+  const [priceBounds, setPriceBounds] = useState([0, 1000]);
+  const [shouldFilterUpdate, setShouldFilterUpdate] = useState(Date.now());
+  const [listView, setListView] = useState(false);
+  const [gridView, setGridView] = useState(true);
+
+
+
+  const filteredProducts = useMemo(() => {
+    if (shouldFilterUpdate) {
+      return productsData?.filter((product) => {
+        const price = product?.salePrice;
+        return price >= priceBounds[0] && price <= priceBounds[1];
+      })
+    } else {
+      return productsData;
+    }
+  }, [shouldFilterUpdate,productsData]);
+
+  const onApply = useCallback(() => setShouldFilterUpdate(Date.now()), []);
+  const onReset = useCallback(() => {
+    setPriceBounds([0, 1000]);
+    setShouldFilterUpdate(null);
+  }, []);
+
+  const handleChangeView = useCallback(() => {
+    setListView(prevState => !prevState);
+    setGridView(prevState => !prevState);
+  },[setGridView,setListView]);
+
   return (
+      <>
+      {
+        productsLoading ?
+            <Loader/>
+            :
+            null
+      }
     <div className={styles.shopWrapper}>
       <Header />
       <main>
@@ -70,32 +114,32 @@ const Shop = () => {
                 <div className={styles.filterProductfilter}>
                   <ul className={styles.productCategries}>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                     Activities (41)
+                      <input type="checkbox"></input>
+                      Activities (41)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                     Body Fit (32)
+                      <input type="checkbox"></input>
+                      Body Fit (32)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    Collections (36)
+                      <input type="checkbox"></input>
+                      Collections (36)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    Fashion Style (38)
+                      <input type="checkbox"></input>
+                      Fashion Style (38)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                     Kids (11)
+                      <input type="checkbox"></input>
+                      Kids (11)
                     </li>
                     <li className={styles.cartItem}>
-                     <input type="checkbox"></input>
-                     Men (10)
+                      <input type="checkbox"></input>
+                      Men (10)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    Women (22)
+                      <input type="checkbox"></input>
+                      Women (22)
                     </li>
                   </ul>
                 </div>
@@ -104,29 +148,13 @@ const Shop = () => {
                 <div className={styles.filterTypeInput}>
                   PRICE
                 </div>
-                <div className={styles.filterProductfilter}>
-                  <ul className={styles.productCategries}>
-                    <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    $500 & Under
-                    </li>
-                    <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    $500 - $999
-                    </li>
-                    <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                     $1,000 - $1,999
-                    </li>
-                    <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                     $2,000 - $5,000
-                    </li>
-                    <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    $5,000 & Over
-                    </li>
-                  </ul>
+                <div className={`${styles.filterProductfilter} ${styles.rangeContainer}`}>
+                  <FilterSlider
+                      priceBounds={priceBounds}
+                      setPriceBounds={setPriceBounds}
+                      onReset={onReset}
+                      onApplyFilters={onApply}
+                  />
                 </div>
               </div>
               <div className={styles.filterInpubox}>
@@ -136,32 +164,32 @@ const Shop = () => {
                 <div className={styles.filterProductfilter}>
                   <ul className={styles.productCategries}>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    XS (17)
+                      <input type="checkbox"></input>
+                      XS (17)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    S (20)
+                      <input type="checkbox"></input>
+                      S (20)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    M (22)
+                      <input type="checkbox"></input>
+                      M (22)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    L (20)
+                      <input type="checkbox"></input>
+                      L (20)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    XL (21)
+                      <input type="checkbox"></input>
+                      XL (21)
                     </li>
                     <li className={styles.cartItem}>
-                     <input type="checkbox"></input>
-                     2XL (14)
+                      <input type="checkbox"></input>
+                      2XL (14)
                     </li>
                     <li className={styles.cartItem}>
-                    <input type="checkbox"></input>
-                    Free size (15)
+                      <input type="checkbox"></input>
+                      Free size (15)
                     </li>
                   </ul>
                 </div>
@@ -169,27 +197,32 @@ const Shop = () => {
             </div>
             <div className={styles.productsContainer}>
               <div className={styles.sortContainer}>
-                <div className={styles.sortMinibox}>
-                <List fontSize={'30px'} />
+                <div className={`${styles.sortBox}`}>
+                  <Rows className={listView ? styles.active : ""} onClick={handleChangeView}/>
+                  <SquaresFour className={gridView ? styles.active : ""} onClick={handleChangeView}/>
                 </div>
               </div>
-              <div className={styles.productCardsWrapper}>
-                {productData.map((product) => {
-                  return (
-                    <div className={styles.card} key={product.id}>
-                    <ProductCard product={product} />
-                  </div>
-                  )
-                })}
-
+              <div className={`${styles.productCardsWrapper} ${listView ? styles.listView : ""}`}>
+                {filteredProducts?.length < 1 ? (
+                    <div className={styles.noProducts}>
+                      No Products found...
+                    </div>
+                ) : (
+                    filteredProducts?.map((product) => (
+                        <div className={styles.card} key={product.id}>
+                          <ProductCard product={product} listView={listView}/>
+                        </div>
+                    ))
+                )}
 
               </div>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer/>
     </div>
+      </>
   )
 }
 
