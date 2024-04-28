@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Product.module.scss";
+import styles from "./Shop.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import PageHeading from '../../Common/PageHeading/PageHeading';
@@ -7,7 +7,7 @@ import productData from "/public/data/productsData.json";
 import ProductCard from '../../Common/ProductCard/ProductCard';
 import {List} from '@phosphor-icons/react/dist/ssr';
 
-const Product = () => {
+const Shop = () => {
   return (
     <div className={styles.shopWrapper}>
       <Header />
@@ -193,4 +193,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default Shop

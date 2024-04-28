@@ -53,7 +53,7 @@ const Header = () => {
                         </div>
                         <div className={styles.navigation}>
                             <div className={styles.navEntity}>
-                                <Link to={'/product'}>Shop</Link>
+                                <Link to={'/shop'}>Shop</Link>
                                 <CaretDown />
                                 <div className={`${styles.navDropDown} ${styles.shopDropDown}`}>
                                     <div className={`${styles.dropDownContent} ${styles.shopDropContent}`}>

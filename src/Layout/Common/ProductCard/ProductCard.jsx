@@ -31,10 +31,10 @@ const ProductCard = ({product,tallSlide}) => {
             :
             null
         }
-        <img src={product.frontImage} alt="Product Image" />
+        <img src={product.frontImage} alt="Shop Image" />
         {
           product.backImage ?
-            <img src={product.backImage} className={styles.backImage} alt="Product Image" />
+            <img src={product.backImage} className={styles.backImage} alt="Shop Image" />
             :
             null
         }
