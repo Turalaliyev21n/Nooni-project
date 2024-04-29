@@ -15,13 +15,12 @@ const Shop = () => {
         productsLoading,
         productsData,
     } = useContext(DataContext);
-
+  
     const [priceBounds, setPriceBounds] = useState([0, 1000]);
     const [shouldFilterUpdate, setShouldFilterUpdate] = useState(Date.now());
     const [listView, setListView] = useState(false);
     const [gridView, setGridView] = useState(true);
 
-    
     const allTypeFilters = useMemo(() => Array.from(new Set(productsData?.map(it => it.category))),[productsData]);
 
     const [typeFilters, setTypeFilters] = useState(allTypeFilters);
@@ -29,6 +28,7 @@ const Shop = () => {
    // TO MAKE ALL TYPE INPUTS CHECKED
     useEffect(() => {
         setTypeFilters(allTypeFilters);
+        
     }, [allTypeFilters]);
 
     // PRICE RANGE FILTER
@@ -237,11 +237,15 @@ const Shop = () => {
                                             <div className={styles.card} key={product.id}>
                                                 <ProductCard product={product} listView={listView}/>
                                             </div>
+                                            
                                         ))
                                     )}
+                                    
                                 </div>
+                                
                             </div>
                         </div>
+                        
                     </section>
                 </main>
                 <Footer/>

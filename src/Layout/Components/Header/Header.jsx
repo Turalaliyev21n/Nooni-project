@@ -239,7 +239,7 @@ const Header = () => {
                                 <div className={`${styles.navDropDown} ${styles.kidsDropDown}`}>
                                     <div className={styles.kidsDropContent}>
                                         <div className={styles.dropLink}>
-                                            <a href="">Boys</a>
+                                            <Link to={'/blog'}>Blog</Link>
                                         </div>
                                         <div className={styles.dropLink}>
                                             <a href="">Girls</a>
