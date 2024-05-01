@@ -3,7 +3,7 @@ import styles from "./Blog.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import PageHeading from '../../Common/PageHeading/PageHeading';
-import { MagnifyingGlass } from "@phosphor-icons/react";
+
 const Blog = () => {
     return (
         <>

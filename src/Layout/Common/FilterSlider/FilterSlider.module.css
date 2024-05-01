@@ -1,0 +1,47 @@
+.rangeSlider {
+  background: black;
+}
+
+.rangeWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 25px;
+}
+.rangeWrapper .range-slider .range-slider__range {
+  background: #ffbf00 !important;
+}
+.rangeWrapper .priceWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.rangeWrapper .priceWrapper .monitorBlock {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+.rangeWrapper .priceWrapper .monitorBlock .monitor {
+  display: flex;
+  align-items: center;
+}
+.rangeWrapper .priceWrapper .filterButtons {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.rangeWrapper .priceWrapper .filterButtons .filterButton {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  border-radius: 5px;
+}/*# sourceMappingURL=FilterSlider.module.css.map */

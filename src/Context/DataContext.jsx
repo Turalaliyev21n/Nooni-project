@@ -16,7 +16,7 @@ export const DataContextProvider = ({
         (async () => {
             setProductsLoading(true);
             try {
-                const response = await axios.get("https://jumpy-lovely-block.glitch.me/products");
+                const response = await axios.get("http://localhost:8000/products");
                 setProductsData(response.data);
             } catch (error) {
                 console.error('Axios error:', error);

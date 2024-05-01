@@ -242,10 +242,10 @@ const Header = () => {
                                             <Link to={'/blog'}>Blog</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Girls</a>
+                                            <Link to ={'/about'}>About</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Newborns</a>
+                                            <Link to={'/contact'}>Contact</Link>
                                         </div>
                                         <div className={styles.dropLink}>
                                             <a href="">Unisex</a>

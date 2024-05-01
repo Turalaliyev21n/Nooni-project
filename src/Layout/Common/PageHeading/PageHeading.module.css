@@ -1,0 +1,43 @@
+.pageHeadingSection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.pageHeadingSection .contentWrapper {
+  width: 100%;
+  display: flex;
+}
+.pageHeadingSection .contentWrapper .breadcrumb {
+  max-width: 1400px;
+  border-top: 1px solid rgba(128, 128, 128, 0.182);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pageHeadingSection .contentWrapper .breadcrumb .breadTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 60px 25px 25px 25px;
+}
+.pageHeadingSection .contentWrapper .breadcrumb .breadTitle .breadTitlebox {
+  display: flex;
+  gap: 5px;
+}
+.pageHeadingSection .contentWrapper .breadcrumb .breadTitle .breadTitlebox a {
+  font-size: 17px;
+  color: gray;
+  font-weight: 700;
+}
+.pageHeadingSection .contentWrapper .breadcrumb .breadTitle .breadTitlebox span {
+  font-size: 17px;
+  color: black;
+  font-weight: 700;
+}
+.pageHeadingSection .contentWrapper .breadcrumb .breadTitle .breadTitlebox p {
+  color: black;
+  font-size: 30px;
+  font-weight: 700;
+}/*# sourceMappingURL=PageHeading.module.css.map */

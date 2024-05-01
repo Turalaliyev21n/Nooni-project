@@ -210,3 +210,29 @@
         }
     }
 }
+
+@media screen and (max-width:1090px) {
+    .blogWrapper{
+        width: 100%;
+        .wrapperBlog{
+            width: 100%;
+            padding: 20px;
+            .blogContainer{
+                width: 100%;
+                flex-direction: column;
+                padding: 0;
+                .blogLeft{
+                    width: 100%;
+                    .blogBox{
+                        .blogText{
+                            h1{
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                }
+               
+            }
+        }
+    }
+}
