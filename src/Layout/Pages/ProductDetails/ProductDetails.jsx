@@ -79,9 +79,7 @@ export const ProductDetails = () => {
         }
     }
 
-    useEffect(()=>{
-     console.log(getCard(id))
-    },[getCard,id])
+    console.log(id)
 
 
     return (
@@ -104,118 +102,121 @@ export const ProductDetails = () => {
                     </div>
                 </section>
                 <section className={styles.detailsSection}>
-                    {productsData?.slice(1, 2).map((product) => {
-                        return (
-                            <div className={styles.detailsContent}>
-                                <div className={styles.imageBlock}>
-                                    <div className={styles.zoomBtn} onClick={handleMagnifyingImg}>
-                                        <MagnifyingGlassPlus />
-                                    </div>
-                                    {
-                                        product.regularPrice ?
-                                            <div className={`${styles.mark} ${styles.sale}`}>
-                                                sale
+                    {productsData?.map((product) => {
+                        if (product.id === id) {
+                            return (
+                                <div key={product.id} className={styles.detailsContent}>
+                                    <div className={styles.imageBlock}>
+                                        <div className={styles.zoomBtn} onClick={handleMagnifyingImg}>
+                                            <MagnifyingGlassPlus />
+                                        </div>
+                                        {
+                                            product.regularPrice ?
+                                                <div className={`${styles.mark} ${styles.sale}`}>
+                                                    sale
+                                                </div>
+                                                : null
+                                        }
+    
+                                        {product.hot && product.quantity > 0 ?
+                                            <div className={`${styles.mark} ${styles.hot} ${!product?.regularPrice ? styles.hotDefault : null}`}>
+                                                hot
                                             </div>
-                                            : null
-                                    }
-
-                                    {product.hot && product.quantity > 0 ?
-                                        <div className={`${styles.mark} ${styles.hot} ${!product?.regularPrice ? styles.hotDefault : null}`}>
-                                            hot
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                    {
-                                        product.quantity > 0 ?
-                                            <div className={`
-                                             ${styles.mark}
-                                             ${styles.stock} 
-                                             ${!product.sale ? styles.defaultMark : null} 
-                                             ${!product.hot && !product.regularPrice ? styles.leftDefault : null}
-                                             `}>
-                                                out of stock
-                                            </div>
-                                            :
-                                            null
-                                    }
-
-                                    <img src={product.frontImage}
-                                        alt="Model Clothes" className={magnifyingImg ? styles.magnified : ""} />
-                                </div>
-                                <div className={styles.descriptionBlock}>
-                                    <h1>{product.title}</h1>
-                                    <div className={styles.optionsBlock}>
-                                        <div className={styles.rating}>
-                                            <Star weight="duotone" style={{
-                                                color: getColorForRating(product?.rating)
-                                            }} />
-                                            <p>({product?.rating})</p>
-                                        </div>
-                                        <div className={styles.stockBlock}>
-                                            Stock: {product.quantity > 1 ? <p>In stock</p> : <p style={{
-                                                color: "red"
-                                            }}>Out of stock</p>}
-                                        </div>
-
-                                    </div>
-                                    <div className={styles.priceBlock}>
-                                        <p>${product.salePrice?.toFixed(2)}</p>
-                                        {product.regularPrice ?
-                                            <>
-                                                <span>${product.regularPrice?.toFixed(2)}</span>
-                                                <h5>(-{(((product.regularPrice - product.salePrice) / product.regularPrice) * 100).toFixed(2)}%)</h5>
-                                            </>
                                             :
                                             null
                                         }
-
+                                        {
+                                            product.quantity > 0 ?
+                                                <div className={`
+                                                 ${styles.mark}
+                                                 ${styles.stock} 
+                                                 ${!product.sale ? styles.defaultMark : null} 
+                                                 ${!product.hot && !product.regularPrice ? styles.leftDefault : null}
+                                                 `}>
+                                                    out of stock
+                                                </div>
+                                                :
+                                                null
+                                        }
+    
+                                        <img src={product.frontImage}
+                                            alt="Model Clothes" className={magnifyingImg ? styles.magnified : ""} />
                                     </div>
-                                    <div className={styles.descriptionTitle}>
-                                        Constructed from a durable polyester fabrication, this quilted staple features a hooded
-                                        neckline, long sleeves with elasticated cuffs. Machine washable at 30 degrees.
-                                    </div>
-                                    <div className={styles.buttonsBlock}>
-                                        <div className={styles.button}>
-                                            add to cart
-                                        </div>
-                                        <div className={styles.button}>
-                                            buy now
-                                        </div>
-
-                                    </div>
-                                    <div className={styles.miscellaneousBlock}>
-                                        <div className={styles.options}>
-                                            <div className={styles.manipulation}>
-                                                <Heart />
-                                                Add to wishlist
+                                    <div className={styles.descriptionBlock}>
+                                        <h1>{product.title}</h1>
+                                        <div className={styles.optionsBlock}>
+                                            <div className={styles.rating}>
+                                                <Star weight="duotone" style={{
+                                                    color: getColorForRating(product?.rating)
+                                                }} />
+                                                <p>({product?.rating})</p>
                                             </div>
-                                            <div className={styles.manipulation}>
-                                                <GitDiff />
-                                                Compare
+                                            <div className={styles.stockBlock}>
+                                                Stock: {product.quantity > 1 ? <p>In stock</p> : <p style={{
+                                                    color: "red"
+                                                }}>Out of stock</p>}
+                                            </div>
+    
+                                        </div>
+                                        <div className={styles.priceBlock}>
+                                            <p>${product.salePrice?.toFixed(2)}</p>
+                                            {product.regularPrice ?
+                                                <>
+                                                    <span>${product.regularPrice?.toFixed(2)}</span>
+                                                    <h5>(-{(((product.regularPrice - product.salePrice) / product.regularPrice) * 100).toFixed(2)}%)</h5>
+                                                </>
+                                                :
+                                                null
+                                            }
+    
+                                        </div>
+                                        <div className={styles.descriptionTitle}>
+                                            Constructed from a durable polyester fabrication, this quilted staple features a hooded
+                                            neckline, long sleeves with elasticated cuffs. Machine washable at 30 degrees.
+                                        </div>
+                                        <div className={styles.buttonsBlock}>
+                                            <div className={styles.button}>
+                                                add to cart
+                                            </div>
+                                            <div className={styles.button}>
+                                                buy now
+                                            </div>
+    
+                                        </div>
+                                        <div className={styles.miscellaneousBlock}>
+                                            <div className={styles.options}>
+                                                <div className={styles.manipulation}>
+                                                    <Heart />
+                                                    Add to wishlist
+                                                </div>
+                                                <div className={styles.manipulation}>
+                                                    <GitDiff />
+                                                    Compare
+                                                </div>
+                                            </div>
+                                            <div className={styles.social}>
+                                                <Link to="#" className={styles.socialEntity}>
+                                                    <FacebookLogo weight="thin" />
+                                                </Link>
+    
+                                                <Link to="#" className={styles.socialEntity}>
+                                                    <TwitterLogo weight="thin" />
+                                                </Link>
+                                                <Link to="#" className={styles.socialEntity}>
+                                                    <PinterestLogo weight="thin" />
+                                                </Link>
                                             </div>
                                         </div>
-                                        <div className={styles.social}>
-                                            <Link to="#" className={styles.socialEntity}>
-                                                <FacebookLogo weight="thin" />
-                                            </Link>
-
-                                            <Link to="#" className={styles.socialEntity}>
-                                                <TwitterLogo weight="thin" />
-                                            </Link>
-                                            <Link to="#" className={styles.socialEntity}>
-                                                <PinterestLogo weight="thin" />
-                                            </Link>
+                                        <div className={styles.idBlock}>
+                                            <span>SKU: <p>SF00{product.id}</p></span>
+                                            <span>BRANDS: <p>Fashion Clothes</p></span>
                                         </div>
-                                    </div>
-                                    <div className={styles.idBlock}>
-                                        <span>SKU: <p>SF00{product.id}</p></span>
-                                        <span>BRANDS: <p>Fashion Clothes</p></span>
                                     </div>
                                 </div>
-                            </div>
 
-                        )
+                            )
+    
+                        }
                     })}
                 </section>
                 <section className={styles.infoSection}>
