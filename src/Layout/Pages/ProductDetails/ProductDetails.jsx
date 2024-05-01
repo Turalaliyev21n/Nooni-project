@@ -58,6 +58,9 @@ export const ProductDetails = () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    },[])
 
     const handleButtonClick = useCallback((id) => {
         setActiveButtonId(id);
@@ -78,9 +81,6 @@ export const ProductDetails = () => {
             return "#000000";
         }
     }
-
-    console.log(id)
-
 
     return (
         <>

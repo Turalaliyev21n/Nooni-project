@@ -49,20 +49,20 @@ const ProductCard = ({product,tallSlide,listView,id}) => {
               <Heart/>
             </div>
             <div className={styles.menu}>
-              <div className={`${styles.menuEntity} ${styles.search}`}>
+              <div className={`${styles.menuEntity} ${styles.search}`} onClick={(e) => e.stopPropagation()}>
                 <MagnifyingGlass/>
               </div>
-              <div className={`${styles.menuEntity} ${styles.compare}`}>
+              <div className={`${styles.menuEntity} ${styles.compare}`} onClick={(e) => e.stopPropagation()}>
                 <GitDiff/>
               </div>
-              <div className={`${styles.menuEntity} ${styles.wishList}`}>
+              <div className={`${styles.menuEntity} ${styles.wishList}`} onClick={(e) => e.stopPropagation()}> 
                 <Heart />
               </div>
 
             </div>
           </div>
           <div className={styles.productText}>
-            <p>{product.title}</p>
+            <Link to={`/details/${id}`}>{product.title}</Link>
             <span>${product.salePrice?.toFixed(2)}
               {product.regularPrice ?
                   <p>${product.regularPrice?.toFixed(2)}</p>

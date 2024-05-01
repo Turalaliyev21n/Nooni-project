@@ -18,7 +18,7 @@
                 margin: 0;
                 justify-content: center;
                 padding-left: 50px;
-                p {
+                a {
                     font-size: 20px;
                 }
                 span {
@@ -121,7 +121,9 @@
                 cursor: pointer;
                 &:hover {
                     background-color: red;
-                    color: white;
+                    a {
+                        color: white!important;
+                    }
                 }
             }
             .heart {
@@ -142,6 +144,7 @@
                 right: 10px;
                 opacity: 0;
                 transition: bottom $transition ,opacity $transition;
+                z-index: 10;
                 .menuEntity {
                     display: flex;
                     position: relative;
@@ -211,10 +214,14 @@
             min-height: 95px;
             justify-content: space-between;
 
-            p {
+           a {
                 font-size: 15px;
                 font-weight: 400;
                 color: black;
+                transition: color $transition;
+                &:hover {
+                    color: red;
+                }
             }
             span {
                 font-size: 15px;
