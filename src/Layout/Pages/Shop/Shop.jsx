@@ -235,7 +235,7 @@ const Shop = () => {
                                     ) : (
                                         typeFilteredProducts?.map((product) => (
                                             <div className={styles.card} key={product.id}>
-                                                <ProductCard product={product} listView={listView}/>
+                                                <ProductCard product={product} listView={listView} id={product.id}/>
                                             </div>
                                             
                                         ))

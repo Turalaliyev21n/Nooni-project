@@ -1,8 +1,8 @@
 import styles from "./ProductCard.module.scss";
 import { Heart,MagnifyingGlass,GitDiff } from '@phosphor-icons/react/dist/ssr';
+import { Link } from "react-router-dom";
 
-
-const ProductCard = ({product,tallSlide,listView}) => {
+const ProductCard = ({product,tallSlide,listView,id}) => {
   return (
       <div className={`${styles.productWrapper} ${listView ? styles.listView : ""}`}>
         <div className={styles.productsContainerBox}>
@@ -40,7 +40,7 @@ const ProductCard = ({product,tallSlide,listView}) => {
             {
               !listView ?
                   <div className={styles.add}>
-                    add to card
+                    <Link to={`/details/${id}`}>add to card</Link>
                   </div>
                   :
                   null
@@ -74,7 +74,7 @@ const ProductCard = ({product,tallSlide,listView}) => {
                 <>
                   <h2>Constructed from a durable polyester fabrication, this quilted staple features a hooded neckline, long sleeves with elasticated cuffs. Machine washable at 30 degrees.</h2>
                   <div className={styles.addToCart}>
-                    add to cart
+                   add to cart
                   </div>
                 </>
                 :

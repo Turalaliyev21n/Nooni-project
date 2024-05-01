@@ -26,10 +26,15 @@ export const DataContextProvider = ({
         })();
     }, []);
 
+    const getCard = id => {
+        return productsData.find(i => i === id);
+    }
+
     return (
         <DataContext.Provider value={{
             productsLoading,
-            productsData
+            productsData,
+            getCard
         }}>
             {children}
         </DataContext.Provider>

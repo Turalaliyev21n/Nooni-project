@@ -10,14 +10,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import infoBtnData from "/public/data/infoBtnData.json";
 import { DataContext } from "../../../Context/DataContext.jsx";
 import { Loader } from "../../Common/Loader/Loader.jsx";
+import { useParams } from "react-router-dom";
 
 export const ProductDetails = () => {
 
     const {
         productsData,
         productsLoading,
+        getCard
     } = useContext(DataContext);
-    console.log(productsData);
+   
+    const {id} = useParams();
 
 
     const [magnifyingImg, setMagnifyingImg] = useState(false);
@@ -76,6 +79,10 @@ export const ProductDetails = () => {
         }
     }
 
+    useEffect(()=>{
+     console.log(getCard(id))
+    },[getCard,id])
+
 
     return (
         <>
@@ -97,7 +104,7 @@ export const ProductDetails = () => {
                     </div>
                 </section>
                 <section className={styles.detailsSection}>
-                    {productsData?.slice(1, 50).map((product) => {
+                    {productsData?.slice(1, 2).map((product) => {
                         return (
                             <div className={styles.detailsContent}>
                                 <div className={styles.imageBlock}>
@@ -105,15 +112,15 @@ export const ProductDetails = () => {
                                         <MagnifyingGlassPlus />
                                     </div>
                                     {
-                                        product.regularPrice ? 
-                                        <div className={`${styles.mark} ${styles.sale}`}>
-                                        sale
-                                    </div>
-                                    : null
+                                        product.regularPrice ?
+                                            <div className={`${styles.mark} ${styles.sale}`}>
+                                                sale
+                                            </div>
+                                            : null
                                     }
 
-                                         {product.hot && product.quantity > 0 ?
-                                        <div className={`${styles.mark} ${styles.hot} ${!product.regularPrice ? styles.defaultMark : null}}`}>
+                                    {product.hot && product.quantity > 0 ?
+                                        <div className={`${styles.mark} ${styles.hot} ${!product?.regularPrice ? styles.hotDefault : null}`}>
                                             hot
                                         </div>
                                         :
@@ -121,7 +128,12 @@ export const ProductDetails = () => {
                                     }
                                     {
                                         product.quantity > 0 ?
-                                            <div className={`${styles.mark} ${styles.stock} ${!product.sale ? styles.defaultMark : null}`}>
+                                            <div className={`
+                                             ${styles.mark}
+                                             ${styles.stock} 
+                                             ${!product.sale ? styles.defaultMark : null} 
+                                             ${!product.hot && !product.regularPrice ? styles.leftDefault : null}
+                                             `}>
                                                 out of stock
                                             </div>
                                             :
