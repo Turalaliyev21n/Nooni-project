@@ -1,0 +1,44 @@
+@import "../../../Variables/Variables.module.scss";
+
+.AddWrapper{
+    width: 100%;
+    .AddContainer{
+       width: 100%;
+       .AddContact{
+        max-width: 1400px;
+        margin: 0 auto;
+        border: 1px solid black;
+        display: flex;
+        gap: 20px;
+        .productContactLeft{
+            width: 949px;
+            border: 1px solid black;
+            padding: 40px;
+            .productLeftText{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                .productLeftText{
+                    h3{
+                        font-size: 15px;
+                        font-family: $mainFont;
+                    }
+                }
+                .productTextRight{
+                    display: flex;
+                    gap: 15px;
+                    h3{
+                        font-size: 15px;
+                        font-family: $mainFont;
+                    }
+                }
+            }
+        }
+        .productContactRight{
+            width: 451px;
+            border: 1px solid black;
+            padding: 40px;
+        }
+       }
+    }
+}

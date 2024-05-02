@@ -6,6 +6,7 @@ import Blog from "./Layout/Pages/Blog/Blog.jsx"
 import About from "./Layout/Pages/About/About.jsx";
 import Contact from "./Layout/Pages/Contact/Contact.jsx";
 import { ProductDetails } from "./Layout/Pages/ProductDetails/ProductDetails.jsx";
+import AddCart from "./Layout/Pages/AddCart/AddCart.jsx";
 const router = () => createBrowserRouter([
     {
         path: '/',
@@ -40,6 +41,10 @@ const router = () => createBrowserRouter([
             {
                 path: 'contact',
                 element: <Contact/>,
+            },
+            {
+                path: 'addcart',
+                element: <AddCart/>,
             },
         ],
     }      

@@ -17,7 +17,6 @@ export const ProductDetails = () => {
     const {
         productsData,
         productsLoading,
-        getCard
     } = useContext(DataContext);
    
     const {id} = useParams();

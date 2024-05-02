@@ -1,23 +1,23 @@
 import styles from "./Header.module.scss";
-import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X,CaretRight} from "@phosphor-icons/react";
+import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X, CaretRight, TrashSimple } from "@phosphor-icons/react";
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 
 
 
+
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [basketOpen,setBasketOpen] = useState(false);
-   
+    const [basketOpen, setBasketOpen] = useState(false);
 
     const handleMenuToggle = useCallback(() => {
         setMenuOpen(prevState => !prevState);
     }, [setMenuOpen]);
 
-    const handleBasketToggle = useCallback(()=>{ 
+    const handleBasketToggle = useCallback(() => {
         setBasketOpen(prevState => !prevState);
-    },[setBasketOpen])
+    }, [setBasketOpen])
 
     return (
         <header className={styles.headerWrapper}>
@@ -29,20 +29,20 @@ const Header = () => {
                     </div>
                     <div className={styles.headerLanguage}>
                         <div className={styles.headerLanguagefrom}>ENGLISH <i className="fa-solid fa-chevron-down"></i>
-                      <div className={styles.dropdownLanguage}>
-                        <div className={styles.dropdownBox}>
-                            <p>FRANCAIS</p>
-                            <p>DEAUTCH</p>
-                        </div>
-                      </div>
+                            <div className={styles.dropdownLanguage}>
+                                <div className={styles.dropdownBox}>
+                                    <p>FRANCAIS</p>
+                                    <p>DEAUTCH</p>
+                                </div>
+                            </div>
                         </div>
                         <div className={styles.headerLanguagefrom}>USD <i className="fa-solid fa-chevron-down"></i>
-                        <div className={styles.dropdownLanguage}>
-                        <div className={styles.dropdownBox}>
-                            <p>USD</p>
-                            <p>EUR</p>
-                        </div>
-                      </div>
+                            <div className={styles.dropdownLanguage}>
+                                <div className={styles.dropdownBox}>
+                                    <p>USD</p>
+                                    <p>EUR</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,7 +242,7 @@ const Header = () => {
                                             <Link to={'/blog'}>Blog</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <Link to ={'/about'}>About</Link>
+                                            <Link to={'/about'}>About</Link>
                                         </div>
                                         <div className={styles.dropLink}>
                                             <Link to={'/contact'}>Contact</Link>
@@ -290,96 +290,201 @@ const Header = () => {
                 </div>
             </div>
             <div className={`${styles.basketOverlay} ${basketOpen ? styles.basketVisible : ""}`}>
-            <div className={styles.basketWrapper}>
-                <div className={styles.closeBasket} onClick={handleBasketToggle}>
-                    <X />
-                </div>
-                
-                <div className={styles.basketEmpty}>
+                <div className={styles.basketWrapper}>
+                    <div className={styles.basketHeading}>
+                        <h3>Cart (01)</h3>
+                        <div className={styles.closeBasket} onClick={handleBasketToggle}>
+                            <X />
+                        </div>
+                    </div>
+                    <div className={styles.basketProducts}>
+                        <div className={styles.basketCard}>
+                            <Link to="#" className={styles.basketImage}>
+                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
+                            </Link>
+                            <div className={styles.basketTitle}>
+                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
+                                <div className={styles.basketButton}>
+                                    <div className={styles.controlBtn}>
+                                        -
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        2
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        +
+                                    </div>
+                                </div>
+                                <div className={styles.productPrice}>
+                                    $999.00
+                                </div>
+                                {/* <div className={styles.deleteBasket}>
+                                    <TrashSimple size={32} color="red" />
+                                </div> */}
+                            </div>
+                            <div className={styles.deleteProduct}>
+                                <TrashSimple />
+                            </div>
+                        </div>
+                        <div className={styles.basketCard}>
+                            <Link to="#" className={styles.basketImage}>
+                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
+                            </Link>
+                            <div className={styles.basketTitle}>
+                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
+                                <div className={styles.basketButton}>
+                                    <div className={styles.controlBtn}>
+                                        -
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        2
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        +
+                                    </div>
+                                </div>
+                                <div className={styles.productPrice}>
+                                    $999.00
+                                </div>
+                                {/* <div className={styles.deleteBasket}>
+                                    <TrashSimple size={32} color="red" />
+                                </div> */}
+                            </div>
+                            <div className={styles.deleteProduct}>
+                                <TrashSimple />
+                            </div>
+                        </div>
+                        <div className={styles.basketCard}>
+                            <Link to="#" className={styles.basketImage}>
+                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
+                            </Link>
+                            <div className={styles.basketTitle}>
+                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
+                                <div className={styles.basketButton}>
+                                    <div className={styles.controlBtn}>
+                                        -
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        2
+                                    </div>
+                                    <div className={styles.controlBtn}>
+                                        +
+                                    </div>
+                                </div>
+                                <div className={styles.productPrice}>
+                                    $999.00
+                                </div>
+                                {/* <div className={styles.deleteBasket}>
+                                    <TrashSimple size={32} color="red" />
+                                </div> */}
+                            </div>
+                            <div className={styles.deleteProduct}>
+                                <TrashSimple />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.basketFooter}>
+                        <div className={styles.subtotal}>
+                            <p>Subtotal:</p>
+                            <p>$999.00</p>
+                        </div>
+                        <div className={styles.basketBtn}>
+                            view cart
+                        </div>
+                        <div className={styles.basketBtn}>
+                            checkout
+                        </div>
+
+
+                    </div>
+
+
+                    {/* <div className={styles.basketEmpty}>
                     <img src="/images/cart.png" alt="Cart" />
                     <p>Your cart is curently empty</p>
-                </div>
+                </div> */}
 
-            </div>
-            </div>
-
-            <div className={`${styles.sideMenuOverlay} ${menuOpen? styles.overlayVisible: ""}`}>
-            <div className={`${styles.sideMenuWrapper}`}>
-                <div className={styles.navEntity}>
-                    <a href="">Home</a>
-                    <CaretRight fontSize={"20px"} />
-                    <div className={styles.elementDropdown}>
-                        <div className={styles.dropDownTitle}>
-                        <a href="">Furniture 1</a>
-                        <a href="">Furniture 2</a>
-                        <a href="">Furniture 3</a>
-                        <a href="">Fashion 1</a>
-                        <a href="">Furniture </a>
-                        <a href="">Fashion 2</a>
-                        <a href="">Fashion 3</a>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.navEntity}>
-                    <a href="">Shop</a>
-                    <CaretRight fontSize={"20px"}/>
-                    <div className={styles.elementDropdown}>
-                        <div className={styles.dropDownTitle}>
-                        <a href="">Furniture 1</a>
-                        <a href="">Furniture 2</a>
-                        <a href="">Furniture 3</a>
-                        <a href="">Fashion 1</a>
-                        <a href="">Furniture </a>
-                        <a href="">Fashion 2</a>
-                        <a href="">Fashion 3</a>
-                        </div>
-                    </div>
-
-                </div>
-                <div className={styles.navEntity}>
-                    <a href="">Product</a>
-                    <CaretRight fontSize={"20px"}/>
-                    <div className={styles.elementDropdown}>
-                        <div className={styles.dropDownTitle}>
-                        <a href="">Furniture 1</a>
-                        <a href="">Furniture 2</a>
-                        <a href="">Furniture 3</a>
-                        <a href="">Fashion 1</a>
-                        <a href="">Furniture </a>
-                        <a href="">Fashion 2</a>
-                        <a href="">Fashion 3</a>
-                        </div>
-                    </div>
-
-                </div>
-                <div className={styles.navEntity}>
-                    <a href="">Blog</a>
-                    <CaretRight fontSize={"20px"} />
-                    <div className={styles.elementDropdown}>
-                        <div className={styles.dropDownTitle}>
-                        <a href="">Furniture 1</a>
-                        <a href="">Furniture 2</a>
-                        <a href="">Furniture 3</a>
-                        <a href="">Fashion 1</a>
-                        <a href="">Furniture </a>
-                        <a href="">Fashion 2</a>
-                        <a href="">Fashion 3</a>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.navEntity}>
-                    <a href="">About</a>
-                </div>
-                <div className={styles.navEntity}>
-                    <a href="">Contact Us</a>
-                </div>
-                <div className={styles.closeBtn} onClick={handleMenuToggle}>
-                    <X />
                 </div>
             </div>
-            </div> 
-            
-            
+
+            <div className={`${styles.sideMenuOverlay} ${menuOpen ? styles.overlayVisible : ""}`}>
+                <div className={`${styles.sideMenuWrapper}`}>
+                    <div className={styles.navEntity}>
+                        <a href="">Home</a>
+                        <CaretRight fontSize={"20px"} />
+                        <div className={styles.elementDropdown}>
+                            <div className={styles.dropDownTitle}>
+                                <a href="">Furniture 1</a>
+                                <a href="">Furniture 2</a>
+                                <a href="">Furniture 3</a>
+                                <a href="">Fashion 1</a>
+                                <a href="">Furniture </a>
+                                <a href="">Fashion 2</a>
+                                <a href="">Fashion 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.navEntity}>
+                        <a href="">Shop</a>
+                        <CaretRight fontSize={"20px"} />
+                        <div className={styles.elementDropdown}>
+                            <div className={styles.dropDownTitle}>
+                                <a href="">Furniture 1</a>
+                                <a href="">Furniture 2</a>
+                                <a href="">Furniture 3</a>
+                                <a href="">Fashion 1</a>
+                                <a href="">Furniture </a>
+                                <a href="">Fashion 2</a>
+                                <a href="">Fashion 3</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.navEntity}>
+                        <a href="">Product</a>
+                        <CaretRight fontSize={"20px"} />
+                        <div className={styles.elementDropdown}>
+                            <div className={styles.dropDownTitle}>
+                                <a href="">Furniture 1</a>
+                                <a href="">Furniture 2</a>
+                                <a href="">Furniture 3</a>
+                                <a href="">Fashion 1</a>
+                                <a href="">Furniture </a>
+                                <a href="">Fashion 2</a>
+                                <a href="">Fashion 3</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className={styles.navEntity}>
+                        <a href="">Blog</a>
+                        <CaretRight fontSize={"20px"} />
+                        <div className={styles.elementDropdown}>
+                            <div className={styles.dropDownTitle}>
+                                <a href="">Furniture 1</a>
+                                <a href="">Furniture 2</a>
+                                <a href="">Furniture 3</a>
+                                <a href="">Fashion 1</a>
+                                <a href="">Furniture </a>
+                                <a href="">Fashion 2</a>
+                                <a href="">Fashion 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.navEntity}>
+                        <a href="">About</a>
+                    </div>
+                    <div className={styles.navEntity}>
+                        <a href="">Contact Us</a>
+                    </div>
+                    <div className={styles.closeBtn} onClick={handleMenuToggle}>
+                        <X />
+                    </div>
+                </div>
+            </div>
+
+
 
         </header>
     )

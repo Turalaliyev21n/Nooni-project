@@ -418,7 +418,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      max-width: 350px;
+      max-width: 345px;
       width: 100%;
       height: 100vh;
       pointer-events: none;
@@ -426,20 +426,177 @@
       transform-origin: right;
       background-color: white;
       transform: scaleX(0);
-      .closeBasket {
-        width: 30px;
-        height: 30px;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      .basketHeading {
         display: flex;
-        cursor: pointer;
-        position: absolute;
-        right: 25px;
-        top: 25px;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 20px;
         align-items: center;
-        justify-content: center;
-
-        svg {
-          font-size: 23px;
+        gap: 25px;
+        .closeBasket {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          svg {
+            font-size: 23px;
+          }
         }
+        h3 {
+          font-size: 15px;
+          font-weight: 400;
+        }
+  
+      }
+      .basketProducts {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-height: 350px;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          background-color: rgba(128, 128, 128, 0.200);
+          width: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: gray;
+        }
+        .basketCard {
+          width: 100%;
+          display: flex;
+          padding: 15px 0;
+          position: relative;
+          .basketImage{
+            max-width: 114px;
+            width: 100%;
+            img{
+              width: 100%;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+          .basketTitle{
+            max-width: 174px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+            .productName {
+              max-height: 72px;
+              margin-bottom: 15px;
+            }
+
+            .basketButton{
+              display: flex;
+              align-items: center;
+              max-width: min-content;
+              width: 100%;
+              height: 26px;
+              background-color: rgba(128, 128, 128, 0.100);
+              margin-bottom: 10px;
+              .controlBtn {
+                display: flex;
+                width: 21px;
+                height: 100%;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                &:nth-child(2) {
+                  width: 45px;
+                  cursor: default;
+                }
+              }
+            }
+            .productPrice {
+              font-size: 15px;
+              margin: 2px 0 0 16px;
+
+            }
+          }
+          .deleteProduct {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            &:hover {
+              svg {
+                color: red;
+              }
+            }
+            svg {
+              transition: color $transition;
+              font-size: 20px;
+            }
+          }
+
+        }
+    
+      }
+      .basketFooter {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin-top: auto;
+        gap: 15px;
+        .subtotal {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          gap: 25px;
+          align-items: center;
+          margin-bottom: 8px;
+          p {
+            font-size: 20px;
+            font-weight: 700;
+            &:nth-child(2) {
+              font-size: 22px;
+            }
+          }
+        }
+        .basketBtn {
+          width: 100%;
+          border: 1px solid black;
+          background-color: black;
+          color: white;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-transform: uppercase;
+          font-weight: 600;
+          transition: background-color $transition, color $transition , border-color $transition;
+          cursor: pointer;
+
+          &:nth-child(2) {
+            background-color: transparent;
+            color: black;
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.500);
+              border-color: rgba(0, 0, 0, 0.500);
+              color: white;
+            }
+          }
+          &:nth-child(3) {
+            &:hover {
+              background-color: red;
+              border-color: red;
+            }
+          }
+
+
+
+        }
+
       }
       .basketEmpty {
         position: absolute;
