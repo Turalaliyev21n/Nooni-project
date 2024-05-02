@@ -33,6 +33,73 @@
                     }
                 }
             }
+            .AddCartTotal{
+                width: 100%;
+                display: flex;
+                gap: 20px;
+                margin-top: 40px;
+                .AddCartImage{
+                    width: 120px;
+                    height: 212px;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .cartTitle{
+                    margin-top: 40px;
+                    display: flex;
+                    gap: 30px;
+                    .AddCartTitle{
+                        width: 269px;
+                        p{
+                            line-height: 25px;
+                        }
+                    }
+                    .AddCartPrice{
+                        p{
+                            font-size: 15px;
+                            font-family: $mainFont;
+                            font-weight: 700;
+                        }
+                    }
+                    .AddCartButton{
+                        display: flex;
+                        button{
+                            width: 21px;
+                            height: 24px;
+                            border: none;
+                            background-color:rgb(237,237,237);
+                        }
+                        span{
+                            width: 21px;
+                            height: 24px;
+                            background-color: gray;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color:rgb(237,237,237);
+                        }
+                    }
+                    .AddCartSubtotal{
+                        p{
+                            font-size: 15px;
+                            font-weight: 700;
+                            font-family: $mainFont;
+                        }
+                    }
+                    .DeleteCart{
+                        svg{
+                           font-size: 20px;
+                           transition: 0.3s;
+                           cursor: pointer;
+                           &:hover{
+                              color: red;
+                           }
+                        }
+                    }
+                }
+             
+            }
         }
         .productContactRight{
             width: 451px;

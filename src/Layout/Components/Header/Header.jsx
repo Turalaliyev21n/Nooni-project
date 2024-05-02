@@ -1,13 +1,22 @@
 import styles from "./Header.module.scss";
 import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X, CaretRight, TrashSimple } from "@phosphor-icons/react";
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { BasketContext } from "../../../Context/BasketContext";
 
 
 
 
 
 const Header = () => {
+    const {
+        increaseQuantity,
+        decreaseQuantity,
+        removeFromCart,
+        cartItems,
+        calculateSubtotal,
+    } = useContext(BasketContext);
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [basketOpen, setBasketOpen] = useState(false);
 
@@ -18,6 +27,7 @@ const Header = () => {
     const handleBasketToggle = useCallback(() => {
         setBasketOpen(prevState => !prevState);
     }, [setBasketOpen])
+
 
     return (
         <header className={styles.headerWrapper}>
@@ -278,9 +288,9 @@ const Header = () => {
                             <Heart />
                         </div>
                         <div className={`${styles.buttonEntity}`} onClick={handleBasketToggle}>
-                            <ShoppingCart />
+                            <ShoppingCart/>
                             <div className={styles.count}>
-                                0
+                                {cartItems?.length}
                             </div>
                         </div>
 
@@ -290,120 +300,78 @@ const Header = () => {
                 </div>
             </div>
             <div className={`${styles.basketOverlay} ${basketOpen ? styles.basketVisible : ""}`}>
-                <div className={styles.basketWrapper}>
+            <div className={styles.basketWrapper}>
                     <div className={styles.basketHeading}>
-                        <h3>Cart (01)</h3>
+                        {cartItems?.length > 0 ?
+                        <h3>Cart ({cartItems?.length})</h3>
+                            :
+                            null
+                        }
                         <div className={styles.closeBasket} onClick={handleBasketToggle}>
-                            <X />
+                            <X/>
                         </div>
                     </div>
-                    <div className={styles.basketProducts}>
-                        <div className={styles.basketCard}>
-                            <Link to="#" className={styles.basketImage}>
-                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
-                            </Link>
-                            <div className={styles.basketTitle}>
-                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
-                                <div className={styles.basketButton}>
-                                    <div className={styles.controlBtn}>
-                                        -
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        2
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        +
-                                    </div>
-                                </div>
-                                <div className={styles.productPrice}>
-                                    $999.00
-                                </div>
-                                {/* <div className={styles.deleteBasket}>
-                                    <TrashSimple size={32} color="red" />
-                                </div> */}
-                            </div>
-                            <div className={styles.deleteProduct}>
-                                <TrashSimple />
-                            </div>
-                        </div>
-                        <div className={styles.basketCard}>
-                            <Link to="#" className={styles.basketImage}>
-                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
-                            </Link>
-                            <div className={styles.basketTitle}>
-                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
-                                <div className={styles.basketButton}>
-                                    <div className={styles.controlBtn}>
-                                        -
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        2
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        +
-                                    </div>
-                                </div>
-                                <div className={styles.productPrice}>
-                                    $999.00
-                                </div>
-                                {/* <div className={styles.deleteBasket}>
-                                    <TrashSimple size={32} color="red" />
-                                </div> */}
-                            </div>
-                            <div className={styles.deleteProduct}>
-                                <TrashSimple />
-                            </div>
-                        </div>
-                        <div className={styles.basketCard}>
-                            <Link to="#" className={styles.basketImage}>
-                                <img src="https://demo.theme-sky.com/nooni-fashion/wp-content/uploads/2023/04/07-450x572.jpg" alt=""></img>
-                            </Link>
-                            <div className={styles.basketTitle}>
-                                <Link to="#" className={styles.productName}>Women's Croptop Jacket</Link>
-                                <div className={styles.basketButton}>
-                                    <div className={styles.controlBtn}>
-                                        -
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        2
-                                    </div>
-                                    <div className={styles.controlBtn}>
-                                        +
-                                    </div>
-                                </div>
-                                <div className={styles.productPrice}>
-                                    $999.00
-                                </div>
-                                {/* <div className={styles.deleteBasket}>
-                                    <TrashSimple size={32} color="red" />
-                                </div> */}
-                            </div>
-                            <div className={styles.deleteProduct}>
-                                <TrashSimple />
-                            </div>
-                        </div>
+                    {cartItems?.length > 0 ?
+                        <>
+                            <div className={styles.basketProducts}>
+                                {
+                                    cartItems?.map((product) => {
+                                        return (
+                                            <div key={product.id} className={styles.basketCard}>
+                                                <Link to={`/details/${product?.id}`} className={styles.basketImage}>
+                                                    <img
+                                                        src={product.frontImage}
+                                                        alt=""></img>
+                                                </Link>
+                                                <div className={styles.basketTitle}>
+                                                    <Link to={`/details/${product?.id}`}
+                                                          className={styles.productName}>{product.title}</Link>
+                                                    <div className={styles.basketButton}>
+                                                        <div className={styles.controlBtn}
+                                                             onClick={() => decreaseQuantity(product.id)}>
+                                                            -
+                                                        </div>
+                                                        <div className={styles.controlBtn}>
+                                                            {product.count}
+                                                        </div>
+                                                        <div className={styles.controlBtn}
+                                                             onClick={() => increaseQuantity(product.id)}>
+                                                            +
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.productPrice}>
+                                                        ${(product.salePrice * product.count).toFixed(2)}
+                                                    </div>
+                                                </div>
+                                                <div className={styles.deleteProduct}
+                                                     onClick={() => removeFromCart(product.id)}>
+                                                    <TrashSimple/>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
 
-                    </div>
-                    <div className={styles.basketFooter}>
-                        <div className={styles.subtotal}>
-                            <p>Subtotal:</p>
-                            <p>$999.00</p>
+                            </div>
+                            <div className={styles.basketFooter}>
+                                <div className={styles.subtotal}>
+                                    <p>Subtotal:</p>
+                                    <p>${calculateSubtotal()?.toFixed(2)}</p>
+                                </div>
+                                <div className={styles.basketBtn}>
+                                    view cart
+                                </div>
+                                <div className={styles.basketBtn}>
+                                    checkout
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <div className={styles.basketEmpty}>
+                            <img src="/images/cart.png" alt="Cart"/>
+                            <p>Your cart is curently empty</p>
                         </div>
-                        <div className={styles.basketBtn}>
-                            view cart
-                        </div>
-                        <div className={styles.basketBtn}>
-                            checkout
-                        </div>
-
-
-                    </div>
-
-
-                    {/* <div className={styles.basketEmpty}>
-                    <img src="/images/cart.png" alt="Cart" />
-                    <p>Your cart is curently empty</p>
-                </div> */}
+                    }
 
                 </div>
             </div>
