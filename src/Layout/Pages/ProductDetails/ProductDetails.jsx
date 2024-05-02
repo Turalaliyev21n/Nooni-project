@@ -11,6 +11,7 @@ import infoBtnData from "/public/data/infoBtnData.json";
 import { DataContext } from "../../../Context/DataContext.jsx";
 import { Loader } from "../../Common/Loader/Loader.jsx";
 import { useParams } from "react-router-dom";
+import { BasketContext } from "../../../Context/BasketContext.jsx";
 
 export const ProductDetails = () => {
 
@@ -18,6 +19,11 @@ export const ProductDetails = () => {
         productsData,
         productsLoading,
     } = useContext(DataContext);
+
+    const {
+        addToCart,
+      } = useContext(BasketContext);
+    
    
     const {id} = useParams();
 
@@ -174,7 +180,7 @@ export const ProductDetails = () => {
                                             neckline, long sleeves with elasticated cuffs. Machine washable at 30 degrees.
                                         </div>
                                         <div className={styles.buttonsBlock}>
-                                            <div className={styles.button}>
+                                            <div className={styles.button} onClick={()=> addToCart(product)}>
                                                 add to cart
                                             </div>
                                             <div className={styles.button}>
