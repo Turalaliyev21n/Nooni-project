@@ -192,7 +192,7 @@ const Home = () => {
                             {productsData?.slice(4, 10).map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
-                                        <ProductCard product={product} tallSlide={true}/>
+                                        <ProductCard product={product} tallSlide={true} productId={product.id}/>
                                     </SwiperSlide>
                                 )
                             })}

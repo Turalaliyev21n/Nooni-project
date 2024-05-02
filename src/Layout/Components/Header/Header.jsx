@@ -234,7 +234,7 @@ const Header = () => {
                                 </div>
                             </div>
                             <div className={styles.navEntity}>
-                                <p>Kids</p>
+                                <p>Miscelanious</p>
                                 <CaretDown />
                                 <div className={`${styles.navDropDown} ${styles.kidsDropDown}`}>
                                     <div className={styles.kidsDropContent}>
@@ -248,10 +248,10 @@ const Header = () => {
                                             <Link to={'/contact'}>Contact</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Unisex</a>
+                                            <a href="">Wishlist</a>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Uniform</a>
+                                            <a href="">Add to cart</a>
                                         </div>
                                     </div>
 

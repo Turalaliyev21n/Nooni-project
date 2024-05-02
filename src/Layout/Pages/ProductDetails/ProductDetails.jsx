@@ -126,7 +126,7 @@ export const ProductDetails = () => {
                                             null
                                         }
                                         {
-                                            product.quantity > 0 ?
+                                            product.quantity < 1 ?
                                                 <div className={`
                                                  ${styles.mark}
                                                  ${styles.stock} 

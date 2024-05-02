@@ -1,8 +1,12 @@
 import styles from "./ProductCard.module.scss";
 import { Heart,MagnifyingGlass,GitDiff } from '@phosphor-icons/react/dist/ssr';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const ProductCard = ({product,tallSlide,listView,id}) => {
+const ProductCard = ({product,tallSlide,listView,productId}) => {
+
+  const {id} = useParams();
+  console.log(productId + "product ID")
+
   return (
       <div className={`${styles.productWrapper} ${listView ? styles.listView : ""}`}>
         <div className={styles.productsContainerBox}>
@@ -62,7 +66,7 @@ const ProductCard = ({product,tallSlide,listView,id}) => {
             </div>
           </div>
           <div className={styles.productText}>
-            <Link to={`/details/${id}`}>{product.title}</Link>
+            <Link to={`/details/${productId}`}>{product.title}</Link>
             <span>${product.salePrice?.toFixed(2)}
               {product.regularPrice ?
                   <p>${product.regularPrice?.toFixed(2)}</p>

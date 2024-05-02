@@ -66,8 +66,6 @@ const Shop = () => {
         setGridView(prevState => !prevState);
     }, [setGridView, setListView]);
 
-    console.log(productsData);
-
     return (
         <>
             {
