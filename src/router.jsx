@@ -6,7 +6,7 @@ import Blog from "./Layout/Pages/Blog/Blog.jsx"
 import About from "./Layout/Pages/About/About.jsx";
 import Contact from "./Layout/Pages/Contact/Contact.jsx";
 import { ProductDetails } from "./Layout/Pages/ProductDetails/ProductDetails.jsx";
-import AddCart from "./Layout/Pages/AddCart/AddCart.jsx";
+import { Basket } from "./Layout/Pages/Basket/Basket.jsx";
 const router = () => createBrowserRouter([
     {
         path: '/',
@@ -43,8 +43,8 @@ const router = () => createBrowserRouter([
                 element: <Contact/>,
             },
             {
-                path: 'addcart',
-                element: <AddCart/>,
+                path: 'basket',
+                element: <Basket />,
             },
         ],
     }      

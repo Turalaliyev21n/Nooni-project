@@ -258,10 +258,10 @@ const Header = () => {
                                             <Link to={'/contact'}>Contact</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Wishlist</a>
+                                            <a href="/wishlist">Wishlist</a>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="">Add to cart</a>
+                                            <a href="/basket">Cart page</a>
                                         </div>
                                     </div>
 
@@ -359,7 +359,7 @@ const Header = () => {
                                     <p>${calculateSubtotal()?.toFixed(2)}</p>
                                 </div>
                                 <div className={styles.basketBtn}>
-                                    <Link to={'/addcart'}>view cart</Link>
+                                    <Link to={'/basket'}>view cart</Link>
                                 </div>
                                 <div className={styles.basketBtn}>
                                     checkout
