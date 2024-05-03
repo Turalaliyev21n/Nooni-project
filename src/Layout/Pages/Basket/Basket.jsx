@@ -6,6 +6,7 @@ import PageHeading from '../../Common/PageHeading/PageHeading';
 import { Trash } from "@phosphor-icons/react";
 import { Link } from 'react-router-dom';
 import { BasketContext } from '../../../Context/BasketContext';
+import {Truck} from "@phosphor-icons/react";
 
 export const Basket = () => {
   const {
@@ -92,8 +93,47 @@ export const Basket = () => {
                 </div>
               )
             })}
+     
+         <div className={styles.emptyShop}>Empty cart</div>
+            
           </div>
-          <div className={styles.productContactRight}></div>
+          <div className={styles.productContactRight}>
+            <div className={styles.cartTotals}>
+              <h1>CART TOTALS</h1>
+              <div className={styles.subtotalPirce}>
+                <h2>Subtotal</h2>
+                <p>Azn1349</p>
+              </div>
+              <div className={styles.shippingBox}>
+              <h2>Shipping</h2>
+              <div className={styles.shippingCalulate}>
+                <div className={styles.flatRate}>
+                  <input form='name' type='Radio'></input>
+                  <label id='name'>Flat rate: $10</label>
+                </div>
+                <div className={styles.flatRate}>
+                  <input type='Radio'></input>
+                  <label>Local pickup: $5</label>
+                </div>
+                <div className={styles.flatText}>
+                  <p>Shipping options will be updated during checkout.</p>
+                </div>
+                <div className={styles.flatTurck}>
+                <Truck size={20} />
+                <p>Calculate shipping</p>
+                </div>
+              </div>
+              
+              </div>
+              <div className={styles.totalCart}>
+                <h2>Total</h2>
+                <p>Azn1359</p>
+              </div>
+              <div className={styles.totalButton}>
+              PROCEED TO CHECKOUT
+              </div>
+            </div>
+          </div>
         </div>
 
       
