@@ -359,7 +359,7 @@ const Header = () => {
                                     <p>${calculateSubtotal()?.toFixed(2)}</p>
                                 </div>
                                 <div className={styles.basketBtn}>
-                                    view cart
+                                    <Link to={'/addcart'}>view cart</Link>
                                 </div>
                                 <div className={styles.basketBtn}>
                                     checkout
