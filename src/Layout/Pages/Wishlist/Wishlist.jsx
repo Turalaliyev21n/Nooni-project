@@ -1,37 +1,135 @@
-import React from 'react'
 import styles from "./Wishlist.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import PageHeading from '../../Common/PageHeading/PageHeading';
-import { Check,Trash } from "@phosphor-icons/react";
+import {
+    Check,
+    EnvelopeSimple,
+    FacebookLogo,
+    PinterestLogo,
+    Trash,
+    TwitterLogo,
+    WhatsappLogo,
+    X
+} from "@phosphor-icons/react";
+import {Link} from "react-router-dom";
+import {useCallback, useContext} from "react";
+import {WishListContext} from "../../../Context/WishListContext.jsx";
+import {BasketContext} from "../../../Context/BasketContext.jsx";
+
 const Wishlist = () => {
-  return (
-    <div className={styles.wishlistWrapper}>
-        <Header/>
-      <main className={styles.wishlistContainer}>
-       <PageHeading title={"wishlist"}/>
-       <div className={styles.wishlistCardWrapper}>
-        <div className={styles.wishlistContact}>
-        <div className={styles.productName}><span>Product name</span></div>
-        <div className={styles.productPrice}><span>Unit price</span></div>
-        <div className={styles.productStock}><span>Stock status</span></div>
+    const {
+        wishListItems,
+        removeFromWishList
+    } = useContext(WishListContext);
+
+    const {
+        addToCart,
+    } = useContext(BasketContext);
+
+    const handleAddToCart = useCallback(async (product, productId) => {
+        addToCart(product);
+        await product?.quantity > 0? removeFromWishList(productId) : null;
+    }, [addToCart, removeFromWishList]);
+
+
+    return (
+        <div className={styles.wishlistWrapper}>
+            <Header/>
+            <main className={styles.wishlistContainer}>
+                <PageHeading title={"Wishlist"}/>
+                {wishListItems?.length < 1 ?
+                    <div className={styles.wishlistEmpty}>
+                        <img src="/images/heart.png" alt="Heart"/>
+                        <p>Your wishlist is currently empty.</p>
+                        <Link to="/shop">
+                            Return to Shop
+                        </Link>
+                    </div>
+                    :
+                    <div className={styles.wishlistCardsWrapper}>
+                        <div className={`${styles.tableRow} ${styles.topRow}`}>
+                            <div className={`${styles.product} ${styles.cell}`}>
+                                Product
+                            </div>
+                            <div className={`${styles.price} ${styles.cell}`}>
+                                Unit price
+                            </div>
+                            <div className={`${styles.stock} ${styles.cell}`}>
+                                Stock status
+                            </div>
+                            <div className={`${styles.add} ${styles.cell}`}>
+                                Add to Cart
+                            </div>
+                            <div className={`${styles.delete} ${styles.cell}`}>
+                                Delete
+                            </div>
+                        </div>
+                        {wishListItems?.map((product) => {
+                            return (
+                                <div key={product.id} className={`${styles.tableRow} ${styles.bottomRow}`}>
+                                    <div className={`${styles.product} ${styles.cell}`}>
+                                        <img
+                                            src={product.frontImage}
+                                            alt="Fashion Clothes"/>
+                                        <Link to={`/details/${product.id}`}>
+                                            {product.title}
+                                        </Link>
+                                    </div>
+                                    <div className={`${styles.price} ${styles.cell}`}>
+                                    <span>{product.regularPrice ?
+                                        <p>AZN {product.regularPrice.toFixed(2)}</p> : null}AZN {product.salePrice.toFixed(2)}</span>
+                                    </div>
+                                    <div className={`${styles.stock} ${styles.cell}`}>
+                                        {product.quantity > 0 ?
+                                            <span className={styles.inStock}><Check/> In Stock</span>
+                                            :
+                                            <span className={styles.notInStock}><X/>Out of Stock</span>
+                                        }
+                                    </div>
+                                    <div className={`${styles.add} ${styles.cell}`}>
+                                        <div className={styles.addToCart}
+                                             onClick={() => handleAddToCart(product, product.id)}>
+                                            add to cart
+                                        </div>
+
+                                    </div>
+                                    <div className={`${styles.delete} ${styles.cell}`}>
+                                        <div className={styles.deleteBtn}
+                                             onClick={() => removeFromWishList(product.id)}>
+                                            <Trash/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className={styles.social}>
+                            <h3>Share on:</h3>
+                            <div className={styles.iconsBlock}>
+                                <Link to="#" className={styles.circle}>
+                                    <FacebookLogo weight="fill"/>
+                                </Link>
+                                <Link to="#" className={styles.circle}>
+                                    <TwitterLogo weight="fill"/>
+                                </Link>
+                                <Link to="#" className={styles.circle}>
+                                    <PinterestLogo weight="fill"/>
+                                </Link>
+                                <Link to="#" className={styles.circle}>
+                                    <EnvelopeSimple/>
+                                </Link>
+                                <Link to="#" className={styles.circle}>
+                                    <WhatsappLogo/>
+                                </Link>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </main>
+            <Footer/>
         </div>
-        <div className={styles.wishlistContact}>
-        <div className={styles.productImages}><img src='https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/04/27-450x572.jpg' alt=''></img></div>
-        <div className={styles.productPrice}><span>Azn3707</span></div>
-        <div className={styles.productStock}><p><Check size={18}/></p><p>In Stock</p></div>
-        <div className={styles.productButton}>
-            <button>SELET OPTIONS</button>
-        <div className={styles.productDelete}>
-        <Trash size={25} />
-        </div>
-        </div>
-        </div>
-       </div>
-      </main>
-      <Footer/>
-    </div>
-  )
+    )
 }
 
-export default Wishlist
+export default Wishlist;

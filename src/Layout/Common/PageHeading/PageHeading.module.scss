@@ -18,11 +18,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
             padding: 60px 25px 25px 25px;
             .breadTitlebox{
                 display: flex;
                 gap: 15px;
+                &:nth-child(2) {
+                    margin-top: 55px;
+                }
                 a{
                     font-size: 17px;
                     color: gray;

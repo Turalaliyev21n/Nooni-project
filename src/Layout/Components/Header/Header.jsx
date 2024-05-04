@@ -3,6 +3,7 @@ import { CaretDown, Heart, List, MagnifyingGlass, ShoppingCart, User, X, CaretRi
 import { useCallback, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BasketContext } from "../../../Context/BasketContext";
+import {WishListContext} from "../../../Context/WishListContext.jsx";
 
 
 const Header = () => {
@@ -13,6 +14,11 @@ const Header = () => {
         cartItems,
         calculateSubtotal,
     } = useContext(BasketContext);
+
+    const {
+        wishListItems,
+    } = useContext(WishListContext);
+
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [basketOpen, setBasketOpen] = useState(false);
@@ -258,7 +264,7 @@ const Header = () => {
                                             <Link to ={"/wishlist"}>Wishlist</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <Link to={"/basket"}>Cart page</Link>
+                                            <Link to={"/basket"}>Cart</Link>
                                         </div>
                                     </div>
 
@@ -278,12 +284,12 @@ const Header = () => {
                         <div className={styles.buttonEntity}>
                             <User />
                         </div>
-                        <div className={styles.buttonEntity}>
+                        <Link to="/wishlist" className={styles.buttonEntity}>
                             <div className={styles.count}>
-                                0
+                                {wishListItems?.length}
                             </div>
                             <Heart />
-                        </div>
+                        </Link>
                         <div className={`${styles.buttonEntity}`} onClick={handleBasketToggle}>
                             <ShoppingCart/>
                             <div className={styles.count}>

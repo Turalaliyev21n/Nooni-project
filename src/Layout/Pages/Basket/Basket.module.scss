@@ -45,7 +45,6 @@
                 }
             }
         }
-
         .basketContact {
             max-width: 1400px;
             width: 100%;
@@ -356,6 +355,29 @@
                             background-color: red;
                             color: white;
                         }
+                    }
+                }
+            }
+        }
+        .basketPageSlider {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            padding: 50px 30px;
+            h2 {
+                margin-bottom: 35px;
+                padding: 0 10px;
+            }
+            .sliderContent {
+                display: flex;
+                max-width: 1420px;
+                width: 100%;
+                flex-direction: column;
+                .sliderProducts {
+                    width: 100%;
+                    display: flex;
+                    .cardOfProduct {
+                        padding: 15px 0;
                     }
                 }
             }

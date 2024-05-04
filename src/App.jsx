@@ -3,11 +3,13 @@ import { DataContextProvider } from "./Context/DataContext.jsx";
 import { BasketContextProvider } from "./Context/BasketContext.jsx";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import { WishListContextProvider } from "./Context/WishListContext.jsx";
 
 const App = () => {
 
     return (
         <>
+        <WishListContextProvider>
             <BasketContextProvider>
                 <DataContextProvider>
                     <MainRouter />
@@ -17,6 +19,7 @@ const App = () => {
                     />
                 </DataContextProvider>
             </BasketContextProvider>
+            </WishListContextProvider>
         </>
     )
 }
