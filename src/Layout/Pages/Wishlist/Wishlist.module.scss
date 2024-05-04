@@ -1,0 +1,89 @@
+@import "../../../Variables/Variables.module.scss";
+
+.wishlistWrapper{
+    width: 100%;
+    .wishlistContainer{
+        width: 100%;
+        .wishlistCardWrapper{
+            width: 100%;
+            max-width: 1410px;
+            margin: 0 auto;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 40px;
+            .wishlistContact{
+                width: 100%;
+                display: flex;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.43);
+                padding-bottom: 40px;
+                .productName{
+                    width: 650px;
+                    margin-top: 50px;
+                    span{
+                        font-size: 15px;
+                        font-family: $mainFont;
+                        font-weight: 700;
+                    }
+                }
+                .productImages{
+                    width: 650px;
+                    img{
+                        width: 120px;
+                        height: 120px;
+                        object-fit: contain;
+                    }
+                }
+                .productPrice{
+                    width: 200px;
+                    margin-top: 50px;
+                    span{
+                        font-size: 15px;
+                        font-family: $mainFont;
+                        font-weight: 700;
+                    }
+                }
+                .productStock{
+                    width: 200px;
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 50px;
+                    span{
+                        font-size: 15px;
+                        font-family: $mainFont;
+                        font-weight: 700;
+                    }
+                    p{
+                        color: green;
+                    }
+                    svg{
+                        color: green;
+                    }
+                }
+                .productButton{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 35px;
+                    button{
+                        width: 100%;
+                        padding: 16px;
+                        background-color: black;
+                        color: white;
+                        border: none;
+                        outline: none;
+                        font-size: 14px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: 0.3s;
+                        &:hover{
+                            background-color: red;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import { BasketContext } from "../../../Context/BasketContext";
 
 
-
-
-
 const Header = () => {
     const {
         increaseQuantity,
@@ -258,10 +255,10 @@ const Header = () => {
                                             <Link to={'/contact'}>Contact</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="/wishlist">Wishlist</a>
+                                            <Link to ={"/wishlist"}>Wishlist</Link>
                                         </div>
                                         <div className={styles.dropLink}>
-                                            <a href="/basket">Cart page</a>
+                                            <Link to={"/basket"}>Cart page</Link>
                                         </div>
                                     </div>
 

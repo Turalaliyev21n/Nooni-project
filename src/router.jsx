@@ -7,6 +7,8 @@ import About from "./Layout/Pages/About/About.jsx";
 import Contact from "./Layout/Pages/Contact/Contact.jsx";
 import { ProductDetails } from "./Layout/Pages/ProductDetails/ProductDetails.jsx";
 import { Basket } from "./Layout/Pages/Basket/Basket.jsx";
+import Wishlist from "./Layout/Pages/Wishlist/Wishlist.jsx";
+import LoginRegister from "./Layout/Pages/LoginRegister/LoginRegister.jsx";
 const router = () => createBrowserRouter([
     {
         path: '/',
@@ -46,6 +48,15 @@ const router = () => createBrowserRouter([
                 path: 'basket',
                 element: <Basket />,
             },
+            {
+                path: 'wishlist',
+                element: <Wishlist />,
+            },
+            {
+                path: 'loginregister',
+                element: <LoginRegister/>,
+            },
+            
         ],
     }      
 ]);
