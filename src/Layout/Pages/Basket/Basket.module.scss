@@ -384,3 +384,89 @@
         }
     }
 }
+
+@media screen and (max-width:1490px) {
+    .basketWrapper{
+        .basketContainer{
+            .basketContact{
+                max-width: 1250px;
+                width: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width:1291px) {
+    .basketWrapper{
+        .basketContainer{
+            .basketContact{
+                max-width: 1250px;
+                width: 100%;
+                flex-direction: column;
+                padding: 40px;
+                .basketCardsWrapper{
+                    width: 100%;
+                    max-width: 100%;
+                }
+                .productContactRight{
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 835px) {
+    .basketWrapper{
+        .basketContainer{
+            .basketContact{
+                .basketCardsWrapper{
+                    width: 100%;
+                    max-width: 100%;
+                    .topRow{
+                        display: none;
+                    }
+                    .tableRow{
+                        flex-direction: column;
+                        .product{
+                            max-width: 100%;
+                            width: 100%;
+                            a{
+                                font-size: 22px;
+                            }
+                        }
+                        .price{
+                            width: 100%;
+                            max-width: 100%;
+                            b{
+                                font-size: 22px;
+                            }
+                        }
+                        .quantity{
+                            max-width: 100%;
+                            width: 100%;
+                            .basketButton{
+                                width: 100%;
+                            }
+                        }
+                        .subtotal{
+                            max-width: 100%;
+                            width: 100%;
+                        }
+                        .delete{
+                            width: 100%;
+                            max-width: 100%;
+                            .deleteBtn{
+                                max-width: 100%;
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .emptyShop{
+                        max-width: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

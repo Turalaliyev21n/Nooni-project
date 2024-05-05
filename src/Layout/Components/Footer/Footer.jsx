@@ -3,6 +3,7 @@ import styles from './Footer.module.scss'
 const Footer = () => {
   return (
     <footer className= {styles.footerWrapper}>
+      <div className={styles.footerContainer}>
       <div className={styles.footerLeft}>
         <div className={styles.footerLogo}>
           <img src="https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2022/12/logo.png"></img>
@@ -43,6 +44,7 @@ const Footer = () => {
             <li>Design Chat</li>
           </ul>
         </div>
+      </div>
       </div>
     </footer>
   )

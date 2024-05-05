@@ -55,8 +55,7 @@ const router = () => createBrowserRouter([
             {
                 path: 'loginregister',
                 element: <LoginRegister/>,
-            },
-            
+            },            
         ],
     }      
 ]);

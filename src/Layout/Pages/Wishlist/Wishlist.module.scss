@@ -222,3 +222,61 @@
 
     }
 }
+@media screen and (max-width:1450px) {
+    .wishlistWrapper{
+        .wishlistContainer{
+            .wishlistCardsWrapper{
+                padding: 40px;
+                .tableRow{
+                    .product{
+                        max-width: 600px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .wishlistWrapper{
+        .wishlistContainer{
+            .wishlistCardsWrapper{
+                padding: 40px;
+                .topRow{
+                    display: none;
+                }
+                .tableRow{
+                    flex-direction: column;
+                    .product{
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    .price{
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    .stock{
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    .add{
+                        width: 100%;
+                        max-width: 100%;
+                        .addToCart{
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
+                    .delete{
+                        width: 100%;
+                        max-width: 100%;
+                        .deleteBtn{
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

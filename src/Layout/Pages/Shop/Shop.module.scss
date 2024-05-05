@@ -169,3 +169,53 @@
       }
     }
 }
+
+@media screen and (max-width:1400px) {
+  .shopWrapper{
+    .categorySection{
+      .listContainer{
+        .listWrapper{
+          flex-wrap: wrap;
+          display: flex;
+          justify-content: center;
+          
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width:1300px) {
+  .shopWrapper{
+    .categorySection{
+      .listContainer{
+        .listWrapper{
+          .listBox{
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            gap: 40px;
+            .listImages{
+              width: 200px;
+              img{
+                width: 100%;
+                object-fit: contain;
+              }
+            }
+            .listText{
+              h3{
+                font-size: 24px;
+              }
+              p{
+                font-size: 20px;
+              }
+            }
+          }
+          
+        }
+      }
+    }
+  }
+}

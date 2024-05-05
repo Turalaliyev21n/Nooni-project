@@ -7,7 +7,6 @@ import {Trash} from "@phosphor-icons/react";
 import {Link} from 'react-router-dom';
 import {BasketContext} from '../../../Context/BasketContext';
 import {DataContext} from '../../../Context/DataContext.jsx';
-
 import {Truck} from "@phosphor-icons/react";
 import ProductCard from "../../Common/ProductCard/ProductCard.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -23,7 +22,7 @@ const SHIPPING_TYPES = [
         type: "Local pickup",
         price: 5,
     }
-]
+];
 
 export const Basket = () => {
     const {

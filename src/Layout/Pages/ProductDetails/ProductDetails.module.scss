@@ -37,7 +37,6 @@
     .detailsContent {
       max-width: 1300px;
       width: 100%;
-      justify-content: space-between;
       display: flex;
 
       .imageBlock {
@@ -425,6 +424,83 @@
           flex-direction: column;
           gap: 15px;
         }
+      }
+    }
+  }
+}
+
+
+@media  screen and (max-width:1400px) {
+  .pageWrapper{
+    .detailsSection{
+      .detailsContent{
+        padding: 40px;
+        .descriptionBlock{
+          width: 100%;
+          max-width: 500px;
+        }
+      }
+    }
+    .infoSection{
+      .infoContent{
+        padding: 40px;
+      }
+    }
+  }
+}
+
+@media  screen and (max-width:1200px) {
+  .pageWrapper{
+    .detailsSection{
+      .detailsContent{
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px;
+        .imageBlock{
+          width: 100%;
+          max-width: 100%;
+        }
+        .descriptionBlock{
+          width: 100%;
+          max-width: 100%;
+          padding: 40px;
+        }
+        
+      }
+    }
+    .infoSection{
+      .infoContent{
+        .infoButtonsBlock{
+          flex-wrap: wrap;
+      }
+      }
+    }
+  }
+}
+
+@media  screen and (max-width:500px) {
+  .pageWrapper{
+    .detailsSection{
+      .detailsContent{
+        flex-direction: column;
+        gap: 40px;
+        padding: 0;
+        .imageBlock{
+          width: 100%;
+          max-width: 100%;
+        }
+        .descriptionBlock{
+          width: 100%;
+          max-width: 100%;
+        }
+        
+      }
+    }
+    .infoSection{
+      .infoContent{
+        .infoButtonsBlock{
+          flex-wrap: wrap;
+      }
       }
     }
   }

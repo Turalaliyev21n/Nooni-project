@@ -1,0 +1,83 @@
+@import "../../../Variables/Variables.module.scss";
+
+.searchOverlay {
+    display: flex;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.500);
+    height: 100vh;
+    z-index: 10;
+    .searchWrapper {
+        width: 100%;
+        max-width: 500px;
+        right: 0;
+        top: 0;
+        position: absolute;
+        padding: 50px;
+        background-color: white;
+        height: 100%;
+        .searchContent {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            .heading {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                gap: 25px;
+                align-items: center;
+                p {
+                    font-size: 15px;
+                }
+                .closeSearch {
+                    cursor: pointer;
+                    padding: 5px;
+                    &:hover {
+                        svg {
+                            transform: rotate(360deg);
+                        }
+                    }
+                    svg {
+                        transition: transform 0.4s ease;
+                        font-size: 20px;
+                    }
+                }
+                
+            }
+            .searchInputContainer {
+                display: flex;
+                align-items: center;
+                margin: 40px 0;
+                width: 100%;
+                height: 50px;
+                border: 1px solid rgba(128, 128, 128, 0.300);
+                padding: 0 10px 0 20px;
+                justify-content: space-between;
+                gap: 10px;
+                input {
+                    width: 100%;
+                    font-size: 16px;
+                    outline: 0;
+                    border: 0;
+                    background-color: transparent;
+                }
+                .searchBtn {
+                    cursor: pointer;
+                    padding: 5px;
+                    transition: color 0.3s ease;
+                    &:hover {
+                        color: red;
+                    }
+                    svg {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+
+        }
+    }
+
+}

@@ -4,6 +4,7 @@ import { useCallback, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BasketContext } from "../../../Context/BasketContext";
 import {WishListContext} from "../../../Context/WishListContext.jsx";
+import Search from "../../Common/Search/Search.jsx";
 
 
 const Header = () => {
@@ -33,7 +34,9 @@ const Header = () => {
 
 
     return (
+        <>
         <header className={styles.headerWrapper}>
+            <Search />
             <div className={styles.headerContent}>
                 <div className={styles.headerTop}>
                     <div className={styles.headerText}>
@@ -458,6 +461,7 @@ const Header = () => {
 
 
         </header>
+        </>
     )
 }
 
