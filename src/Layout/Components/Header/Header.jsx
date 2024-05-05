@@ -23,6 +23,12 @@ const Header = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [basketOpen, setBasketOpen] = useState(false);
+    const [searchOpen,setSearchOpen] = useState(false);
+
+    const handleSearchOpen = useCallback((e)=> {
+        e.stopPropagation();
+        setSearchOpen(prevState => !prevState);
+    },[setSearchOpen])
 
     const handleMenuToggle = useCallback(() => {
         setMenuOpen(prevState => !prevState);
@@ -32,11 +38,10 @@ const Header = () => {
         setBasketOpen(prevState => !prevState);
     }, [setBasketOpen])
 
-
     return (
         <>
         <header className={styles.headerWrapper}>
-            <Search />
+            <Search searchOpen={searchOpen} setSearchOpen={setSearchOpen}/>
             <div className={styles.headerContent}>
                 <div className={styles.headerTop}>
                     <div className={styles.headerText}>
@@ -281,7 +286,7 @@ const Header = () => {
                             alt="Site Logo" />
                     </Link>
                     <div className={styles.headerButtons}>
-                        <div className={`${styles.buttonEntity} ${styles.searchButton}`}>
+                        <div className={`${styles.buttonEntity} ${styles.searchButton}`} onClick={handleSearchOpen}>
                             <MagnifyingGlass />
                         </div>
                         <div className={styles.buttonEntity}>
@@ -457,9 +462,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
-
-
         </header>
         </>
     )
