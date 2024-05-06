@@ -25,9 +25,10 @@ const Home = () => {
     const [dealSlidePerView, setDealSlidesPerView] = useState(3);
 
 
-//  GET PRODUCTS
-
-    console.log(productsData)
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+      }, []);
+    
 
 
     const handleResize = useCallback(() => {

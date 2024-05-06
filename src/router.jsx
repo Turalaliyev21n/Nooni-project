@@ -8,8 +8,9 @@ import Contact from "./Layout/Pages/Contact/Contact.jsx";
 import { ProductDetails } from "./Layout/Pages/ProductDetails/ProductDetails.jsx";
 import { Basket } from "./Layout/Pages/Basket/Basket.jsx";
 import Wishlist from "./Layout/Pages/Wishlist/Wishlist.jsx";
-import LoginRegister from "./Layout/Pages/LoginRegister/LoginRegister.jsx";
 import Account from "./Layout/Pages/Account/Account.jsx";
+import Login from "./Layout/Pages/LoginAndRegister/Login.jsx";
+import Register from "./Layout/Pages/LoginAndRegister/Register.jsx";
 const router = () => createBrowserRouter([
     {
         path: '/',
@@ -54,13 +55,19 @@ const router = () => createBrowserRouter([
                 element: <Wishlist />,
             },
             {
-                path: 'loginregister',
-                element: <LoginRegister/>,
-            }, 
-            {
                 path: 'account',
                 element: <Account/>,
+            },      
+            {
+                path: 'login',
+                element: <Login />,
+            },      
+            {
+                path: 'register',
+                element: <Register />,
             },               
+         
+         
         ],
     }      
 ]);
