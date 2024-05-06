@@ -290,7 +290,9 @@ const Header = () => {
                             <MagnifyingGlass />
                         </div>
                         <div className={styles.buttonEntity}>
+                            <Link to='/loginregister'>
                             <User />
+                            </Link>
                         </div>
                         <Link to="/wishlist" className={styles.buttonEntity}>
                             <div className={styles.count}>

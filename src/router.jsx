@@ -9,6 +9,7 @@ import { ProductDetails } from "./Layout/Pages/ProductDetails/ProductDetails.jsx
 import { Basket } from "./Layout/Pages/Basket/Basket.jsx";
 import Wishlist from "./Layout/Pages/Wishlist/Wishlist.jsx";
 import LoginRegister from "./Layout/Pages/LoginRegister/LoginRegister.jsx";
+import Account from "./Layout/Pages/Account/Account.jsx";
 const router = () => createBrowserRouter([
     {
         path: '/',
@@ -55,7 +56,11 @@ const router = () => createBrowserRouter([
             {
                 path: 'loginregister',
                 element: <LoginRegister/>,
-            },            
+            }, 
+            {
+                path: 'account',
+                element: <Account/>,
+            },               
         ],
     }      
 ]);

@@ -1,0 +1,15 @@
+@import "../../../Variables/Variables.module.scss";
+
+
+.accountWrapper{
+    width: 100%;
+    .accountCountainer{
+        width: 100%;
+        .accountContact{
+            max-width: 1400px;
+            margin: 0 auto;
+            border: 1px solid black;
+            padding: 40px;
+        }
+    }
+}

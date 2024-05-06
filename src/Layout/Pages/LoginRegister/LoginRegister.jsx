@@ -12,10 +12,9 @@ const LoginRegister = () => {
     userPassword: ""
   });
   
-  const [userLogin,setUserLogin] =useState({
-    userLoginName:"",
-    userLoginEmail:"",
-    userLoginPassword:""
+  const [userLogin, setUserLogin] = useState({
+    userLoginEmail: "",
+    userLoginPassword: ""
   })
 
   const [wrongEmail, setWrongEmail] = useState(false);
@@ -26,11 +25,11 @@ const LoginRegister = () => {
     fetch("http://localhost:8000/user")
       .then((resp) => resp.json())
       .then((data) => {
-        let serverEmail = data.find((data) => data.userEmail === user.userEmail);
+        let serverEmail = data.find((userData) => userData.userEmail === user.userEmail);
         if (serverEmail) {
           setWrongEmail(true);
         } else {
-          if (user.userPassword.length > 5) {
+          if (user.userPassword.length >= 6) {
             fetch("http://localhost:8000/user", {
               method: "POST",
               headers: {
@@ -46,13 +45,13 @@ const LoginRegister = () => {
                   userPassword: ""
                 });
               })
-              .catch((error) => console.error("Error adding user:", error));
+              .catch((error) => console.error("Xeta:", error));
           } else {
             setWrongPass(true);
           }
         }
       })
-      .catch((error) => console.error("Error fetching users:", error));
+      .catch((error) => console.error("Kullanıcıları alma hatası:", error));
   };
 
   const logIn = (e) => {
@@ -61,20 +60,20 @@ const LoginRegister = () => {
       .then((resp) => resp.json())
       .then((users) => {
         let userWithEmail = users.find(
-          (userInfo) =>
-            userInfo.userEmail === user.userEmail &&
-            userInfo.userPassword === user.userPassword // Burada userInfo.userPass yerine userInfo.userPassword kullanmalısınız
+          (userData) =>
+            userData.userEmail === userLogin.userLoginEmail &&
+            userData.userPassword === userLogin.userLoginPassword
         );
         if (userWithEmail) {
-          setHome(true);
           localStorage.setItem("user", JSON.stringify(userWithEmail.userEmail));
+          window.location.href = "/shop"; 
         } else {
           setWrongPass(true);
         }
-      });
+      })
+      .catch((error) => console.error("Xeta", error));
   };
   
-
   return (
     <div className={styles.loginWrapper}>
       <Header />
@@ -85,30 +84,29 @@ const LoginRegister = () => {
             <form onSubmit={logIn}>
               <h2>Login</h2>
               <div className={styles.loginUsername}>
-                <p>Username or email address *</p>
+                <p>Email address *</p>
                 <input  type="email"  required placeholder="Email" onChange={(e) => setUserLogin({ ...userLogin, userLoginEmail: e.target.value })} value={userLogin.userLoginEmail}></input>
               </div>
               <div className={styles.loginPassword}>
                 <p>Password *</p>
-                <input  type="password"  required placeholder="Password" onChange={(e) => setUserLogin({ ...userLogin, userLoginPassword: e.target.value })} value={userLogin.user}></input>
+                <input  type="password"  required placeholder="Password" onChange={(e) => setUserLogin({ ...userLogin, userLoginPassword: e.target.value })} value={userLogin.userLoginPassword}></input>
               </div>
-              <div className={styles.loginButton}>LOG IN</div>
+              <button type="submit" className={styles.loginButton}>LOG IN</button>
+              {wrongPass && <p className={styles.errorMessage}>Wrong email or password. Please try again.</p>}
             </form>
           </div>
-
-
 
           <div className={styles.registerRight}>
             <form onSubmit={addUser}>
               <h2>Register</h2>
               <div className={styles.registerUsername}>
                 <p>Username *</p>
-                <input type='text' required placeholder="Username" onChange={(e) => setUser({ ...userLogin, userLoginName: e.target.value })} value={user.userName}></input>
+                <input type='text' required placeholder="Username" onChange={(e) => setUser({ ...user, userName: e.target.value })} value={user.userName}></input>
               </div>
               <div className={styles.registerEmail}>
                 <p>Email address *</p>
                 <input type="email" required placeholder="Email" onChange={(e) => setUser({ ...user, userEmail: e.target.value })} value={user.userEmail}></input>
-                {wrongEmail && <p className={styles.errorMessage}>Email already exists</p>}
+                {wrongEmail && <p className={styles.errorMessage}>Email already exists. Please use another email.</p>}
               </div>
               <div className={styles.registerPassword}>
                 <p>Password *</p>
