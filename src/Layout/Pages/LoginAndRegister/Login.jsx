@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback, useContext} from 'react';
 import styles from "./LoginAndRegister.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
@@ -6,18 +6,23 @@ import PageHeading from '../../Common/PageHeading/PageHeading';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bounce, toast } from 'react-toastify';
 import { Eye, EyeSlash } from '@phosphor-icons/react';
+import axios from 'axios';
+import {DataContext} from "../../../Context/DataContext.jsx";
+
+
 
 const Login = () => {
+
+    const  {
+        fetchUserName,
+    } =  useContext(DataContext);
 
     
   const [userLogin, setUserLogin] = useState({
     userLoginEmail: "",
     userLoginPassword: ""
   })
-
-  const [wrongEmail, setWrongEmail] = useState(false);
-  const [wrongPass, setWrongPass] = useState(false);
-  const [viewPassword,setViewPassword] = useState(false);
+    const [viewPassword,setViewPassword] = useState(false);
 
   const handlePassView = useCallback(()=>{
       setViewPassword(prevState => !prevState);
@@ -31,36 +36,59 @@ const Login = () => {
   }, []);
   
 
-  const logIn = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:8000/user")
-      .then((resp) => resp.json())
-      .then((users) => {
-        let userWithEmail = users.find(
-          (userData) =>
-            userData.userEmail === userLogin.userLoginEmail &&
-            userData.userPassword === userLogin.userLoginPassword
-        );
-        if (userWithEmail) {
-          localStorage.setItem("user", JSON.stringify(userWithEmail.userEmail));
-          toast.success(`Login Uğurla başa çatdı`, {
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: Bounce,
-        });
-          navigate("/home");
 
-        } else {
-          setWrongPass(true);
+    const logIn = useCallback(async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.get("http://localhost:8000/user");
+            const users = response.data;
+            const userWithEmail = users.find(
+                (userData) =>
+                    userData.userEmail === userLogin.userLoginEmail
+            );
+            const userPassword = users.find(
+                (userData) =>
+                    userData.userPassword === userLogin.userLoginPassword
+            );
+            if (userWithEmail && userPassword) {
+                localStorage.setItem("user", JSON.stringify({email: userWithEmail.userEmail}));
+                toast.success(`Hesabınıza uğurla daxil oldunuz.`, {
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+                fetchUserName();
+                navigate("/home");
+            } else if(!userWithEmail) {
+                toast.error(`Belə hesab mövcud deyil.`, {
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+            }
+            else if(!userPassword) {
+                toast.error(`Bu hesab üçün şifrə yanlışdır.`, {
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+            }
+        } catch (error) {
+            console.error("Ошибка:", error);
         }
-      })
-      .catch((error) => console.error("Xeta", error));
-  };
-
+    }, [userLogin, navigate]);
   return (
     <>
     <Header />
@@ -71,7 +99,7 @@ const Login = () => {
             <form onSubmit={logIn}>
               <div className={styles.inputContainer}>
                 <p>Email address <span>*</span></p>
-                <input  type="email"  required placeholder="Email" onChange={(e) => setUserLogin({ ...userLogin, userLoginEmail: e.target.value })} value={userLogin.userLoginEmail}></input>
+                <input type="email"  required placeholder="Email" onChange={(e) => setUserLogin({ ...userLogin, userLoginEmail: e.target.value })} value={userLogin.userLoginEmail}></input>
               </div>
               <div className={styles.inputContainer}>
                 <p>Password <span>*</span></p>
@@ -79,7 +107,6 @@ const Login = () => {
                     <div className={styles.viewBtn} onClick={handlePassView}>
                         {viewPassword ? <Eye  /> : <EyeSlash />}
                     </div>
-                
                 <input  type={viewPassword ? "text" : "password"}  required placeholder="Password" onChange={(e) => setUserLogin({ ...userLogin, userLoginPassword: e.target.value })} value={userLogin.userLoginPassword} />
                 </div>
               </div>
@@ -88,7 +115,6 @@ const Login = () => {
               <div className={styles.redirect}>
                 <Link to="/register">Don't have and account? Click Here.</Link>
               </div>
-              {wrongPass && <p className={styles.errorMessage}>Wrong email or password. Please try again.</p>}
             </form>
           </div>
 

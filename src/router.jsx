@@ -11,7 +11,9 @@ import Wishlist from "./Layout/Pages/Wishlist/Wishlist.jsx";
 import Account from "./Layout/Pages/Account/Account.jsx";
 import Login from "./Layout/Pages/LoginAndRegister/Login.jsx";
 import Register from "./Layout/Pages/LoginAndRegister/Register.jsx";
-const router = () => createBrowserRouter([
+import {useContext} from "react";
+import {DataContext} from "./Context/DataContext.jsx";
+const router = (access) => createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
@@ -56,15 +58,15 @@ const router = () => createBrowserRouter([
             },
             {
                 path: 'account',
-                element: <Account/>,
+                element: !access? <Home /> : <Account />,
             },      
             {
                 path: 'login',
-                element: <Login />,
+                element: access? <Home /> : <Login />,
             },      
             {
                 path: 'register',
-                element: <Register />,
+                element: access? <Home /> : <Register />,
             },               
          
          
@@ -72,8 +74,11 @@ const router = () => createBrowserRouter([
     }      
 ]);
 const MainRouter = () => {
+    const {
+        access
+    } = useContext(DataContext);
 
-    return <RouterProvider router={router()}/>;
+    return <RouterProvider router={router(access)}/>;
 };
 
 export default MainRouter;

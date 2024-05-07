@@ -23,19 +23,23 @@
       .headerText {
         display: flex;
         gap: 4px;
+
         p {
           color: white;
           font-size: 13px;
         }
+
         a {
           color: white;
           font-size: 13px;
           border-bottom: 1px solid white;
         }
       }
+
       .headerLanguage {
         display: flex;
         gap: 25px;
+
         .headerLanguagefrom {
           color: white;
           font-size: 14px;
@@ -44,10 +48,12 @@
           position: relative;
           padding: 10px;
           cursor: pointer;
+
           &:hover .dropdownLanguage {
             display: block;
             transform: translateY(-5px);
           }
+
           .dropdownLanguage {
             width: 120px;
             position: absolute;
@@ -58,6 +64,7 @@
             transform: translateY(40px);
             transition: $transition;
             padding: 25px;
+
             .dropdownBox {
               background-color: white;
               width: 120px;
@@ -73,12 +80,14 @@
                 transition: 0.5s;
                 font-size: 13px;
                 cursor: pointer;
+
                 &:hover {
                   color: gray;
                 }
               }
             }
           }
+
           i {
             font-size: 12px;
             color: gray;
@@ -125,6 +134,7 @@
             cursor: pointer;
             transition: color $transition;
             position: relative;
+
             &:hover {
               .navDropDown {
                 transform: scaleY(1);
@@ -141,6 +151,7 @@
               transform: scaleY(0);
               transform-origin: top;
               transition: transform $transition;
+
               .dropDownContent {
                 display: flex;
                 flex-direction: column;
@@ -151,30 +162,37 @@
                 background-color: rgb(255, 255, 255);
                 padding: 50px;
                 box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+
                 &.shopDropContent {
                   gap: 50px;
                 }
+
                 .navbarDropdown {
                   width: 100%;
                   display: flex;
                   gap: 50px;
                   justify-content: space-between;
+
                   .dropDownContentmen {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     gap: 45px;
                     width: 100%;
+
                     .flex1 {
                       display: flex;
                       gap: 150px;
+
                       ul {
                         max-width: 200px;
                       }
                     }
+
                     .leftImage {
                       width: 100%;
                       height: 260px;
+
                       img {
                         height: 100%;
                         object-fit: cover;
@@ -183,10 +201,12 @@
                       }
                     }
                   }
+
                   .wideImage {
                     width: 100%;
                     max-width: 815px;
                     height: 600px;
+
                     img {
                       object-position: center;
                       object-fit: cover;
@@ -199,6 +219,7 @@
                 .dropDownimages {
                   display: flex;
                   gap: 20px;
+
                   .dropDownimages1 {
                     overflow: hidden;
                     max-width: 845px;
@@ -215,6 +236,7 @@
                       color: white;
                       pointer-events: none;
                     }
+
                     h1 {
                       z-index: 2;
                       color: white;
@@ -233,25 +255,30 @@
                       transition: transform $transition;
                       object-fit: cover;
                       object-position: center;
+
                       &:hover {
                         transform: scale(1.1);
                       }
                     }
                   }
                 }
+
                 .flex1 {
                   display: flex;
                   gap: 150px;
                 }
+
                 .dropDownFlex {
                   display: flex;
                   flex-direction: column;
                   gap: 40px;
+
                   .flex1 {
                     display: flex;
                     gap: 150px;
                   }
                 }
+
                 ul {
                   list-style: none;
                   display: flex;
@@ -259,29 +286,36 @@
                   gap: 18px;
                   max-width: 300px;
                   width: 100%;
+
                   .whomen {
                     font-size: 20px;
                     font-weight: 900;
                     color: rgba(0, 0, 0, 0.668);
                   }
+
                   li {
                     font-size: 16px;
                     color: black;
                   }
                 }
               }
+
               &.shopDropDown {
                 left: -110px;
               }
+
               &.womenDropDown {
                 left: -196px;
               }
+
               &.manDropDown {
                 left: -299.5px;
               }
+
               &.kidsDropDown {
                 left: -120px;
                 width: 300px;
+
                 .kidsDropContent {
                   display: flex;
                   flex-direction: column;
@@ -290,8 +324,10 @@
                   margin-top: 49px;
                   padding: 40px;
                   box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+
                   .dropLink {
                     padding: 10px 0;
+
                     &:hover {
                       a {
                         &::after {
@@ -299,8 +335,10 @@
                         }
                       }
                     }
+
                     a {
                       position: relative;
+
                       &::after {
                         position: absolute;
                         content: "";
@@ -317,6 +355,7 @@
                 }
               }
             }
+
             svg {
               font-size: 12px;
             }
@@ -370,15 +409,18 @@
         max-width: 450px;
         width: 100%;
         justify-content: end;
+
         .buttonEntity {
           padding: 12px;
           cursor: pointer;
           position: relative;
+
           &:hover {
             svg {
               color: gray;
             }
           }
+
           .count {
             display: flex;
             align-items: center;
@@ -393,17 +435,97 @@
             width: 22px;
             height: 22px;
           }
+
           &.searchButton {
             padding-right: 21px;
           }
+
           svg {
             font-size: 20px;
             transition: color $transition;
+          }
+
+          &.account {
+            z-index: 3;
+
+            &:hover {
+              .accountDropDown {
+                opacity: 1;
+                pointer-events: auto;
+              }
+            }
+
+            .accountDropDown {
+              display: flex;
+              pointer-events: none;
+              opacity: 0;
+              transition: opacity $transition;
+              flex-direction: column;
+              padding: 15px 25px;
+              background-color: white;
+              box-shadow: 0 0 5px gray;
+              position: absolute;
+              bottom: -75px;
+              left: 0;
+              min-width: 100px;
+              gap: 10px;
+              &.transformed {
+                left: -50px;
+                justify-content: center;
+                p {
+                  white-space: nowrap;
+                  text-transform: capitalize;
+                  font-size: 15px;
+                  transition: color $transition;
+                  cursor: pointer;
+                  &:hover {
+                    color: red;
+                  }
+                }
+                span {
+                  display: flex;
+                  gap: 5px;
+                  align-items: center;
+                  cursor: pointer;
+                  font-size: 15px;
+                  white-space: nowrap;
+                  transition: color $transition;
+                  &:hover {
+                    color: red;
+                    svg{
+                      color: red;
+                    }
+                  }
+                  svg {
+                    font-size: 20px;
+                    color: darkred;
+                  }
+                }
+                .welcomeUser {
+                  text-transform: capitalize;
+                }
+
+              }
+
+
+
+              a {
+                white-space: nowrap;
+                text-transform: uppercase;
+                font-size: 15px;
+                transition: color $transition;
+
+                &:hover {
+                  color: red;
+                }
+              }
+            }
           }
         }
       }
     }
   }
+
   .basketOverlay {
     width: 100vw;
     height: 100vh;
@@ -413,7 +535,9 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 4;
     padding-right: 350px;
+
     .basketWrapper {
       position: absolute;
       right: 0;
@@ -429,6 +553,7 @@
       display: flex;
       flex-direction: column;
       padding: 30px;
+
       .basketHeading {
         display: flex;
         width: 100%;
@@ -436,6 +561,7 @@
         margin-bottom: 20px;
         align-items: center;
         gap: 25px;
+
         .closeBasket {
           width: 30px;
           height: 30px;
@@ -444,55 +570,65 @@
           align-items: center;
           justify-content: center;
           margin-left: auto;
+
           svg {
             font-size: 23px;
           }
         }
+
         h3 {
           font-size: 15px;
           font-weight: 400;
         }
-  
+
       }
+
       .basketProducts {
         display: flex;
         flex-direction: column;
         width: 100%;
         max-height: 350px;
         overflow-y: scroll;
+
         &::-webkit-scrollbar {
           background-color: rgba(128, 128, 128, 0.200);
           width: 5px;
         }
+
         &::-webkit-scrollbar-thumb {
           background-color: gray;
         }
+
         .basketCard {
           width: 100%;
           display: flex;
           padding: 15px 0;
           position: relative;
-          .basketImage{
+
+          .basketImage {
             max-width: 114px;
             width: 100%;
-            img{
+
+            img {
               width: 100%;
               object-fit: cover;
               object-position: center;
             }
           }
-          .basketTitle{
+
+          .basketTitle {
             max-width: 174px;
             width: 100%;
             display: flex;
             flex-direction: column;
             padding: 0 15px;
+
             .productName {
               max-height: 72px;
               margin-bottom: 15px;
             }
 
-            .basketButton{
+            .basketButton {
               display: flex;
               align-items: center;
               max-width: min-content;
@@ -500,6 +636,7 @@
               height: 26px;
               background-color: rgba(128, 128, 128, 0.100);
               margin-bottom: 10px;
+
               .controlBtn {
                 display: flex;
                 width: 21px;
@@ -507,18 +644,21 @@
                 cursor: pointer;
                 align-items: center;
                 justify-content: center;
+
                 &:nth-child(2) {
                   width: 45px;
                   cursor: default;
                 }
               }
             }
+
             .productPrice {
               font-size: 15px;
               margin: 2px 0 0 16px;
 
             }
           }
+
           .deleteProduct {
             display: flex;
             align-items: center;
@@ -529,11 +669,13 @@
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
+
             &:hover {
               svg {
                 color: red;
               }
             }
+
             svg {
               transition: color $transition;
               font-size: 20px;
@@ -541,14 +683,16 @@
           }
 
         }
-    
+
       }
+
       .basketFooter {
         display: flex;
         width: 100%;
         flex-direction: column;
         margin-top: auto;
         gap: 15px;
+
         .subtotal {
           display: flex;
           width: 100%;
@@ -556,14 +700,17 @@
           gap: 25px;
           align-items: center;
           margin-bottom: 8px;
+
           p {
             font-size: 20px;
             font-weight: 700;
+
             &:nth-child(2) {
               font-size: 22px;
             }
           }
         }
+
         .basketBtn {
           width: 100%;
           border: 1px solid black;
@@ -575,18 +722,20 @@
           justify-content: center;
           text-transform: uppercase;
           font-weight: 600;
-          transition: background-color $transition, color $transition , border-color $transition;
+          transition: background-color $transition, color $transition, border-color $transition;
           cursor: pointer;
 
           &:nth-child(2) {
             background-color: transparent;
             color: black;
+
             &:hover {
               background-color: rgba(0, 0, 0, 0.500);
               border-color: rgba(0, 0, 0, 0.500);
               color: white;
             }
           }
+
           &:nth-child(3) {
             &:hover {
               background-color: red;
@@ -595,10 +744,10 @@
           }
 
 
-
         }
 
       }
+
       .basketEmpty {
         position: absolute;
         left: 50%;
@@ -609,24 +758,29 @@
         display: flex;
         align-items: center;
         width: 100%;
+
         img {
           width: 100px;
           opacity: 0.5;
         }
+
         p {
           text-align: center;
         }
       }
     }
+
     &.basketVisible {
       opacity: 1;
       pointer-events: all;
+
       .basketWrapper {
         transform: scaleX(1);
         pointer-events: all;
       }
     }
   }
+
   .sideMenuOverlay {
     position: fixed;
     left: 0;
@@ -641,6 +795,7 @@
     &.overlayVisible {
       opacity: 1;
       pointer-events: all;
+
       .sideMenuWrapper {
         pointer-events: all;
         transform: scaleX(1);
@@ -664,17 +819,20 @@
       transform: scaleX(0);
       pointer-events: none;
       transition: transform $transition;
+
       .navEntity {
         display: flex;
         justify-content: space-between;
         position: relative;
         cursor: pointer;
+
         &:hover {
           .elementDropdown {
             opacity: 1;
             pointer-events: all;
           }
         }
+
         .elementDropdown {
           position: absolute;
           right: -340px;
@@ -684,6 +842,7 @@
           transition: opacity $transition;
           opacity: 0;
           pointer-events: none;
+
           .dropDownTitle {
             background-color: white;
             width: 100%;
@@ -691,6 +850,7 @@
             flex-direction: column;
             gap: 30px;
             padding: 50px;
+
             a {
               font-size: 18px;
               width: min-content;
@@ -710,10 +870,12 @@
         padding-bottom: 10px;
         font-weight: 600;
       }
+
       a {
         font-size: 23px;
         transition: 0.3s;
         position: relative;
+
         &::before {
           content: "";
           height: 1px;
@@ -724,6 +886,7 @@
           top: 30px;
           transition: 0.3s;
         }
+
         &:hover {
           color: gray;
 
@@ -735,12 +898,14 @@
           }
         }
       }
+
       .closeBtn {
         position: absolute;
         right: 22px;
         top: 25px;
         padding: 5px;
         cursor: pointer;
+
         svg {
           font-size: 21px;
           color: rgb(99, 99, 99);
@@ -748,15 +913,17 @@
       }
     }
   }
-  .searchWrapper{
+
+  .searchWrapper {
     width: 100%;
     position: fixed;
-    .searchClose{
+
+    .searchClose {
       width: 350px;
       height: 100vh;
       position: absolute;
       top: 0;
-      right:0;
+      right: 0;
       background-color: white;
       font-size: 20px;
     }
@@ -765,15 +932,17 @@
 
 // MEDIA STYLES
 @media screen and (max-width: 1368px) {
-  .headerWrapper{
+  .headerWrapper {
     .sideMenuOverlay {
       .sideMenuWrapper {
         padding: 65px 50px 50px 50px;
         gap: 20px;
+
         .closeBtn {
           top: 10px;
           right: 10px;
         }
+
         .navEntity {
           .elementDropdown {
             .dropDownTitle {
@@ -794,40 +963,51 @@
       .headerTop {
         padding: 5px 15px;
       }
+
       .headerBottom {
         padding: 15px;
+
         .headerButtons {
           max-width: 300px;
         }
+
         .headerNavigation {
           .navigation {
             .navEntity {
               .navDropDown {
                 top: 17px;
+
                 &.shopDropDown {
                   left: -75px;
-                 .dropDownContent {
-                  padding: 50px 15px;
-                  margin-top: 35px;
-                  ul {
-                    max-width: 200px;
+
+                  .dropDownContent {
+                    padding: 50px 15px;
+                    margin-top: 35px;
+
+                    ul {
+                      max-width: 200px;
+                    }
+
+                    .flex1 {
+                      gap: 15px;
+                      justify-content: space-between;
+                    }
                   }
-                  .flex1 {
-                    gap: 15px;
-                    justify-content: space-between;
-                  }
-                 }
                 }
+
                 &.womenDropDown {
                   left: -161px;
+
                   .dropDownContent {
                     margin-top: 37px;
                     padding: 50px 15px;
+
                     ul {
                       .whomen {
                         font-size: 16px;
                       }
                     }
+
                     .dropDownFlex {
                       .flex1 {
                         gap: 15px;
@@ -835,8 +1015,10 @@
                     }
                   }
                 }
+
                 &.manDropDown {
                   left: -266.5px;
+
                   .dropDownContent {
                     padding: 50px 25px;
                     gap: 15px;
@@ -852,49 +1034,60 @@
     }
   }
 }
+
 @media screen and (max-width: 1024px) {
   .headerWrapper {
     .headerContent {
       .headerBottom {
         justify-content: start;
+
         .headerButtons {
           max-width: 240px;
           order: 3;
           margin-left: auto;
         }
+
         .headerNavigation {
           order: 2;
+
           .navigation {
             .navEntity {
               .navDropDown {
                 &.shopDropDown {
                   left: -210px;
-                 .dropDownContent {
-                  .dropDownimages {
-                    display: none;
-                  }
-                  ul {
-                    gap: 10px;
-                    .whomen {
-                      font-size: 15px;
+
+                  .dropDownContent {
+                    .dropDownimages {
+                      display: none;
                     }
-                    li {
-                      font-size: 14px;
+
+                    ul {
+                      gap: 10px;
+
+                      .whomen {
+                        font-size: 15px;
+                      }
+
+                      li {
+                        font-size: 14px;
+                      }
                     }
                   }
-                 }
                 }
+
                 &.womenDropDown {
                   left: -297px;
                 }
+
                 &.manDropDown {
                   left: -400.5px;
+
                   .dropDownContent {
-                     .navbarDropdown {
+                    .navbarDropdown {
                       .wideImage {
                         display: none;
                       }
-                     }
+                    }
                   }
                 }
 
@@ -902,6 +1095,7 @@
             }
           }
         }
+
         .headerLogo {
           max-width: 120px;
           height: unset;
@@ -911,6 +1105,7 @@
     }
   }
 }
+
 @media screen and (max-width: 800px) {
   .headerWrapper {
     .headerContent {
@@ -918,35 +1113,43 @@
         .headerButtons {
           .buttonEntity {
             padding: 8px;
+
             &.searchButton {
               padding-right: 8px;
             }
+
             .count {
               width: 18px;
               height: 18px;
             }
           }
         }
+
         .headerNavigation {
           max-width: min-content;
+
           .navigation {
             display: none;
           }
         }
       }
+
       .headerTop {
         padding: 5px 15px 5px 0;
         justify-content: start;
+
         .headerText {
           display: none;
         }
+
         .headerLanguage {
           gap: 0;
+
           .headerLanguagefrom {
             .dropdownLanguage {
               right: 0;
               left: unset;
-              
+
             }
           }
         }
@@ -954,42 +1157,48 @@
     }
   }
 }
-@media  screen and (max-width:650px) {
-   .headerWrapper{
-     .sideMenuOverlay{
-      .sideMenuWrapper{
-        .navEntity{
-          .elementDropdown{
+
+@media screen and (max-width: 650px) {
+  .headerWrapper {
+    .sideMenuOverlay {
+      .sideMenuWrapper {
+        .navEntity {
+          .elementDropdown {
             width: 200px;
             right: -190px;
-           .dropDownTitle {
-            padding: 15px;
-            width: min-content;
-           }
+
+            .dropDownTitle {
+              padding: 15px;
+              width: min-content;
+            }
           }
         }
       }
-     }
-   }
-}
-@media  screen and (max-width:550px) {
-  .headerWrapper{
-    .sideMenuOverlay{
-     .sideMenuWrapper{
-      width: 160px;
-      padding: 60px 15px 15px 15px;
-       .navEntity{
-        align-items: center;
-         .elementDropdown{
-         padding-left: 30px;
-         width: min-content;
-         right: -143px;
-         }
-       }
-     }
     }
   }
 }
+
+@media screen and (max-width: 550px) {
+  .headerWrapper {
+    .sideMenuOverlay {
+      .sideMenuWrapper {
+        width: 160px;
+        padding: 60px 15px 15px 15px;
+
+        .navEntity {
+          align-items: center;
+
+          .elementDropdown {
+            padding-left: 30px;
+            width: min-content;
+            right: -143px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 400px) {
   .headerWrapper {
     .headerContent {
