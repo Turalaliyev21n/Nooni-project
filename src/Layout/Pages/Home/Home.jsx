@@ -12,6 +12,7 @@ import ProductCard from "../../Common/ProductCard/ProductCard";
 import Review from "../../Common/Review/Review";
 import {Loader} from "../../Common/Loader/Loader.jsx";
 import {DataContext} from "../../../Context/DataContext.jsx";
+import { Timer } from "../../Common/Timer/Timer.jsx";
 
 
 const Home = () => {
@@ -171,11 +172,7 @@ const Home = () => {
                         <div className={styles.productscontent}>
                             <div className={styles.productsHeadingtop}>
                                 <a href="" className={styles.besTeller}>DEAL OF THE WEEK</a>
-                                <div className={styles.timeContent}>
-                                    <span>01</span>
-                                    <span>18</span>
-                                    <span>15</span>
-                                </div>
+                                <Timer />
                             </div>
                         </div>
                         <div className={styles.productscontent}>

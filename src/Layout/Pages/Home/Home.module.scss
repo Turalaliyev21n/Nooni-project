@@ -99,18 +99,6 @@
                 .productsHeadingtop{
                     display: flex;
                     gap: 20px;
-                    .timeContent{
-                        width: 200px;
-                        height: 35px;
-                        color: white;
-                        background-color: black;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 45px;
-                        font-size: 18px;
-                        font-weight: 800;
-                    }
                     .besTeller{
                         font-size: 22px;
                         font-weight: 600;
@@ -688,9 +676,6 @@
                 .productscontent{
                     .productsHeadingtop{
                         flex-direction: column;
-                        .timeContent {
-                            margin-top: 12px;
-                        }
                         a{
                             font-size: 18px;
                         }
