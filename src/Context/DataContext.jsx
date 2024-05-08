@@ -5,22 +5,32 @@ import {Bounce, toast} from "react-toastify";
 export const DataContext = React.createContext({
     productsLoading: true,
     productsData: null,
-    fetchUserName: () => {},
-    accountName: null,
-    access : false,
-    handleClearStorage: () => {}
+    fetchUserName: () => {
+    },
+    accountDetails: null,
+    access: false,
+    handleClearStorage: () => {
+    },
+    quickView: false,
+    setQuickView: () => {
+    },
+    selectedProduct: [],
+    setSelectedProduct: () => {
+
+    }
 })
 export const DataContextProvider = ({
                                         children,
                                     }) => {
     const [productsLoading, setProductsLoading] = useState(true);
     const [productsData, setProductsData] = useState(null);
-    const [access,setAccess] = useState(false);
-    const [accountName,setAccountName] = useState(null);
+    const [access, setAccess] = useState(false);
+    const [accountDetails, setAccountDetails] = useState(null);
+    const [quickView, setQuickView] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState([]);
 
 
-
-    const  fetchUserName = useCallback( async() => {
+    const fetchUserName = useCallback(async () => {
         try {
             const response = await axios.get("http://localhost:8000/user");
             const users = response?.data;
@@ -31,7 +41,12 @@ export const DataContextProvider = ({
                 (userData) => userData?.userEmail === userInStorageEmail
             );
             if (userInStorageEmail === findUserEmail?.userEmail) {
-                setAccountName(findUserEmail?.userName);
+                setAccountDetails({
+                    name: findUserEmail?.userName,
+                    email: findUserEmail?.userEmail,
+                    phone: findUserEmail?.phone
+
+                });
                 setAccess(true);
             } else {
                 setAccess(false);
@@ -39,12 +54,13 @@ export const DataContextProvider = ({
         } catch (error) {
             console.error("Xeta:", error);
         }
-    }, [setAccountName,setAccess])
+    }, [setAccountDetails, setAccess])
 
 
     const handleClearStorage = useCallback(() => {
         localStorage.removeItem("user");
         setAccess(false);
+        setAccountDetails(null);
         toast.success(`Hesabınızdan çıxmısız.`, {
             hideProgressBar: false,
             closeOnClick: true,
@@ -54,8 +70,7 @@ export const DataContextProvider = ({
             theme: "colored",
             transition: Bounce,
         });
-    },[setAccess])
-
+    }, [setAccess, setAccountDetails])
 
 
     useEffect(() => {
@@ -72,6 +87,7 @@ export const DataContextProvider = ({
         })();
     }, []);
 
+
     const getCard = id => {
         return productsData.find(i => i === id);
     }
@@ -82,9 +98,13 @@ export const DataContextProvider = ({
             productsData,
             getCard,
             fetchUserName,
-            accountName,
+            accountDetails,
             access,
-            handleClearStorage
+            quickView,
+            handleClearStorage,
+            setQuickView,
+            selectedProduct,
+            setSelectedProduct
         }}>
             {children}
         </DataContext.Provider>

@@ -2,8 +2,9 @@ import styles from "./ProductCard.module.scss";
 import {Heart, MagnifyingGlass, GitDiff} from '@phosphor-icons/react/dist/ssr';
 import {Link} from "react-router-dom";
 import {BasketContext} from "../../../Context/BasketContext";
-import {useContext,useMemo} from "react";
+import {useCallback, useContext, useMemo} from "react";
 import {WishListContext} from "../../../Context/WishListContext.jsx";
+import {DataContext} from "../../../Context/DataContext.jsx";
 
 
 
@@ -18,11 +19,26 @@ const ProductCard = ({product, tallSlide, listView}) => {
         wishListItems,
     } = useContext(WishListContext);
 
+    const {
+        setQuickView,
+        setSelectedProduct
+
+    } = useContext(DataContext);
+
+
+
+
     const isProductInWishlist = useMemo(() => {
         return wishListItems.some(item => item.id === product.id);
     }, [wishListItems, product]);
 
+    const handleQuickViewOpen = useCallback((product)=>{
+        setSelectedProduct([product]);
+        setQuickView(prev => !prev);
+    },[setQuickView,setSelectedProduct])
+
     return (
+        <>
         <div className={`${styles.productWrapper} ${listView ? styles.listView : ""}`}>
             <div className={styles.productsContainerBox}>
                 <div className={`${styles.productImage} ${tallSlide ? styles.tallSlide : ""}`}>
@@ -73,10 +89,10 @@ const ProductCard = ({product, tallSlide, listView}) => {
                         }
                     </div>
                     <div className={styles.menu}>
-                        <div className={`${styles.menuEntity} ${styles.search}`} onClick={(e) => e.stopPropagation()}>
+                        <div className={`${styles.menuEntity} ${styles.search}`} onClick={()=>handleQuickViewOpen(product)}>
                             <MagnifyingGlass/>
                         </div>
-                        <div className={`${styles.menuEntity} ${styles.compare}`} onClick={(e) => e.stopPropagation()}>
+                        <div className={`${styles.menuEntity} ${styles.compare}`}>
                             <GitDiff/>
                         </div>
                         <div className={`${styles.menuEntity} ${styles.wishList}`}
@@ -109,6 +125,7 @@ const ProductCard = ({product, tallSlide, listView}) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

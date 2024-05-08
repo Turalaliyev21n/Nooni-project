@@ -17,6 +17,7 @@ import {BasketContext} from "../../../Context/BasketContext";
 import {WishListContext} from "../../../Context/WishListContext.jsx";
 import Search from "../../Common/Search/Search.jsx";
 import {DataContext} from "../../../Context/DataContext.jsx";
+import {QuickView} from "../../Common/QuickView/QuickView.jsx";
 
 
 const Header = () => {
@@ -32,7 +33,7 @@ const Header = () => {
         wishListItems,
     } = useContext(WishListContext);
     const {
-        accountName,
+        accountDetails,
         access,
         handleClearStorage,
         fetchUserName
@@ -73,6 +74,7 @@ const Header = () => {
 
     return (
         <>
+            <QuickView />
             <header className={styles.headerWrapper}>
                 <Search searchOpen={searchOpen} setSearchOpen={setSearchOpen}/>
                 <div className={styles.headerContent}>
@@ -335,7 +337,7 @@ const Header = () => {
                                 <div className={`${styles.accountDropDown} ${access ? styles.transformed : null}`}>
                                     {access ?
                                         <>
-                                            <Link to={"/account"} className={styles.welcomeUser}>Welcome, {accountName}</Link>
+                                            <Link to={"/account"} className={styles.welcomeUser}>Welcome, {accountDetails.name}</Link>
                                             <span onClick={handleExitAccount}>
                                                 <Power  weight="fill" />
                                                 Log Out
