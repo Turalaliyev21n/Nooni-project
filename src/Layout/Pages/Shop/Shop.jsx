@@ -8,6 +8,49 @@ import {useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {DataContext} from "../../../Context/DataContext.jsx";
 import {Loader} from "../../Common/Loader/Loader.jsx";
 import {Rows, SquaresFour} from "@phosphor-icons/react";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+// PAGINATION
+const itemsPerPage = 9;
+
+const sizeTypes = [
+    {
+        id: "xs",
+        size: "XS"
+    },
+    {
+        id: "s",
+        size: "S"
+    },
+    {
+        id: "m",
+        size: "M"
+    },
+    {
+        id: "l",
+        size: "L"
+    },
+    {
+        id: "xl",
+        size: "XL"
+    },
+    {
+        id: "xxl",
+        size: "XXL"
+    },
+];
+
+const stockStatus = [
+    {
+        id: "inStock",
+        status: "In stock"
+    },
+    {
+        id: "outOfStock",
+        status: "Out of Stock"
+    },
+];
 
 
 const Shop = () => {
@@ -15,21 +58,22 @@ const Shop = () => {
         productsLoading,
         productsData,
     } = useContext(DataContext);
-  
+
     const [priceBounds, setPriceBounds] = useState([0, 1000]);
     const [shouldFilterUpdate, setShouldFilterUpdate] = useState(Date.now());
     const [listView, setListView] = useState(false);
     const [gridView, setGridView] = useState(true);
-
-    const allTypeFilters = useMemo(() => Array.from(new Set(productsData?.map(it => it.category))),[productsData]);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const allTypeFilters = useMemo(() => Array.from(new Set(productsData?.map(it => it.category))), [productsData]);
     const [typeFilters, setTypeFilters] = useState(allTypeFilters);
+    const [selectedStockStatus, setSelectedStockStatus] = useState(['inStock', 'outOfStock']);
+    const [selectedSizes, setSelectedSizes] = useState(["xs", "s", "m", "l", "xl", "xxl"]);
 
-   // TO MAKE ALL TYPE INPUTS CHECKED
+
+    // TO MAKE ALL TYPE INPUTS CHECKED
     useEffect(() => {
         setTypeFilters(allTypeFilters);
-        
-    }, [allTypeFilters]);
+    }, [allTypeFilters, productsData]);
 
     // PRICE RANGE FILTER
     const rangeFilteredProducts = useMemo(() => {
@@ -43,28 +87,91 @@ const Shop = () => {
         }
     }, [shouldFilterUpdate, productsData]);
 
-    // CATEGORY FILTER 
+    // CATEGORY FILTER
     const typeFilteredProducts = useMemo(() => {
         return rangeFilteredProducts?.filter(it => typeFilters.includes(it.category))
     }, [rangeFilteredProducts, typeFilters]);
     const typeFilterChanged = useCallback((id, checked) => {
-        setTypeFilters(prev => checked ? [...prev, id] : prev.filter(it => it !== id))
-    }, [])
-
-    const onApply = useCallback(() => setShouldFilterUpdate(Date.now()), []);
-
-    // DELETE PRICE RANGE VALUE
-    const onReset = useCallback(() => {
-        setPriceBounds([0, 1000]);
-        setShouldFilterUpdate(null);
+        setTypeFilters(prev => checked ? [...prev, id] : prev?.filter(it => it !== id))
     }, []);
 
 
-  // PRODUCT KARTLARIN VIDI DEYISMESI
+    // STOCK FILTER
+    const stockFilteredProducts = useMemo(() => {
+        if (selectedStockStatus.length === 0) {
+            return [];
+        } else {
+            return typeFilteredProducts?.filter((product) => {
+                const isInStock = product?.quantity > 0;
+                return selectedStockStatus.includes(isInStock ? 'inStock' : 'outOfStock');
+            });
+        }
+    }, [selectedStockStatus, typeFilteredProducts]);
+
+    const handleStockFilterChange = useCallback((status, checked) => {
+        if (checked) {
+            setSelectedStockStatus(prevStatus => [...prevStatus, status]);
+        } else {
+            setSelectedStockStatus(prevStatus => prevStatus?.filter(s => s !== status));
+        }
+    }, []);
+
+    const sizeFilteredProducts = useMemo(() => {
+        if (selectedSizes.length === 0) {
+            return [];
+        } else {
+            return stockFilteredProducts?.filter(product =>
+                selectedSizes.some(size => product?.size?.includes(size))
+            );
+        }
+    }, [selectedSizes, stockFilteredProducts]);
+
+    const handleSizeFilterChange = useCallback((size, checked) => {
+        if (checked) {
+            setSelectedSizes(prevSizes => [...prevSizes, size]);
+        } else {
+            setSelectedSizes(prevSizes => prevSizes?.filter(s => s !== size));
+        }
+    }, []);
+
+
+    // UPDATE
+    const onApply = useCallback(() => setShouldFilterUpdate(Date.now()), []);
+    // DELETE ALL FILTERS
+    const onReset = useCallback(() => {
+        setPriceBounds([0, 1000]);
+        setShouldFilterUpdate(null);
+        setSelectedStockStatus(['inStock', 'outOfStock']);
+        setTypeFilters(allTypeFilters);
+        setSelectedSizes(["xs", "s", "m", "l", "xl", "xxl"]);
+    }, [setPriceBounds, setShouldFilterUpdate, setSelectedStockStatus, setTypeFilters, allTypeFilters, setSelectedSizes]);
+
+    // PRODUCTLARIN LIST VE YA GRID GORUNUSU
     const handleChangeView = useCallback(() => {
         setListView(prevState => !prevState);
         setGridView(prevState => !prevState);
     }, [setGridView, setListView]);
+
+    // PAGINATION
+    const startIndex = useMemo(() => (currentPage - 1) * itemsPerPage,
+        [currentPage]);
+    const endIndex = useMemo(() => startIndex + itemsPerPage, [startIndex]);
+    const handlePageChange = useCallback((event, page) => {
+        setCurrentPage(page);
+    }, [setCurrentPage]);
+
+    const currentProducts = useMemo(() => {
+        return sizeFilteredProducts?.slice(startIndex, endIndex);
+    }, [sizeFilteredProducts, startIndex, endIndex]);
+
+
+    useEffect(() => {
+        if (sizeFilteredProducts && sizeFilteredProducts.length > 0 && endIndex > sizeFilteredProducts.length - 1) {
+            setCurrentPage(Math.ceil(sizeFilteredProducts?.length / itemsPerPage));
+        }
+    }, [endIndex, sizeFilteredProducts, setCurrentPage, itemsPerPage]);
+
+
 
     return (
         <>
@@ -87,12 +194,14 @@ const Shop = () => {
                                 <div className={styles.listBox}>
                                     <div className={styles.listImages}>
                                         <img
-                                            src="https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/03/40-310x310.jpg"
+                                            src="https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/08/men-coats.jpg"
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Kids</h3>
-                                        <p>11 products</p>
+                                        <h3>Male</h3>
+                                        <p>{sizeFilteredProducts
+                                            ?.filter(item => item.category === "Male")
+                                            .length} products</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
@@ -102,19 +211,23 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Collections</h3>
-                                        <p>36 products</p>
+                                        <h3>Female</h3>
+                                        <p>{sizeFilteredProducts
+                                            ?.filter(item => item.category === "Female")
+                                            .length} products</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
                                     <div className={styles.listImages}>
                                         <img
-                                            src="https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/08/men-coats.jpg"
+                                            src="https://nooni-be87.kxcdn.com/nooni-fashion/wp-content/uploads/2023/03/40-310x310.jpg"
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Men</h3>
-                                        <p>10 products</p>
+                                        <h3>Kids</h3>
+                                        <p>{sizeFilteredProducts
+                                            ?.filter(item => item.category === "Kids")
+                                            .length} products</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
@@ -124,8 +237,10 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Activities</h3>
-                                        <p>41 products</p>
+                                        <h3>Others</h3>
+                                        <p>{sizeFilteredProducts
+                                            ?.filter(item => item.category !== "Female" && item.category !== "Male" && item.category !== "Kids")
+                                            .length} products</p>
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +251,32 @@ const Shop = () => {
                     <section className={styles.productsSection}>
                         <div className={styles.productsContent}>
                             <div className={styles.filterContainer}>
+                                {/*STOCK FILTER*/}
+                                <div className={styles.filterInpubox}>
+                                    <div className={styles.filterTypeInput}>
+                                        STOCK
+                                    </div>
+                                    <div className={styles.filterProductfilter}>
+                                        <ul className={styles.productCategries}>
+                                            {stockStatus?.map((status) => {
+                                                const productCount = typeFilteredProducts?.filter(item => item.stockStatus === status.id)?.length || 0;
+
+                                                if (productCount === 0) return <></>
+                                                return (
+                                                    <li key={status.id} className={styles.cartItem}>
+                                                        <input
+                                                            type="checkbox"
+                                                            onChange={(e) => handleStockFilterChange(status.id, e.target.checked)}
+                                                            checked={selectedStockStatus.includes(status.id)}
+                                                        />
+                                                        {status.status} ({productCount})
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {/*CATEGORY FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
                                         TYPE
@@ -166,6 +307,7 @@ const Shop = () => {
                                         </ul>
                                     </div>
                                 </div>
+                                {/*PRICE FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
                                         PRICE
@@ -179,40 +321,29 @@ const Shop = () => {
                                         />
                                     </div>
                                 </div>
+                                {/*SIZE FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
                                         SIZE
                                     </div>
                                     <div className={styles.filterProductfilter}>
                                         <ul className={styles.productCategries}>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                XS (17)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                S (20)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                M (22)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                L (20)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                XL (21)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                2XL (14)
-                                            </li>
-                                            <li className={styles.cartItem}>
-                                                <input type="checkbox"></input>
-                                                Free size (15)
-                                            </li>
+                                            {sizeTypes?.map((size) => {
+                                                const filtered = stockFilteredProducts?.filter(product =>
+                                                    product?.size.some(_size => _size === size.id)
+                                                )?.length;
+                                                if (filtered === 0) return <></>
+                                                return (
+                                                    <li key={size.id} className={styles.cartItem}>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedSizes?.includes(size.id)}
+                                                            onChange={(e) => handleSizeFilterChange(size.id, e.target.checked)}
+                                                        />
+                                                        {size.size} ({filtered})
+                                                    </li>
+                                                );
+                                            })}
                                         </ul>
                                     </div>
                                 </div>
@@ -226,25 +357,37 @@ const Shop = () => {
                                     </div>
                                 </div>
                                 <div className={`${styles.productCardsWrapper} ${listView ? styles.listView : ""}`}>
-                                    {typeFilteredProducts?.length < 1 ? (
+                                    {currentProducts?.length < 1 ? (
                                         <div className={styles.noProducts}>
                                             No Products found...
                                         </div>
                                     ) : (
-                                        typeFilteredProducts?.map((product) => (
+                                        currentProducts?.map((product) => (
                                             <div className={styles.card} key={product.id}>
                                                 <ProductCard product={product} listView={listView} id={product.id}/>
                                             </div>
-                                            
                                         ))
                                     )}
-                                    
+
                                 </div>
-                                
+
+                                {/*PAGINATION*/}
+                                <div className={styles.paginationWrapper}>
+                                    <Stack spacing={1}>
+                                        <Pagination
+                                            count={Math.ceil(sizeFilteredProducts?.length / itemsPerPage)}
+                                            variant="outlined"
+                                            shape="rounded"
+                                            size="large"
+                                            page={currentPage}
+                                            onChange={handlePageChange}
+                                        />
+                                    </Stack>
+                                </div>
                             </div>
                         </div>
-                        
                     </section>
+
                 </main>
                 <Footer/>
             </div>

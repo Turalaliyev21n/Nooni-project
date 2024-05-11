@@ -78,7 +78,10 @@ export const DataContextProvider = ({
             setProductsLoading(true);
             try {
                 const response = await axios.get("http://localhost:8000/products");
-                setProductsData(response.data);
+                setProductsData(response.data.map(product => ({
+                    ...product,
+                    stockStatus: product.quantity > 0? 'inStock': 'outOfStock'
+                })));
             } catch (error) {
                 console.error('Axios error:', error);
             } finally {
