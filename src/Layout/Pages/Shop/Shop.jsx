@@ -164,22 +164,17 @@ const Shop = () => {
         return sizeFilteredProducts?.slice(startIndex, endIndex);
     }, [sizeFilteredProducts, startIndex, endIndex]);
 
-
     useEffect(() => {
         if (sizeFilteredProducts && sizeFilteredProducts.length > 0 && endIndex > sizeFilteredProducts.length - 1) {
             setCurrentPage(Math.ceil(sizeFilteredProducts?.length / itemsPerPage));
         }
     }, [endIndex, sizeFilteredProducts, setCurrentPage, itemsPerPage]);
 
-
-
     return (
         <>
             {
-                productsLoading ?
-                    <Loader/>
-                    :
-                    null
+                productsLoading && <Loader/>
+                  
             }
             <div className={styles.shopWrapper}>
                 <Header/>
