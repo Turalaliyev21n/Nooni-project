@@ -27,6 +27,8 @@ export const ProductDetails = () => {
     const [activeButtonId, setActiveButtonId] = useState(1);
 
 
+
+
     const handleResize = useCallback(() => {
         const windowWidth = window.innerWidth;
         if (windowWidth <= 1368 && windowWidth > 1100) {
