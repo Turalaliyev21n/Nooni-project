@@ -75,6 +75,5 @@ export const LanguageAndCurrency = () => {
                 </div>
             </div>
         </div>
-
     )
 }

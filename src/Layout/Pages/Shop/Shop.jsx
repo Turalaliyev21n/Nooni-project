@@ -325,7 +325,7 @@ const Shop = () => {
                                         <ul className={styles.productCategries}>
                                             {sizeTypes?.map((size) => {
                                                 const filtered = stockFilteredProducts?.filter(product =>
-                                                    product?.size.some(_size => _size === size.id)
+                                                    product?.size?.some(_size => _size === size.id)
                                                 )?.length;
                                                 if (filtered === 0) return <></>
                                                 return (
