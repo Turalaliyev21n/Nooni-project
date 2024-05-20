@@ -1,6 +1,6 @@
 import styles from "./ProductsMenu.module.scss";
 import {X} from "@phosphor-icons/react";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {Bounce, toast} from "react-toastify";
 import {ThreeCircles} from "react-loader-spinner";
@@ -10,6 +10,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
+import {AuthContext} from "../../../Context/AuthContext.jsx";
+
+
+
 
 export const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -71,10 +75,15 @@ function getStyles(name, selectedSizes) {
 }
 const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedItem, setIsUpdating, isUpdating}) => {
 
+    const {
+        categoryData,
+    } = useContext(AuthContext);
+
+
     const [inputState, setInputState] = useState(selectedItem || defaults);
 
 
-    const handleSizeChange = useCallback((event) => {
+    const handleSizeChange = (event) => {
         const {
             target: { value },
         } = event;
@@ -82,7 +91,8 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
             ...prevState,
             size: typeof value === 'string' ? value.split(',') : value,
         }));
-    }, [setInputState]);
+    };
+
 
     const handleInputChange = useCallback((e) => {
         const {name, value} = e.target;
@@ -131,7 +141,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
         const file = e.target.files[0];
         e.target.value = '';
         if (file.size > 1000 * 1000 * 150) {
-            toast.error(`File is too big`,
+            toast.error(`Şəkil çox böyükdür`,
                 {
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -146,7 +156,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
             return;
         }
         if (file.size < 1000 * 5) {
-            toast.error(`File is too small`,
+            toast.error(`Şəkil çox kiçikdir`,
                 {
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -181,6 +191,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
     }, [menuOpen]);
 
 
+
     const handleUpdateData = useCallback(async () => {
         const requestData = {
             title: inputState?.title.trim(),
@@ -195,6 +206,27 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
             quantity: Number(inputState?.quantity),
             description: inputState?.description.trim()
         };
+
+        if (
+            !requestData.title ||
+            !requestData.description ||
+            !requestData.salePrice ||
+            !requestData.category ||
+            requestData.size.length === 0 ||
+            !requestData.rating ||
+            !requestData.frontImage
+        ) {
+            toast.error('Bütün tələb olunan sahələri doldurun', {
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: 'dark',
+                transition: Bounce,
+            });
+            return;
+        }
         try {
             setIsUpdating(true);
             if (selectedItem) {
@@ -202,7 +234,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                     `http://localhost:8000/products/${inputState.id}`,
                     requestData
                 );
-                toast.success('Product Edited Successfully', {
+                toast.success(`${requestData.title} uğurla redaktə edildi`, {
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -213,7 +245,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                 });
             } else {
                 await axios.post("http://localhost:8000/products/", requestData);
-                toast.success('Product Added Successfully', {
+                toast.success(`${requestData.title} uğurla əlavə edildi`, {
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -226,7 +258,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
             update();
             handleMenuClose();
         } catch (error) {
-            toast.error('Failed to add product', {
+            toast.error('Məhsul əlavə edərkən xəta baş verdi', {
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -235,11 +267,11 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                 theme: 'dark',
                 transition: Bounce,
             });
-            console.log(error)
+            console.log(error);
         } finally {
             setIsUpdating(false);
         }
-    }, [inputState, selectedItem])
+    }, [inputState, selectedItem]);
 
     return (
         <div className={`${styles.menuWrapper} ${menuOpen ? styles.menuVisible : ""}`}>
@@ -255,7 +287,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                 </div>
                 <div className={styles.inputsContainer}>
                     <div className={styles.inputRow}>
-                        <p>Title :</p>
+                        <p>Title : <b>*</b></p>
                         <input type="text"
                                name="title"
                                id="title"
@@ -265,7 +297,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         />
                     </div>
                     <div className={`${styles.inputRow} ${styles.descriptionRow}`}>
-                        <p>Description :</p>
+                        <p>Description : <b>*</b></p>
                         <textarea
                             placeholder="Poduct Description"
                             name="description"
@@ -285,7 +317,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         />
                     </div>
                     <div className={styles.inputRow}>
-                        <p>Sale Price :</p>
+                        <p>Sale Price : <b>*</b></p>
                         <input type="number"
                                name="salePrice"
                                id="salePrice"
@@ -295,8 +327,20 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         />
                     </div>
                     <div className={styles.inputRow}>
+                        <p>Quantity :</p>
+                        <input type="number"
+                               name="quantity"
+                               id="quantity"
+                               placeholder="Enter Product Qunantity"
+                               onChange={handleInputChange}
+                               value={inputState.quantity}
+                        />
+                    </div>
+                    <div className={styles.inputRow}>
                         <p>Rating :</p>
-                        <Box sx={{minWidth: 318}}>
+                        <Box sx={{minWidth: 318, border: '1px solid #323641'}}
+                        className={styles.muiBox}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-label"
                                             classes={{
@@ -323,9 +367,11 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         </Box>
                     </div>
                     <div className={styles.inputRow}>
-                        <p>Category :</p>
+                        <p>Category : <b>*</b></p>
                         <FormControl
-                            sx={{m: 1, minWidth: 308, border: '1px solid #323641'}} size="small">
+                            sx={{m: 1, minWidth: 308, border: '1px solid #323641'}}
+                            size="small"
+                            className={styles.muiBox}>
                             <InputLabel
                                 id="demo-select-small-label"
                                 classes={{
@@ -343,26 +389,24 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={"Male"}>Male</MenuItem>
-                                <MenuItem value={"Female"}>Female</MenuItem>
-                                <MenuItem value={"Kids"}>Kids</MenuItem>
-                                <MenuItem value={"Jeans"}>Jeans</MenuItem>
-                                <MenuItem value={"Jackets"}>Jackets</MenuItem>
-                                <MenuItem value={"Others"}>Others</MenuItem>
+                                {categoryData?.map((category) => {
+                                    return (
+                                        <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
+                                    )
+                                })}
                             </Select>
                         </FormControl>
                     </div>
                     <div className={styles.inputRow}>
-                        <p>Size :</p>
-                        <FormControl sx={{m: 1, width: 308, border: '1px solid #323641'}}>
+                        <p>Size : <b>*</b></p>
+                        <FormControl sx={{m: 1, width: 308, border: '1px solid #323641'}}
+                                     className={styles.muiBox}>
                             <InputLabel
                                 id="demo-multiple-name-label"
                                 classes={{
                                     root: styles.customSelect
                                 }}
-                            >
-                                Size
-                                </InputLabel>
+                            >Size</InputLabel>
                             <Select
                                 classes={{root: styles.customMenuItem}}
                                 labelId="demo-multiple-name-label"
@@ -387,7 +431,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
 
                     </div>
                     <div className={`${styles.inputRow} ${styles.viewImageRow}`}>
-                        <p>Front Image :</p>
+                        <p>Front Image : <b>*</b></p>
                         <div className={styles.imageBox}>
                             <img
                                 onClick={() => setInputState(prev => ({
@@ -430,18 +474,10 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         </div>
                     </div>
                     <div className={styles.inputRow}>
-                        <p>Quantity :</p>
-                        <input type="number"
-                               name="quantity"
-                               id="quantity"
-                               placeholder="Enter Product Qunantity"
-                               onChange={handleInputChange}
-                               value={inputState.quantity}
-                        />
-                    </div>
-                    <div className={styles.inputRow}>
                         <p>Hot :</p>
-                        <FormControl sx={{m: 1, minWidth: 370, border: '1px solid #323641'}} size="small">
+                        <FormControl sx={{m: 1, minWidth: 305, border: '1px solid #323641'}} size="small"
+                                     className={styles.muiBox}
+                        >
                             <InputLabel
                                 id="demo-select-small-label"
                                 classes={{
