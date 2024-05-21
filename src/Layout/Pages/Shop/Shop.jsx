@@ -10,6 +10,7 @@ import {Loader} from "../../Common/Loader/Loader.jsx";
 import {Rows, SquaresFour} from "@phosphor-icons/react";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { useTranslation } from "react-i18next";
 
 // PAGINATION
 const itemsPerPage = 9;
@@ -68,6 +69,7 @@ const Shop = () => {
     const [typeFilters, setTypeFilters] = useState(allTypeFilters);
     const [selectedStockStatus, setSelectedStockStatus] = useState(['inStock', 'outOfStock']);
     const [selectedSizes, setSelectedSizes] = useState(["xs", "s", "m", "l", "xl", "xxl"]);
+    const {t} = useTranslation();
 
 
     // TO MAKE ALL TYPE INPUTS CHECKED
@@ -180,7 +182,7 @@ const Shop = () => {
                 <Header/>
                 <main>
                     {/* PAGE HEADING SECTION */}
-                    <PageHeading title="Shop"/>
+                    <PageHeading title={t("main.shop.shopShop")}/>
 
                     {/* CATEGORY SECTION */}
                     <section className={styles.categorySection}>
@@ -193,10 +195,10 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Male</h3>
+                                        <h3>{t('main.shop.shopMale')}</h3>
                                         <p>{sizeFilteredProducts
                                             ?.filter(item => item.category === "Male")
-                                            .length} products</p>
+                                            .length} {t("main.shop.shopProducts")}</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
@@ -206,10 +208,10 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Female</h3>
+                                        <h3>{t("main.shop.shopFemale")}</h3>
                                         <p>{sizeFilteredProducts
                                             ?.filter(item => item.category === "Female")
-                                            .length} products</p>
+                                            .length} {t("main.shop.shopProducts")}</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
@@ -219,10 +221,10 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Kids</h3>
+                                        <h3>{t("main.shop.shopKids")}</h3>
                                         <p>{sizeFilteredProducts
                                             ?.filter(item => item.category === "Kids")
-                                            .length} products</p>
+                                            .length} {t("main.shop.shopProducts")}</p>
                                     </div>
                                 </div>
                                 <div className={styles.listBox}>
@@ -232,10 +234,10 @@ const Shop = () => {
                                             alt=""/>
                                     </div>
                                     <div className={styles.listText}>
-                                        <h3>Others</h3>
+                                        <h3>{t("main.shop.shopOthers")}</h3>
                                         <p>{sizeFilteredProducts
                                             ?.filter(item => item.category !== "Female" && item.category !== "Male" && item.category !== "Kids")
-                                            .length} products</p>
+                                            .length} {t("main.shop.shopProducts")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +251,7 @@ const Shop = () => {
                                 {/*STOCK FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
-                                        STOCK
+                                        {t("main.shop.shopSTOCK")}
                                     </div>
                                     <div className={styles.filterProductfilter}>
                                         <ul className={styles.productCategries}>

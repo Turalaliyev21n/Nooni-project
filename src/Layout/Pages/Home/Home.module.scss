@@ -370,7 +370,9 @@
                 text-align: center;
             }
                 a{
-                    width: 100%;
+                    width: min-content;
+                    white-space: nowrap;
+                    margin:  0 auto;
                     display: flex;
                     justify-content: center;
                     margin-top: 20px;
@@ -379,7 +381,7 @@
                     position: relative;
                     &:hover::before{
                         transform: scale(1);
-                         width: 100px;
+                         width: 100%;
                     }
                     &::before{
                         content: "";
