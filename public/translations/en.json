@@ -110,7 +110,7 @@
     "fashionMen":"FASHION, MEN",
     "fashionWomen":"FASHION, WOMEN",
     "theDosAnd":"The Do’s and Don’ts In Custom Shirt Design Printing",
-    "nuncUt":"Nunc ut sem ut ex sollicitudin commodo. Suspendisse non enim felis. Nam nec diam ultricies, malesuada purus in, malesuada libero",
+    "nuncUt":"Now, let's proceed with the solicitation command. Not feeling unhappy. Neither of us is going to do it, the statement is independent, the statement is free.",
     "weekdayOutfit":"Weekday Outfit Inspiration for All Occasions",
     "yourSummer":"Your Summer is Incomplete Without These Dresses",
     "popularPosts":"Popular Posts",
@@ -177,7 +177,93 @@
     "basketReturnToShop":"Return to Shop",
     "basketProduct": "Product",
     "basketPrice":"Price",
-    "basketQuantity": "Quantity"
+    "basketQuantity": "Quantity",
+    "basketSubtotal":" Subtotal",
+    "basketDelete":" Delete",
+    "basketCartTotals":"CART TOTALS",
+    "basketCalculate":"Calculate shipping",
+    "ShippingOptions":"Shipping options will be updated during checkout.",
+    "basketTotal":"Total",
+    "basketProceed":" PROCEED TO CHECKOUT",
+    "basketEmptyCart":"Empty cart",
+    "YourMay":"YOU MAY BE INTERESTED IN…"
+    
+  },
+  "wishlist":{
+    "wishlistWishlist":"Wishlist",
+    "wishlistYourCurrently":"Your wishlist is currently emptyYour wishlist is currently empty",
+    "returnToShop":"Return to Shop",
+    "whishlistProduct": "Product",
+    "whishlistUnit": "Unit price",
+    "whislistStockStatus":"Stock status",
+    "whislistAddToCart": "Add to Cart",
+    "whislistDelete":"Delete",
+    "whislistShareOn": "Share on:" 
+  },
+  "login":{
+    "loginLogin":"Login",
+    "loginEmailAdress":"Email address",
+    "loginEmail":"Email",
+    "loginPassword":"Password",
+    "LogIn":"LOG IN",
+    "loginHaveAnd":"Don't have and account? Click Here."
+  },
+  "register":{
+    "registerRegister":"Register",
+    "registerEmailAddress":"Email address",
+    "registerEmail":"Email",
+    "registerUsername":"Username",
+    "registerPassword": "Password",
+    "registerConfirmPassword":"Confirm password",
+    "registerPhoneNumber":"Phone Number",
+    "registerAlreadyHaveAnd":"Already have an account? Click Here."
+  },
+  "account":{
+    "MyAccount": "my Account",
+    "accountUsername":"Username",
+    "acountEmailAddress":"Email address",
+    "accountPhoneNumber": "Phone number"
+  },
+  "details":{
+    "productContentDetails": "Crafted from durable 100% polyester, the Kruser Ridge II Softshell Jacket is the ideal layering piece for combating the cold. With a modern classic fit and adjustable features, it offers comfortable movement. Zippered side pockets secure small items (including hands), and the flexible warm collar can be worn up or down for desired warmth. Available in various sizes and colors. Use our sizing chart for accurate measurements: measure sleeves from center back of neck, across shoulder, and down to sleeve; round up to the next even number for partial measurements. Measure chest at fullest part, under armpits, and over shoulder blades, keeping tape measure firm and level.",
+    "productContentLi": "Stand out, stay warm",
+    "productContentLii": "Long sleeves",
+    "productContentLiii": "Shawl collar",
+    "productContentLiiii": "Oversized fit",
+    "whiteGloveService":"WHITE GLOVE SERVICE",
+    "ItemsOrderedItems":"Ordered items are delivered to the user's chosen room at a scheduled time, then unpacked and fully assembled by a skilled team of two people. Removal of packaging and recycling is included. Fees vary based on location and order total. (Assembly is not included in doorstep delivery)",
+    "flatRateDelivery":"FLAT RATE DELIVERY",
+    "detailsAnUnlimited": "Unlimited eligible furniture and select non-furniture items can be delivered to a single shipping address for a flat rate. Your order will ship once all items are ready for delivery. Fees vary based on location and order total.",
+    "detailsReturnPolicy":"RETURN POLICY",
+    "detailsYourCanReturn":"You can return eligible items within 30 days of receiving your order, or within 7 days for Quick Ship upholstery items, for a refund of the merchandise value. Made-to-Order furniture cannot be returned.",
+    "detailsCustomersReviews":"Customers Reviews",
+    "thereAreNoReviews": "There are no reviews yet.",
+    "relatedProducts":"Related Products"
+    
+  },
+  "product":{
+    "productSale":"sale",
+    "productHot": "hot",
+    "productSoldOut": "sold out",
+    "productAddToCart": "Add To Cart",
+    "productConstructedFrom":"Constructed from durable polyester fabric, this quilted garment features a hooded neckline and long sleeves with elasticated cuffs. It is machine washable at a temperature of 30 degrees Celsius."
+  },
+  "singleProduct":{
+    "singleSale": "sale",
+    "singleHot":"hot",
+    "singleOutOfStock":"out of stock",
+    "singleStock":"Stock:",
+    "singleInStock":"In stock",
+    "singleOutStock":"Out of stock",
+    "singleAddToCart":"add to cart",
+    "singleBuyNow":"buy now",
+    "singleAddToWishlist":"Add to wishlist",
+    "singleCompare": "Compare",
+    "singleCATEGORY":"CATEGORY"
+  },
+  "search":{
+    "searchProduct": "Search for products",
+    "searchEnterProduct": "Enter product name"
   }
  },
     "footer": {

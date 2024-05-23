@@ -80,10 +80,10 @@ export const Basket = () => {
                                             {t("main.basket.basketQuantity")}
                                         </div>
                                         <div className={`${styles.subtotal} ${styles.cell}`}>
-                                            Subtotal
+                                            {t("main.basket.basketSubtotal")}
                                         </div>
                                         <div className={`${styles.delete} ${styles.cell}`}>
-                                            Delete
+                                           {t("main.basket.basketDelete")}
                                         </div>
                                     </div>
                                     {cartItems?.map((product) => {
@@ -127,14 +127,14 @@ export const Basket = () => {
                                         )
                                     })}
 
-                                    <div className={styles.emptyShop} onClick={emptyCart}>Empty cart</div>
+                                    <div className={styles.emptyShop} onClick={emptyCart}>{t("main.basket.basketEmptyCart")}</div>
 
                                 </div>
                                 <div className={styles.productContactRight}>
                                     <div className={styles.cartTotals}>
-                                        <h1>CART TOTALS</h1>
+                                        <h1>{t("main.basket.basketCartTotals")}</h1>
                                         <div className={styles.subtotalPirce}>
-                                            <h2>Subtotal</h2>
+                                            <h2>{t("main.basket.basketSubtotal")}</h2>
                                             <p>{currencyState === "azn"? "AZN" : "$"} {currencyConverter(calculateSubtotal)?.toFixed(2)}</p>
                                         </div>
                                         <div className={styles.shippingBox}>
@@ -156,17 +156,17 @@ export const Basket = () => {
                                                     })
                                                 }
                                                 <div className={styles.flatText}>
-                                                    <p>Shipping options will be updated during checkout.</p>
+                                                    <p>{t("main.basket.ShippingOptions")}</p>
                                                 </div>
                                                 <div className={styles.flatTurck}>
                                                     <Truck size={20}/>
-                                                    <p>Calculate shipping</p>
+                                                    <p>{t("main.basket.basketCalculate")}</p>
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div className={styles.totalCart}>
-                                            <h2>Total</h2>
+                                            <h2>{t("main.basket.basketTotal")}</h2>
                                             <p>{currencyState === "azn"? "AZN" : "$"} {
                                                 currencyState === "azn"
                                                     ?
@@ -177,14 +177,14 @@ export const Basket = () => {
                                             </p>
                                         </div>
                                         <div className={styles.totalButton}>
-                                            PROCEED TO CHECKOUT
+                                           {t("main.basket.basketProceed")}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.basketPageSlider}>
                                 <div className={styles.sliderContent}>
-                                    <h2>YOU MAY BE INTERESTED IN…</h2>
+                                    <h2>{t("main.basket.YourMay")}</h2>
                                     <div className={styles.sliderProducts}>
                                         <Swiper
                                             slidesPerView={4}

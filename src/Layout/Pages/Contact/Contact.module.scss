@@ -132,6 +132,9 @@
                             cursor: pointer;
                             font-size: 17px;
                             font-weight: 800;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                             letter-spacing: 1px;
                             &:hover{
                                 background-color: red;

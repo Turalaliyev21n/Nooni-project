@@ -1,10 +1,59 @@
-import React from 'react'
 import styles from "./Contact.module.scss";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import emailjs from "@emailjs/browser"
+import {useRef, useCallback, useState} from "react";
+import {Bounce, toast} from "react-toastify";
+import {ThreeCircles} from "react-loader-spinner";
+
 const Contact = () => {
+  const [formLoading, setFormLoading] = useState(false);
   const {t} = useTranslation();
+  const form = useRef();
+
+  const handleSendEmail = useCallback(async (e) => {
+    e.preventDefault();
+
+    try {
+        setFormLoading(true);
+        const formData = new FormData(form.current);
+        const user_name = formData.get('user_name');
+        const user_email = formData.get('user_email');
+        const result = await emailjs.sendForm(import.meta.env.VITE_EMAIL_ID, import.meta.env.VITE_MAIN_TEMPLATE_ID, form.current, import.meta.env.VITE_EMAIL_KEY);
+        console.log('Email sent:', result.text);
+        const autoReplyResult = await emailjs.send(import.meta.env.VITE_EMAIL_ID, import.meta.env.VITE_REPLY_TEMPLATE_ID, {
+            user_name,
+            user_email
+        }, import.meta.env.VITE_EMAIL_KEY);
+        console.log('Auto reply sent:', autoReplyResult.text);
+        form.current.reset();
+        toast.success(`Email sent successfully!`, {
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+      });
+    } catch (error) {
+        toast.error(`Failed to send the message. Please try again later`, {
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+        });
+        console.log('Error:', error.text);
+    } finally {
+        setFormLoading(false)
+    }
+}, [form, setFormLoading]);
+
+
   return (
     <>
       <div className={styles.contactUs}>
@@ -39,15 +88,39 @@ const Contact = () => {
                 </div>
                 <div className={styles.containerRight}>
                   <h2>{t("main.contact.weWouldLove")}</h2>
-                  <div className={styles.containerFrom}>
-                    <div className={styles.subjectInput}>
-                      <input type='text' placeholder={t("main.contact.contactName")}></input>
-                      <input type='Email' placeholder= {t("main.contact.contactEEmail")}></input>
-                    </div>
-                    <input type='text' placeholder={t("main.contact.contactSubject")}></input>
-                    <textarea name="" id="" cols="30" rows="10" width="100%" placeholder={t("main.contact.contactMessage")}></textarea>
-                    <button>{t("main.contact.contactSendMessage")}</button>
-                  </div>
+                  <form ref={form} onSubmit={handleSendEmail} className={styles.containerFrom}>
+                                    <div className={styles.subjectInput}>
+                                        <input type='text' name='user_name' placeholder={t("main.contact.contactName")}
+                                               required/>
+                                        <input type='email' name='user_email'
+                                               placeholder={t("main.contact.contactEEmail")} required/>
+                                    </div>
+                                    <input type='text' name='subject' placeholder={t("main.contact.contactSubject")}
+                                           required/>
+                                    <textarea name='message' cols="30" rows="10" width="100%"
+                                              placeholder={t("main.contact.contactMessage")} required></textarea>
+                                    <button
+                                        type='submit'
+                                        disabled={formLoading}
+                                        style={{
+                                          pointerEvents: formLoading ? "none" : "auto",
+                                          background : formLoading ? "gray" : "black"
+                                        }}
+                                    >
+                                      {
+                                        formLoading ?
+                                          <ThreeCircles
+                                              visible={true}
+                                              height="30"
+                                              width="30"
+                                              color="white"
+                                              ariaLabel="three-circles-loading"
+                                          /> :
+                                          t("main.contact.contactSendMessage")
+                                    }
+                                    </button>
+                                </form>
+
                 </div>
               </div>
             </div>
