@@ -11,18 +11,9 @@ import {Truck} from "@phosphor-icons/react";
 import ProductCard from "../../Common/ProductCard/ProductCard.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
 import { useTranslation } from "react-i18next";
-const SHIPPING_TYPES = [
-    {
-        id: 1,
-        type: "Flat rate",
-        price: 7.5,
-    },
-    {
-        id: 2,
-        type: "Local pickup",
-        price: 2.5,
-    }
-];
+import SHIPPING_TYPES from "/public/data/ShippingData/shippingData.json";
+import { ShippingPrice } from '../../Common/ShippingPrice/ShippingPrice.jsx';
+
 
 export const Basket = () => {
     const {t} = useTranslation();
@@ -32,7 +23,8 @@ export const Basket = () => {
         removeFromCart,
         cartItems,
         calculateSubtotal,
-        emptyCart
+        emptyCart,
+        shippingTypeId
     } = useContext(BasketContext);
 
 
@@ -43,12 +35,6 @@ export const Basket = () => {
 
     } = useContext(DataContext);
 
-
-    const [shippingTypeId, setShippingTypeId] = useState(1);
-
-    const handleShippingPrice = useCallback((id) => {
-        setShippingTypeId(id);
-    }, [])
 
 
     return (
@@ -140,21 +126,7 @@ export const Basket = () => {
                                         <div className={styles.shippingBox}>
                                             <h2>Shipping</h2>
                                             <div className={styles.shippingCalulate}>
-                                                {
-                                                    SHIPPING_TYPES.map((type) => {
-                                                        return (
-                                                            <div key={type.id} className={styles.flatRate}>
-                                                                <input
-                                                                    type='checkbox'
-                                                                    name="priceSelect"
-                                                                    onChange={() => handleShippingPrice(type.id)}
-                                                                    checked={type.id === shippingTypeId}
-                                                                />
-                                                                <label>{type.type}: {currencyConverter(type.price)?.toFixed(2)} {currencyState === "azn"? "AZN" : "$"}</label>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
+                                                <ShippingPrice />
                                                 <div className={styles.flatText}>
                                                     <p>{t("main.basket.ShippingOptions")}</p>
                                                 </div>
@@ -170,15 +142,15 @@ export const Basket = () => {
                                             <p>{currencyState === "azn"? "AZN" : "$"} {
                                                 currencyState === "azn"
                                                     ?
-                                                    (currencyConverter(calculateSubtotal) + SHIPPING_TYPES?.find(({ id }) => id === shippingTypeId)?.price * 1.7)?.toFixed(2)
+                                                    (currencyConverter(calculateSubtotal) + SHIPPING_TYPES.en?.find(({ id }) => id === shippingTypeId)?.price * 1.7)?.toFixed(2)
                                                     :
-                                                    (currencyConverter(calculateSubtotal) + SHIPPING_TYPES?.find(({ id }) => id === shippingTypeId)?.price)?.toFixed(2)
+                                                    (currencyConverter(calculateSubtotal) + SHIPPING_TYPES.en?.find(({ id }) => id === shippingTypeId)?.price)?.toFixed(2)
                                             }
                                             </p>
                                         </div>
-                                        <div className={styles.totalButton}>
+                                        <Link to={"/checkout"} className={styles.totalButton}>
                                            {t("main.basket.basketProceed")}
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

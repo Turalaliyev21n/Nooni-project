@@ -1,6 +1,6 @@
 import styles from "./AdminPage.module.scss";
 import {Wrench, Power, Trash} from "@phosphor-icons/react";
-import ProductsMenu from "../../Common/MembersMenu/ProductsMenu.jsx";
+import ProductsMenu from "../../Common/ProductsMenu/ProductsMenu.jsx";
 import {useCallback, useState, useMemo, useEffect, useContext} from "react";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
@@ -17,6 +17,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import {CategoriesManagement} from "../../Common/CategoriesManagement/CategoriesManagement.jsx";
+import {OrdersManagement} from "../../Common/OrdersManagement/OrdersManagement.jsx";
 
 
 const itemsPerPage = 9;
@@ -197,9 +198,13 @@ const AdminPage = () => {
                             <Power/>
                         </div>
                     </div>
-                    <CategoriesManagement />
+                    <CategoriesManagement/>
+                    <div className={`${styles.pageHeading} ${styles.ordersHeading}`}>
+                        <h1>ORDERS</h1>
+                    </div>
+                    <OrdersManagement/>
                     <div className={styles.pageHeading}>
-                    <h1>All products</h1>
+                        <h1>All products</h1>
                     </div>
                     <div className={styles.productManagement}>
                         <div className={styles.searchInput}>
@@ -220,7 +225,7 @@ const AdminPage = () => {
                         </div>
                     </div>
                     <div className={styles.overFlow}>
-                        <div className={styles.teamTable}>
+                        <div className={styles.allProductsTable}>
                             <div className={styles.table}>
                                 <div className={`${styles.tableRow} ${styles.tableHeading}`}>
                                     <div className={`${styles.id} ${styles.tableCell}`}>
@@ -291,7 +296,8 @@ const AdminPage = () => {
                                                         <Wrench onClick={() => handleOpenMenu(product)}/>
                                                     </div>
 
-                                                    <div className={styles.action} style={{
+                                                    <div className={styles.action}
+                                                         style={{
                                                         opacity: isUpdating ? 0.5 : 1,
                                                         pointerEvents: isUpdating ? 'none' : 'all',
                                                     }}

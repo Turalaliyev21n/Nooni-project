@@ -213,7 +213,6 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
             !requestData.salePrice ||
             !requestData.category ||
             requestData.size.length === 0 ||
-            !requestData.rating ||
             !requestData.frontImage
         ) {
             toast.error('Bütün tələb olunan sahələri doldurun', {
@@ -500,10 +499,12 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                 </div>
                 .
                 <div className={styles.menuFooter}>
-                    <div className={`${styles.button} ${styles.add}`} onClick={handleUpdateData}
-                         style={{
-                             opacity: isUpdating ? 0.5 : 1,
-                             pointerEvents: isUpdating ? "none" : "all"
+                    <button 
+                    className={`${styles.button} ${styles.add}`} 
+                    onClick={handleUpdateData}
+                    disabled={isUpdating}
+                    style={{
+                             opacity: isUpdating ? 0.5 : 1, 
                          }}
                     >
                         {isUpdating ? (
@@ -517,7 +518,7 @@ const ProductsMenu = ({setMenuOpen, menuOpen, update, selectedItem, setSelectedI
                         ) : (
                             <span>{selectedItem ? "Edit Product" : "Add Product"}</span>
                         )}
-                    </div>
+                    </button>
                     <div className={`${styles.button} ${styles.cancel}`} onClick={handleMenuClose}>
                         Cancel
                     </div>

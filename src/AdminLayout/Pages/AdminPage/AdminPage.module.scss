@@ -37,6 +37,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
+      &.ordersHeading {
+        padding: 0 0 25px 0;
+      }
 
       h1 {
         text-transform: uppercase;
@@ -142,7 +145,7 @@
 
     }
     .overFlow {
-      .teamTable {
+      .allProductsTable {
         display: flex;
         width: 100%;
         background-color: $admin-secondary-color;
@@ -232,6 +235,9 @@
             .quantity {
               max-width: 130px;
               justify-content: center;
+              span {
+                text-align: center;
+              }
 
             }
             .size {
@@ -307,7 +313,7 @@
           border-radius: 2px;
           box-shadow: 0 0 5px black;
         }
-        .teamTable {
+        .allProductsTable {
           max-width: 1140px;
           .table {
             .tableRow {
@@ -343,8 +349,6 @@
         overflow-x: auto;
       }
 
-      .overFlow {
-      }
     }
   }
 }
@@ -352,7 +356,7 @@
   .adminPageWrapper {
     .adminPageContent {
       .overFlow {
-        .teamTable {
+        .allProductsTable {
           width: 964px;
         }
       }

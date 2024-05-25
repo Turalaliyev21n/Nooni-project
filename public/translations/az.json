@@ -34,7 +34,7 @@
         "sportClothing": "İdman Geyimləri",
         "vacationAndWedding": "Tətil və Toy Geyimləri",
         "workClothing": "İş Geyimləri",
-  
+
         "newProduct": "YENİ MƏHSUL",
         "theBestNewCollection": "Ən Yaxşı Yeni Koleksiya",
         "enjoyFreeShipping": "Pulsuz Göndərmədən Zövq Alın",
@@ -130,10 +130,10 @@
           "blogWomenWear":"Qadın geyimi"
         },
         "about":{
-          "aboutNooni": "Noon’i Haqqında",
+          "aboutNooni": "TURALLI Haqqında",
           "aboutAbout": "Haqqında",
-          "nooniWas": "Noon’i 1990-cı ildə təsis edilib, consectetur eleifend commodo at, consectetur eu justo. Sed viverra consectetur risus nec ultricies.",
-          "aboutHowWe": "NASIL İŞLƏYİRİK",
+          "nooniWas": " TURALLI 1990-cı ildə təsis edilib. Şirkət effektiv ünsiyyət və mükəmməlliyə fokuslanır. Güclü əlaqələr və davamlı inkişaf üzərində inkişaf edir.",
+          "aboutHowWe": "İŞ PRİNSİPLƏRİMİZ",
           "aboutProductionDesing": "Produksiya Dizaynı",
           "aboutIntegerDignissim": "Oğlanın qaşıntısı o qədər də dəyərlidir. Maecenas yarısı erosdur, həyatın kursu özünə gülməyi bilir, istəyi bəzən heç bir şey deyil.",
           "aboutManufacturing": "İstehsal",
@@ -146,7 +146,7 @@
           "aboutCeoFounder":"CEO & Təsisçi",
           "aboutSaler": "Satıcı",
           "aboutWeDeliver":"Biz Asli Məhsullar Təchiz Edirik",
-          "aboutSedViverra":"Sed viverra consectetur risus nec ultricies. Curabitur tincidunt tincidunt urna id maximus",
+          "aboutSedViverra":"Canlı əlaqələr son deyil. Əsas təkmilləşdirmələrə diqqət yetirin.",
           "aboutContactUs":"BİZİMLƏ ƏLAQƏ"
         },
         "contact":{
@@ -241,15 +241,15 @@
               
             },
             "product":{
-              "productSale":"endirim",
-              "productHot": "təzə",
+              "productSale":"end",
+              "productHot": "yeni",
               "productSoldOut": "tükəndi",
               "productAddToCart": "Səbətə at",
               "productConstructedFrom":"Möhkəm poliester toxunmadan bu quil qabarma paltar, şapkalar qoyulmuş bir boynuqla və elastik manşetləri olan uzun qolludur. 30 dərəcədə maşın yuyunabilər."
             },
             "singleProduct":{
-                "singleSale": "endirim",
-                "singleHot":"tez satışda",
+                "singleSale": "end",
+                "singleHot":"yeni",
                 "singleOutOfStock":"stokda yoxdur",
                 "singleStock":"Stok:",
                 "singleInStock":"Stokda",

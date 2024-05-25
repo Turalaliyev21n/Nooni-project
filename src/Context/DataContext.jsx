@@ -73,6 +73,7 @@ export const DataContextProvider = ({
             transition: Bounce,
         });
     }, [setAccess, setAccountDetails])
+    
     useEffect(() => {
         (async () => {
             setProductsLoading(true);
