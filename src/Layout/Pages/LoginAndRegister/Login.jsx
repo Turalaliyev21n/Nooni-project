@@ -22,8 +22,9 @@ const Login = () => {
   const [userLogin, setUserLogin] = useState({
     userLoginEmail: "",
     userLoginPassword: ""
-  })
-    const [viewPassword,setViewPassword] = useState(false);
+  });
+
+  const [viewPassword,setViewPassword] = useState(false);
 
   const handlePassView = useCallback(()=>{
       setViewPassword(prevState => !prevState);
@@ -87,7 +88,7 @@ const Login = () => {
                 });
             }
         } catch (error) {
-            console.error("Ошибка:", error);
+            console.error("error:", error);
         }
     }, [userLogin, navigate]);
   return (

@@ -41,8 +41,10 @@ export const AdminOrderSingle = () => {
                                         </div>
                                         <div className={styles.invoiceTopItem}>
                                             <p>INVOICE NO</p>
-                                            <h2>
-                                                SR000{order?.id}
+                                            <h2 style={{
+                                                textTransform: 'uppercase'
+                                            }}>
+                                                AZ000{order?.id}
                                             </h2>
                                         </div>
                                         <div className={styles.invoiceTopItem}>
@@ -88,7 +90,7 @@ export const AdminOrderSingle = () => {
                                             </h2>
                                         </div>
                                         <div className={styles.invoiceTopItem}>
-                                            <p>SUBTOTAL:</p>
+                                            <p>SUBTOTAL</p>
                                             <h2>$ {order?.products.reduce((total, product) => total + product.salePrice * product.count, 0)?.toFixed(2)}</h2>
                                         </div>
                                     </div>
@@ -161,7 +163,7 @@ export const AdminOrderSingle = () => {
                                                                 <p>
                                                                     {product?.title}
                                                                 </p>
-                                                                </Link>
+                                                            </Link>
                                                         </div>
                                                         <div className={`${styles.size} ${styles.box}`}>
                                                             <p>{product?.size.join(",")}</p>

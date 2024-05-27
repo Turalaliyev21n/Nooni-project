@@ -29,10 +29,12 @@ const Header = () => {
         removeFromCart,
         cartItems,
         calculateSubtotal,
+        setCartItems,
     } = useContext(BasketContext);
 
     const {
         wishListItems,
+        setWishListItems
     } = useContext(WishListContext);
     const {
         accountDetails,
@@ -84,7 +86,9 @@ const Header = () => {
 
     const handleExitAccount = useCallback(() => {
         handleClearStorage();
-        navigate("/home")
+        setCartItems([]);
+        setWishListItems([]);
+        navigate("/home");
     }, [navigate])
 
     useEffect(() => {

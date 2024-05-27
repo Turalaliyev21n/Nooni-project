@@ -11,6 +11,7 @@ const Account = () => {
     const {
         accountDetails
     } = useContext(DataContext);
+     
     return (
         <>
             <Header/>

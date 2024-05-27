@@ -42,17 +42,22 @@ const sizeTypes = [
     },
 ];
 
-const stockStatus = [
-    {
-        id: "inStock",
-        status: "In stock"
-    },
-    {
-        id: "outOfStock",
-        status: "Out of Stock"
-    },
-];
 
+
+const stockStatus = {
+    en: [
+        { id: "inStock", status: "In stock" },
+        { id: "outOfStock", status: "Out of stock" }
+    ],
+    ru: [
+        { id: "inStock", status: "В наличии" },
+        { id: "outOfStock", status: "Нет в наличии" }
+    ],
+    az: [
+        { id: "inStock", status: "Stokda var" },
+        { id: "outOfStock", status: "Stokda yox" }
+    ]
+};
 
 const Shop = () => {
     const {
@@ -70,6 +75,15 @@ const Shop = () => {
     const [selectedStockStatus, setSelectedStockStatus] = useState(['inStock', 'outOfStock']);
     const [selectedSizes, setSelectedSizes] = useState(["xs", "s", "m", "l", "xl", "xxl"]);
     const {t} = useTranslation();
+    const {i18n} = useTranslation();
+
+
+    const translatedStock = useMemo(() => {
+        return stockStatus[i18n.language] || stockStatus.en;
+    }, [i18n.language]);
+
+
+
 
 
     // TO MAKE ALL TYPE INPUTS CHECKED
@@ -93,6 +107,7 @@ const Shop = () => {
     const typeFilteredProducts = useMemo(() => {
         return rangeFilteredProducts?.filter(it => typeFilters.includes(it.category))
     }, [rangeFilteredProducts, typeFilters]);
+
     const typeFilterChanged = useCallback((id, checked) => {
         setTypeFilters(prev => checked ? [...prev, id] : prev?.filter(it => it !== id))
     }, []);
@@ -170,6 +185,7 @@ const Shop = () => {
         if (sizeFilteredProducts && sizeFilteredProducts.length > 0 && endIndex > sizeFilteredProducts.length - 1) {
             setCurrentPage(Math.ceil(sizeFilteredProducts?.length / itemsPerPage));
         }
+        
     }, [endIndex, sizeFilteredProducts, setCurrentPage, itemsPerPage]);
 
     return (
@@ -255,9 +271,8 @@ const Shop = () => {
                                     </div>
                                     <div className={styles.filterProductfilter}>
                                         <ul className={styles.productCategries}>
-                                            {stockStatus?.map((status) => {
+                                            {translatedStock?.map((status) => {
                                                 const productCount = typeFilteredProducts?.filter(item => item.stockStatus === status.id)?.length || 0;
-
                                                 if (productCount === 0) return <></>
                                                 return (
                                                     <li key={status.id} className={styles.cartItem}>

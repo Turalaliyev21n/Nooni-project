@@ -64,16 +64,21 @@ export const CheckoutPage = () => {
     const handlePaymentMethod = useCallback((e) => {
         setPayment(e.target.value);
     }, [setPayment]);
+
     const update = useCallback(() => {
         setShouldUpdate(Date.now())
-    }, [])
+    }, []);
+
     const navigate = useNavigate();
+
     const handleInputChange = useCallback((field, value) => {
         setFormFields((prev) => ({
             ...prev,
             [field]: value,
         }));
     }, [setFormFields]);
+
+    // DATANI POST ELEMEK ORDERSE
     const handlePostOrder = useCallback(async () => {
         const requestData = {
             firstName: formFields?.firstName.trim(),
