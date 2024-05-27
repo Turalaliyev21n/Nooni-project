@@ -1,9 +1,10 @@
 import styles from "./CompletedOrder.module.scss";
 import {CheckCircle} from "@phosphor-icons/react";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 export const CompletedOrder = () => {
-
+    const {t} = useTranslation();
     return (
 
         <div className={styles.completedOrderWrapper}>
