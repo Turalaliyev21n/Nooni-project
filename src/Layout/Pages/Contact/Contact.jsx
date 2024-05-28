@@ -128,7 +128,7 @@ const Contact = () => {
 
           <section className={styles.contactLocation}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317716.6064073197!2d-0.43123970044350396!3d51.52860701956136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2zTG9uZG9uLCBCaXJsyZnFn21pxZ8gS3JhbGzEsXE!5e0!3m2!1saz!2saz!4v1714584164893!5m2!1saz!2saz"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.3934034860745!2d49.84807368303786!3d40.40013488303105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d5d5a2c1005%3A0x5ede1cc1418ccc54!2sG%C9%99nclik%20Mall!5e0!3m2!1saz!2saz!4v1716887632171!5m2!1saz!2saz"
               width="100%"
               height="600"
               style={{ border: "0" }}

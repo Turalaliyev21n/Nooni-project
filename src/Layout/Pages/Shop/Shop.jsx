@@ -291,7 +291,7 @@ const Shop = () => {
                                 {/*CATEGORY FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
-                                        TYPE
+                                        {t("main.shop.shopTYPE")}
                                     </div>
                                     <div className={styles.filterProductfilter}>
                                         <ul className={styles.productCategries}>
@@ -322,7 +322,7 @@ const Shop = () => {
                                 {/*PRICE FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
-                                        PRICE
+                                        {t("main.shop.shopPRICE")}
                                     </div>
                                     <div className={`${styles.filterProductfilter} ${styles.rangeContainer}`}>
                                         <FilterSlider
@@ -336,7 +336,7 @@ const Shop = () => {
                                 {/*SIZE FILTER*/}
                                 <div className={styles.filterInpubox}>
                                     <div className={styles.filterTypeInput}>
-                                        SIZE
+                                       {t("main.shop.shopSIZE")}
                                     </div>
                                     <div className={styles.filterProductfilter}>
                                         <ul className={styles.productCategries}>
@@ -371,7 +371,7 @@ const Shop = () => {
                                 <div className={`${styles.productCardsWrapper} ${listView ? styles.listView : ""}`}>
                                     {currentProducts?.length < 1 ? (
                                         <div className={styles.noProducts}>
-                                            No Products found...
+                                           {t("main.shop.shopNoProducts")}
                                         </div>
                                     ) : (
                                         currentProducts?.map((product) => (

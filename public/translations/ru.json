@@ -97,7 +97,16 @@
       "shopFemale": "Женщины",
       "shopKids": "Дети",
       "shopOthers": "Другие",
-      "shopSTOCK": "СКЛАД"
+      "shopSTOCK": "СКЛАД",
+      "shopTYPE":"ТИП",
+      "shopPRICE":"ЦЕНА",
+      "shopSIZE": "РАЗМЕР",
+      "shopNoProducts": "Продукты не найдены..."
+    },
+    "filterSlider":{
+      "filter":"Цена",
+      "Sliderfilter": "фильтр",
+      "Sliderreset": "сброс"
     },
     "blog": {
       "blogBlog": "Блог",
@@ -243,7 +252,7 @@
       "productConstructedFrom": "Изготовлена из прочной полиэстеровой ткани, эта стеганая одежда имеет капюшон и длинные рукава с эластичными манжетами. Можно стирать в машине при температуре 30 градусов Цельсия."
     },
     "singleProduct": {
-      "singleSale": "скидка",
+      "singleSale": "это",
       "singleHot": "хит",
       "singleOutOfStock": "нет в наличии",
       "singleStock": "Наличие:",
@@ -297,7 +306,17 @@
       "checkoutYourBasket": "Ваша корзина пуста",
       "checkoutChooseProducts": "Выберите товары, которые хотите купить",
       "checkoutReturnShop": "Вернуться в магазин"
-    }
+    },
+    "review":{
+      "reviewOURREVIEWS":"НАШИ ОТЗЫВЫ"
+     },
+     "completedOrder":{
+      "completedOrderYour":"Ваш заказ принят",
+      "completedThankYou":"Спасибо за вашу покупку!",
+      "completedYouWill":"Вы получите электронное письмо с подтверждением заказа с деталями.",
+      "completedIfYou":"Если у вас есть вопросы, свяжитесь с этим номером",
+      "completedReturnHome":"На главную"
+      }
   },
   "footer": {
     "topProducts": "Наш магазин содержит только лучшие и высококачественные продукты от мировых брендов. Мы можем предложить вам все, что вы можете себе представить, по разумной цене.",

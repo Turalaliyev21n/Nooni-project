@@ -97,7 +97,16 @@
       "shopFemale": "Qadın",
       "shopKids": "Uşaq",
       "shopOthers": "Digərləri",
-      "shopSTOCK": "STOK"
+      "shopSTOCK": "STOK",
+      "shopTYPE": "NÖV",
+      "shopPRICE": "QİYMƏT",
+      "shopSIZE": "ÖLÇÜ",
+      "shopNoProducts": "Məhsullar tapılmadı..."
+    },
+    "filterSlider": {
+      "filter": "Qiymət",
+      "Sliderfilter": "filtre",
+      "Sliderreset": "sıfırla"
     },
     "blog": {
       "blogBlog": "Blog",
@@ -297,6 +306,16 @@
       "checkoutYourBasket": "Səbətiniz boşdur",
       "checkoutChooseProducts": "Almaq istədiyiniz məhsulları seçin",
       "checkoutReturnShop": "Mağazaya qayıt"
+    },
+    "review": {
+      "reviewOURREVIEWS": "BİZİM RƏYLƏRİMİZ"
+    },
+    "completedOrder": {
+      "completedOrderYour": "Sifarişiniz qəbul edildi",
+      "completedThankYou": "Alış-verişiniz üçün təşəkkür edirik!",
+      "completedYouWill": "Sifarişinizin detallarını içəren bir sifariş təsdiq e-poçtu alacaqsınız.",
+      "completedIfYou": "Əgər sualınız varsa, bu nömrə ilə əlaqə saxlayın",
+      "completedReturnHome": "Ana səhifəyə qayıt"
     }
   },
   "footer": {

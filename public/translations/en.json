@@ -100,7 +100,16 @@
     "shopFemale":"Female",
     "shopKids":"Kids",
     "shopOthers":"Others",
-    "shopSTOCK": "STOCK"
+    "shopSTOCK": "STOCK",
+    "shopTYPE":"TYPE",
+    "shopPRICE":"PRICE",
+    "shopSIZE": "SIZE",
+    "shopNoProducts": "No Products found..."
+  },
+  "filterSlider":{
+  "filter":"Price",
+  "Sliderfilter": "filter",
+  "Sliderreset": "reset"
   },
   "blog": {
     "blogBlog":"Blog",
@@ -303,7 +312,17 @@
     "checkoutYourBasket":"Your basket is empty",
     "checkoutChooseProducts":"Choose products you want to buy",
     "checkoutReturnShop":"Return to Shop"
-  } 
+  },
+  "review":{
+  "reviewOURREVIEWS":"OUR REVIEWS"
+  },
+  "completedOrder":{
+   "completedOrderYour":"Your order has been received",
+   "completedThankYou":"Thank you for your purchase!",
+   "completedYouWill":"You will receive an order confirmation email with details of your order.",
+   "completedIfYou":"If you have any questions, contact this number",
+   "completedReturnHome":"Return home"
+  }
  },
     "footer": {
       "topProducts": "Our store contains only the best and highest quality products from world-class brands. We can offer you anything you can imagine for reasonable price.",
