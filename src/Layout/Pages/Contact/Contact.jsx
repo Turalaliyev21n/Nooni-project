@@ -28,7 +28,7 @@ const Contact = () => {
         }, import.meta.env.VITE_EMAIL_KEY);
         console.log('Auto reply sent:', autoReplyResult.text);
         form.current.reset();
-        toast.success(`Email sent successfully!`, {
+        toast.success(`E-poçt uğurla göndərildi!`, {
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: false,
@@ -38,7 +38,7 @@ const Contact = () => {
           transition: Bounce,
       });
     } catch (error) {
-        toast.error(`Failed to send the message. Please try again later`, {
+        toast.error(`Mesajı göndərmək alınmadı. Zəhmət olmasa bir az sonra yenə cəhd edin`, {
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
