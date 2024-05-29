@@ -322,6 +322,9 @@ const Header = () => {
                                             <div className={styles.dropLink}>
                                                 <Link to={"/basket"}>{t('header.headerDropDown.cart')}</Link>
                                             </div>
+                                            <div className={styles.dropLink}>
+                                                <Link to={"/checkout"} >{t('header.headerDropDown.checkout')}</Link>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -438,9 +441,9 @@ const Header = () => {
                                     <div className={styles.basketBtn}>
                                         <Link to={'/basket'}>{t('header.headerDropDown.viewCart')}</Link>
                                     </div>
-                                    <div className={styles.basketBtn}>
+                                    <Link to={"/checkout"}  className={styles.basketBtn}>
                                         {t('header.headerDropDown.checkout')}
-                                    </div>
+                                    </Link>
                                 </div>
                             </>
                             :

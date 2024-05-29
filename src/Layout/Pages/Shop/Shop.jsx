@@ -376,7 +376,7 @@ const Shop = () => {
                                     ) : (
                                         currentProducts?.map((product) => (
                                             <div className={styles.card} key={product.id}>
-                                                <ProductCard product={product} listView={listView} id={product.id}/>
+                                                <ProductCard product={product} listView={listView} id={product.id} specialStyles = {true}/>
                                             </div>
                                         ))
                                     )}

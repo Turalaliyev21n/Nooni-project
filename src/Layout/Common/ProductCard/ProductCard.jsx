@@ -8,7 +8,7 @@ import {DataContext} from "../../../Context/DataContext.jsx";
 import { useTranslation } from "react-i18next";
 
 
-const ProductCard = ({product, tallSlide, listView}) => {
+const ProductCard = ({product, tallSlide, listView,specialStyles}) => {
     const {t} = useTranslation();
     const {
         addToCart,
@@ -43,7 +43,7 @@ const ProductCard = ({product, tallSlide, listView}) => {
         <>
         <div className={`${styles.productWrapper} ${listView ? styles.listView : ""}`}>
             <div className={styles.productsContainerBox}>
-                <div className={`${styles.productImage} ${tallSlide ? styles.tallSlide : ""}`}>
+                <div className={`${styles.productImage} ${tallSlide ? styles.tallSlide : ""} ${specialStyles ? styles.specialImage : null}`}>
                     {product?.regularPrice && product?.quantity > 0 ?
                         <div className={`${styles.mark} ${styles.saleMark}`}>
                             {t("main.product.productSale")}
