@@ -127,7 +127,7 @@ export const CheckoutPage = () => {
         else {
             try {
                 setOrderLoading(true);
-                await axios.post("http://localhost:8000/orders/", requestData);
+                await axios.post("https://e-commerce-mock-server.onrender.com/orders/", requestData);
                 setFormFields(defaults);
                 emptyCart();
                 update();
