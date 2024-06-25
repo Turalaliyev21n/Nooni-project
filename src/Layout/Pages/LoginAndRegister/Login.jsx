@@ -42,7 +42,7 @@ const Login = () => {
     const logIn = useCallback(async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get("https://e-commerce-mock-server.onrender.com/user");
+            const response = await axios.get("https://e-commerce-mock-server.onrender.com/users");
             const users = response.data;
             const userWithEmail = users.find(
                 (userData) =>

@@ -44,7 +44,7 @@ const Register = () => {
     const addUser = useCallback(async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get("https://e-commerce-mock-server.onrender.com/user");
+            const response = await axios.get("https://e-commerce-mock-server.onrender.com/users");
             const data = response.data;
             let serverEmail = data.find((userData) => userData.userEmail === user.userEmail);
             if (serverEmail) {
@@ -59,7 +59,7 @@ const Register = () => {
                 });
             } else {
                 if (user.userPassword.length >= 6 && confirmPassword === user.userPassword) {
-                    await axios.post("https://e-commerce-mock-server.onrender.com/user", user, {
+                    await axios.post("https://e-commerce-mock-server.onrender.com/users/", user, {
                         headers: {
                             "Content-Type": "application/json",
                         },

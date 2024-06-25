@@ -36,7 +36,7 @@ export const DataContextProvider = ({
 
     const fetchUserName = useCallback(async () => {
         try {
-            const response = await axios.get("https://e-commerce-mock-server.onrender.com/user");
+            const response = await axios.get("https://e-commerce-mock-server.onrender.com/users");
             const users = response?.data;
             const userInStorageString = localStorage.getItem("user");
             const userInStorage = JSON.parse(userInStorageString);
